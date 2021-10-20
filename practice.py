@@ -1,0 +1,1889 @@
+from typing import Pattern
+import unittest
+
+# def number_length(n):
+#     count = 0
+#     for i in str(n):
+#         count += 1
+#     print(count)
+
+
+# number_length(123423435)
+
+# -----------------------
+# Pentagonal Number
+# def pentagonal(n):
+#     count = 1
+#     for i in range(n):
+#         count += i * 5
+#     print(count)
+
+
+# pentagonal(3)
+# pentagonal(8)
+
+# ----------------------
+
+
+# def number_length(num):
+
+#     print(len(str(num)))
+
+
+# number_length(21344)
+
+# ---------------------
+
+
+# def fizz_buzz(num):
+#     if num % 3 == 0 and num % 5 != 0:
+#         print("Fizz")
+#     elif num % 5 == 0 and num % 3 != 0:
+#         print("Buzz")
+#     elif num % 3 == 0 and num % 5 == 0:
+#         print("FizzBuzz")
+#     else:
+#         print(str(num))
+
+
+# fizz_buzz(5)
+
+# -----------------------
+
+# import math
+
+
+# def square_areas_differences(num):
+#     outerSquareArea = (num * 2) ** 2
+#     innerSquareArea = math.sqrt(((num * 2) ** 2) / 2) ** 2
+#     return round(outerSquareArea - innerSquareArea, 1)
+
+
+# print(square_areas_differences(5))
+# print(square_areas_differences(6))
+
+
+# -------------------------------
+
+
+# def is_adjacent(matrix, node1, node2):
+#     if matrix[node1][node2] == 1:
+#         return True
+#     else:
+#         return False
+
+
+# matrix1 = [
+#     [0, 1, 0, 1, 1],
+#     [1, 0, 1, 0, 0],
+#     [0, 1, 0, 1, 0],
+#     [1, 0, 1, 0, 1],
+#     [1, 0, 0, 1, 0],
+# ]
+
+# matrix2 = [[0, 1, 0, 0], [1, 0, 1, 1], [0, 1, 0, 1], [0, 1, 1, 0]]
+
+# print(is_adjacent(matrix1, 1, 4))
+# print(is_adjacent(matrix2, 0, 1))
+# print(is_adjacent(matrix2, 0, 2))
+
+# -------------------------------
+
+# sampleList = ["cow", "pig", "cow", "cow"]
+# sampleList2 = ["table", "table", "table"]
+# samplelist3 = ["chair", "pencil", "arm"]
+
+
+# def pluralize(lst):
+#     plurals = set()
+
+#     for i in range(len(lst)):
+#         for j in range(len(lst)):
+#             if lst[i] == lst[j] and i != j:
+#                 plurals.add(lst[i] + "s")
+
+#     for i in range(len(lst)):
+#         if lst[i] + "s" not in plurals:
+#             plurals.add(lst[i])
+#     return plurals
+
+
+# print(pluralize(sampleList))
+# print(pluralize(sampleList2))
+# print(pluralize(samplelist3))
+
+# -----------------------------------
+
+
+# def addTwoNumbers(l1, l2):
+#     stringl1 = ""
+#     stringl2 = ""
+#     for i in range(len(l1) - 1, -1, -1):
+#         stringl1 += str(l1[i])
+
+#     for i in range(len(l2) - 1, -1, -1):
+#         stringl2 += str(l2[i])
+
+#     answer = [int(d) for d in reversed(str(int(stringl1) + int(stringl2)))]
+
+#     return answer
+
+
+# list1 = [2, 4, 3]
+# list2 = [5, 6, 4]
+
+# print(addTwoNumbers(list1, list2))
+
+# -------------------------------------
+
+
+# def uncensor(string, vowels):
+#     if string.find("*") == -1:
+#         return string
+#     else:
+#         vowelList = list(vowels)
+#         vowelsList2 = ""
+#         newString = string.replace("*", vowelList.pop(0), 1)
+#         return uncensor(newString, vowelsList2.join(vowelList))
+
+
+# print(uncensor("Wh*r* d*d my v*w*ls g*?", "eeioeo"))
+# print(uncensor("abcd", ""))
+# print(uncensor("*PP*RC*S*", "UEAE"))
+
+# -----------------------------------
+
+
+# def is_disarium(num):
+#     numArray = []
+#     count = 0
+#     for n in str(num):
+#         numArray.append(int(n))
+#     for i in range(len(numArray)):
+#         count += numArray[i] ** (i + 1)
+#     if count == num:
+#         return True
+#     else:
+#         return False
+
+
+# print(is_disarium(75))
+# print(is_disarium(6))
+
+# ----------------------------------
+
+# d1 = {"z": "q", "w": "f"}
+# d2 = {"a": 1, "b": 2, "c": 3}
+# d3 = {"zebra": "koala", "horse": "camel"}
+
+
+# def invert(dict):
+#     newDict = {}
+#     for key in dict:
+#         newDict[dict[key]] = key
+#     return newDict
+
+
+# print(invert(d1))
+# print(invert(d2))
+# print(invert(d3))
+
+# -----------------------------------
+
+
+# def bonus(num):
+#     result = 0
+
+#     if 32 < num < 40:
+#         result += (num - 32) * 325
+#     elif num > 40:
+#         result += 8 * 325
+
+#     if 40 < num < 48:
+#         result += (num - 40) * 550
+#     elif num > 48:
+#         result += 8 * 550
+
+#     if num > 48:
+#         result += (num - 48) * 600
+
+#     return result
+
+
+# print(bonus(15))
+
+# print(bonus(37))
+
+# print(bonus(50))
+
+# ----------------------------------------------------
+
+
+# def tallest_skycraper(List):
+#     for i in range(len(List)):
+#         for j in List[i]:
+#             if j == 1:
+#                 return len(List) - i
+
+
+# print(tallest_skycraper([[0, 0, 0, 0], [0, 1, 0, 0], [0, 1, 1, 0], [1, 1, 1, 1]]))
+# print(tallest_skycraper([[0, 1, 0, 0], [0, 1, 0, 0], [0, 1, 1, 0], [1, 1, 1, 1]]))
+# print(tallest_skycraper([[0, 0, 0, 0], [0, 0, 0, 0], [1, 1, 1, 0], [1, 1, 1, 1]]))
+
+# -----------------------------------------------------
+# import math
+
+# a1 = [10, 20, 20, 10, 10, 30, 50, 10, 20]
+# a2 = [50, 20, 30, 90, 30, 20, 50, 20, 90]
+# a3 = []
+
+
+# def sock_merchant(array):
+#     uniqueSocks = set(array)
+#     result = 0
+#     for i in uniqueSocks:
+#         sockCount = 0
+#         for j in array:
+#             if i == j:
+#                 sockCount += 1
+#         result += math.floor(sockCount / 2)
+#     return result
+
+
+# print(sock_merchant(a1))
+# print(sock_merchant(a2))
+# print(sock_merchant(a3))
+
+# ----------------------------------------
+
+
+# def consecutive_combo(ar1, ar2):
+#     arr = ar1 + ar2
+#     arr.sort()
+
+#     result = True
+
+#     for i in range(len(arr) - 1):
+#         if arr[i + 1] - arr[i] != 1:
+#             result = False
+
+#     return result
+
+
+# print(consecutive_combo([7, 4, 5, 1], [2, 3, 6]))
+# print(consecutive_combo([1, 4, 6, 5], [2, 7, 8, 9]))
+# print(consecutive_combo([1, 4, 5, 6], [2, 3, 7, 8, 10]))
+# print(consecutive_combo([44, 46], [45]))
+
+# ------------------------------------------
+
+# import socket
+
+
+# def get_domain(str):
+#     a = socket.gethostbyaddr(str)[0]
+#     return a
+
+
+# print(get_domain("8.8.8.8"))
+
+# -------------------------------------------
+
+# import itertools as it
+
+
+# def permutations(str):
+#     return " ".join(sorted("".join(p) for p in it.permutations(str)))
+
+# print(permutations("AB"))
+# print(permutations("CD"))
+# print(permutations("EF"))
+# print(permutations("NOT"))
+# print(permutations("RAM"))
+# print(permutations("YAW"))
+
+# --------------------------------------------
+
+# import math
+
+
+# def shift_to_right(num1, num2):
+#     return math.floor(num1 / (2 ** num2))
+
+
+# import math
+
+
+# def shift_to_right2(num1, num2):
+#     if num2 != 0:
+#         return shift_to_right2(num1 / 2, num2 - 1)
+#     else:
+#         return math.floor(num1)
+
+
+# print(shift_to_right2(80, 3))
+# print(shift_to_right2(-24, 2))
+
+# ----------------------------------------------
+
+
+# def is_harshad(num):
+#     count = 0
+#     for x in [int(i) for i in str(num)]:
+#         count += x
+
+#     if num % count == 0:
+#         return True
+#     else:
+#         return False
+
+
+# print(is_harshad(75))
+# print(is_harshad(171))
+# print(is_harshad(481))
+# print(is_harshad(89))
+# print(is_harshad(516))
+
+# ---------------------------------------------
+
+# import re
+
+
+# def is_valid_hex_code(str):
+#     if len(str) == 7:
+#         if re.match("#([a-f A-F 0-9]{6})", str) != None:
+#             return True
+#         else:
+#             return False
+#     else:
+#         return False
+
+
+# print(is_valid_hex_code("#CD5C5C"))
+# print(is_valid_hex_code("#CD5C5Z"))
+
+# -------------------------------------------
+
+# import re
+
+
+# def same_length(str):
+#     import re
+
+#     regex = "([1]*)([0]*)"
+#     result = list(filter(None, re.split(regex, str)))
+#     isValid = True
+#     if len(result) % 2 != 0:
+#         return False
+#     for i in range(0, len(result) - 1, 2):
+#         if len(result[i]) != len(result[i + 1]):
+#             isValid = False
+#     return isValid
+
+
+# print(same_length("110011100010"))
+# print(same_length("101"))
+
+# ------------------------------------------
+
+
+# def fair_swap(list1, list2):
+#     result = set()
+#     for i in range(len(list1)):
+
+#         for j in range(len(list2)):
+
+#             newList1 = list1.copy()
+#             newList2 = list2.copy()
+#             num1 = newList2.pop(j)
+#             num2 = newList1.pop(i)
+#             newList1.append(num1)
+#             newList2.append(num2)
+#             count1 = 0
+#             count2 = 0
+#             for x in newList1:
+#                 count1 += x
+#             for y in newList2:
+#                 count2 += y
+
+#             if count1 == count2:
+#                 result.add((list1[i], list2[j]))
+
+#     return result
+
+
+# print(fair_swap([1, 1], [2, 2]))
+
+# --------------------------------------------
+
+# def fair_swap(list1, list2):
+#     result = set()
+#     l1_sum = sum(list1)
+#     l2_sum = sum(list2)
+
+#     for num1 in set(list1):
+#         for num2 in set(list2):
+#             if l1_sum - num1 + num2  == l2_sum - num2 + num1:
+#                 result.add((num1, num2))
+
+#     return result
+
+#     return result
+
+# ------------------------------------------
+
+
+# def remove_letters(letters, word):
+#     result = letters.copy()
+#     for i in word:
+#         if i in result:
+#             result.remove(i)
+#     return result
+
+
+# print(remove_letters(["s", "t", "r", "i", "n", "g", "w"], "string"))
+# print(remove_letters(["d", "b", "t", "e", "a", "i"], "edabit"))
+# print(remove_letters(["b", "b", "l", "l", "g", "n", "o", "a", "w"], "balloon"))
+
+
+# -------------------------------------------
+
+
+# def loves_me(num):
+#     result = []
+#     for i in range(num):
+#         if i + 1 == num:
+#             if i % 2 == 0 or i == 0:
+#                 result.append("LOVES ME")
+#             else:
+#                 result.append("LOVES ME NOT")
+#         elif i % 2 == 0 or i == 0:
+#             result.append("loves me")
+#         else:
+#             result.append("loves me not")
+#     return ", ".join(result)
+
+
+# print(loves_me(3))
+
+# -------------------------------------------
+
+# import datetime
+
+
+# def has_friday_13(month, year):
+#     x = datetime.datetime(year, month, 13)
+#     if x.strftime("%a") == "Fri":
+#         return True
+#     else:
+#         return False
+
+
+# print(has_friday_13(3, 2020), has_friday_13(10, 2017), has_friday_13(1, 1985))
+
+
+# --------------------------------------------
+
+
+# def find_the_difference(str1, str2):
+#     string1 = sorted(str1)
+#     string2 = sorted(str2)
+
+#     if len(str1) == 0:
+#         return str2
+#     for i in range(len(string1)):
+#         if string2[i] != string1[i]:
+#             return string2[i]
+#     return string2[len(str2) - 1]
+
+
+# find_the_difference("abcd", "abcde")
+# find_the_difference("", "y")
+# find_the_difference("ae", "aea")
+
+# best way
+# def find_the_difference(s, t):
+#     for i in s:
+#         t = t.replace(i, "", 1)
+#     return t
+
+# -------------------------------------------
+
+
+# def parse_code(str):
+#     newString = list(filter(None, str.split("0")))
+
+#     return dict(
+#         {"first_name": newString[0], "last_name": newString[1], "id": newString[2]}
+#     )
+
+
+# parse_code("John000Doe000123")
+
+# ----------------------------------------
+# l1 = [1, 2, 4, 5, "d"]
+# l2 = [1]
+
+
+# def cycle(list):
+#     n1 = list.pop(0)
+#     list.append(n1)
+
+
+# cycle(l1)
+# print(l1)
+# print(l1[0])
+
+# cycle(l2)
+# print(l2)
+# print(l2[0])
+
+# -----------------------
+# def middle_words(list):
+#     if len(list) % 2 == 0:
+#         print(len(list) / 2)
+#         return [list[int(len(list) / 2) - 1], list[int(len(list) / 2)]]
+#     else:
+#         return [list[int(len(list) / 2)]]
+
+
+# l1 = ["hello", "hi", "cool", "yes"]
+
+
+# def longest_sentence(str):
+#     return sorted(str.split("."), key=len, reverse=True)[0]
+
+
+# def long_high_word(wordlist):
+#     return sorted(wordlist, key=lambda item: (len(item), item), reverse=True)[0]
+
+
+# print(long_high_word(["a", "cat", "sat"]))
+
+# print(longest_sentence("hello. my name is the. what is it with you"))def middle_words(list):
+#     if len(list) % 2 == 0:
+#         print(len(list) / 2)
+#         return [list[int(len(list) / 2) - 1], list[int(len(list) / 2)]]
+#     else:
+#         return [list[int(len(list) / 2)]]
+
+
+# l1 = ["hello", "hi", "cool", "yes"]
+
+
+# def longest_sentence(str):
+#     return sorted(str.split("."), key=len, reverse=True)[0]
+
+
+# def long_high_word(wordlist):
+#     return sorted(wordlist, key=lambda item: (len(item), item), reverse=True)[0]
+
+
+# print(long_high_word(["a", "cat", "sat"]))
+
+# print(longest_sentence("hello. my name is the. what is it with you"))
+
+# ------------------------------------------
+
+
+# def valid_word_nest(word, nest):
+#     import re
+
+#     if len(re.findall(word, nest)) > 1:
+#         return False
+#     if nest.find(word) == -1:
+#         return False
+#     else:
+#         if len(word) == len(nest):
+#             return True
+#         else:
+#             wordIndex = nest.find(word)
+#             newNest = nest[0:wordIndex] + nest[wordIndex + len(word) :]
+#             return valid_word_nest(word, newNest)
+
+
+# print(valid_word_nest("broadcast", "broadcast"))
+
+# -------------------------------------------------
+
+
+# def hangman(str, array):
+
+#     return "".join(
+#         [char if char in array else " " if char == " " else "-" for char in str]
+#     )
+
+
+# print(hangman("helicopter", ["o", "e", "s"]))
+
+# ------------------------------------
+
+
+# def top5_words(text):
+
+#     tally = {}
+#     text_list = text.split()
+#     empty_list = []
+#     new_tally = {}
+
+#     for word in text_list:
+#         if word in tally:
+#             tally[word] -= 1
+#         else:
+#             tally[word] = -1
+
+#     sorted_keys = sorted(tally, key=lambda item: (tally[item], item))
+#     for word in sorted_keys:
+#         new_tally[word] = tally[word]
+
+#     return list(new_tally.keys())[:5]
+
+
+# print(top5_words("one one was a racehorse two two was one too"))
+# print(top5_words("the quick brown fox jumped over the lazy dog"))
+
+# --------------------------------------------
+
+
+# def rearranged_difference(num):
+#     return int("".join(sorted([n for n in str(num)], reverse=True))) - int(
+#         "".join(sorted([n for n in str(num)]))
+#     )
+
+
+# print(rearranged_difference("4837249073"))
+
+# --------------------------------------------
+
+# If you update dictionary you can also instantiate a new property of the object. The __dict__ is where the listing of all properties of the object are stored.
+# class Employee:
+#     def __init__(self, fullName, **kwargs):
+#         self.name = fullName.split(" ")[0]
+#         self.lastname = fullName.split(" ")[1]
+#         self.__dict__.update(kwargs)
+
+#     def showDict(self):
+#         print(self.__dict__)
+
+
+# patrick = Employee("Patrick Vuong", salary=100000)
+
+# patrick.showDict()
+
+# -----------------------------------------------
+
+
+# def group(arr, size):
+#     import math
+
+#     result = [[] for x in range(math.ceil(len(arr) / size))]
+#     for i in range(len(arr)):
+#         if i < len(result):
+#             result[i].append(arr.pop(0))
+#         else:
+#             result[i % len(result)].append(arr.pop(0))
+#     return result
+
+
+# print(group([1, 2, 3, 4, 5, 6, 7], 4))
+
+# --------------------------------------------
+
+
+# import pickle
+
+
+# class Selfie:
+#     def __init__(self):
+#         self.lst_state = []
+
+#     def save_state(self):
+#         self.lst_state.append(pickle.dumps(self))
+
+#     def recover_state(self, n):
+#         if 0 <= n < len(self.lst_state):
+#             obj = pickle.loads(self.lst_state[n])
+#             obj.lst_state = self.lst_state
+#             return obj
+#         return self
+
+#     def n_states(self):
+#         return len(self.lst_state)
+
+
+# d = Selfie()
+
+
+# -------------------------------------------------------
+
+
+# def id_matrix(num):
+#     if type(num) != int:
+#         return "Error"
+
+#     result = [[] for x in range(abs(num))]
+#     count = 0 if num >= 0 else abs(num) - 1
+#     for i in range(abs(num)):
+#         for j in range(abs(num)):
+#             if count == j:
+#                 result[i].append(1)
+#             else:
+#                 result[i].append(0)
+#         if num > 0:
+#             count += 1
+#         else:
+#             count -= 1
+#     return result
+
+
+# print(id_matrix("buggy"))
+
+# ------------------------------------------------------
+
+# 0, 1, 1, 2, 3, 5, 8, 13
+
+
+# def fib(n):
+#     if n <= 1:
+#         return n
+#     else:
+#         return fib(n - 1) + fib(n - 2)
+
+
+# print(fib(5))
+
+# -------------------------------------------------------
+
+# sample = [["!!!", "O", "!"], ["X", "#", "!!!"], ["!!", "X", "O"]]
+
+
+# def check_score(s):
+#     matrix = {"#": 5, "O": 3, "X": 1, "!": -1, "!!": -3, "!!!": -5}
+
+#     count = 0
+
+#     for i in s:
+#         for j in i:
+#             for x in matrix:
+#                 if j == x:
+#                     count += matrix[x]
+
+#     if count < 0:
+#         return 0
+#     else:
+#         return count
+
+
+# print(check_score(sample))
+
+# ---------------------------------------------------------
+
+
+# class equals:
+#     def __eq__(self, other):
+#         return True
+
+# ------------------------------------------
+
+
+# def non_increasing_tst(ts, delta):
+#     # TODO
+#     i = 0
+#     Answer = True
+#     while i + 1 < len(ts):
+#         if ts[i + 1] - ts[i] > delta:
+#             Answer = False
+#             break
+#         i += 1
+
+#     return Answer
+
+
+# non_increasing_tst([100, 90, 80, 70, 70, 60], 0)
+
+# ---------------------------------------------
+
+
+# def pattern_check(lst, pattern, delta):
+
+#     result = ""
+#     for i in range(len(lst) - 1):
+#         if abs(lst[i + 1] - lst[i]) <= delta:
+#             result += "s"
+#             continue
+#         elif lst[i + 1] - lst[i] > delta:
+#             result += "u"
+#             continue
+#         else:
+#             result += "d"
+#             continue
+
+#     print(result)
+
+#     if result.find(pattern) != -1:
+#         return True
+#     else:
+#         return False
+
+
+# print(
+#     pattern_check([58, 54, 54, 52, 54, 50, 47], "sdud", 0),
+#     pattern_check([58, 54, 54, 52, 54, 50, 47], "sdud", 2),
+#     pattern_check([58, 54, 54, 52, 54, 50, 47], "sss", 2),
+#     pattern_check([58, 54, 54, 52, 54, 50, 47], "dd", 0),
+#     pattern_check([1, 2, 1, 8, 1, 2], "udud", 0),
+#     pattern_check([1, 2, 1, 8, 1, 2], "udud", 2),
+# )
+
+
+# --------------------------------------
+
+
+# def closest_tst(ts, lstTs):
+
+#     # Instantiate list containing the distances of each element in lstTs
+#     result = []
+
+#     for i in lstTs:
+#         # Instantiate list containing the diff between each list AND the primary Ts
+#         diff = []
+#         for j in range(len(i)):
+#             diff.append(abs(ts[j] - i[j]))
+
+#         # Applying the formula
+#         mean = sum(diff) / len(i)
+
+#         # The section of the formula that requires you to sum the values
+#         count = 0
+#         for x in diff:
+#             count += (x - mean) ** 2
+#         # Calculate distance with you summed value
+#         distance = (count / len(i)) ** 1 / 2
+
+#         # Once distance is found between the primary list and an element in lstTs we append the result to result
+#         result.append(distance)
+
+#         # Finds the index of the smallest value
+#     return result.index(sorted(result)[0])
+
+
+# # Primary
+# ts1 = [10, 10, 10, 10]
+
+
+# ts2 = [10, 10, 20, 20]
+# ts3 = [0, 0, 40, 40]
+# ts4 = [100, 100, 100, 100]
+# ts5 = [10, 10, 20, 10]
+# print(closest_tst(ts1, [ts2, ts5]))
+
+
+# def anomaly_tst(ts, w, threshold):
+
+#     subsequences = [[x for x in ts[i : i + w]] for i in range(len(ts) - w + 1)]
+
+#     meanDistanceOfSubseuquences = []
+
+#     def distance(ts1, ts2):
+#         count = 0
+#         for i in range(len(ts1)):
+#             count += abs(ts1[i] - ts2[i]) ** 2
+#         return count ** 0.5
+
+#     for i, sub1 in enumerate(subsequences):
+#         distSubsequences = []
+#         for j, sub2 in enumerate(subsequences):
+#             if i != j:
+#                 distSubsequences.append(distance(sub1, sub2))
+#         meanOfSubsequence = sum(distSubsequences) / len(distSubsequences)
+#         meanDistanceOfSubseuquences.append(meanOfSubsequence)
+
+#     # for k, value in enumerate(meanDistanceOfSubseuquences):
+#     #     if value > threshold:
+#     #         return k
+#     if max(meanDistanceOfSubseuquences) > threshold:
+#         return meanDistanceOfSubseuquences.index(max(meanDistanceOfSubseuquences))
+
+#     return -1
+
+
+# ts = [3, 0, 2, 40, 1]
+# print(anomaly_tst([10, 10, 10, 10, 0, 0, 10], 2, 12))
+# print(anomaly_tst([10, 10, 10, 10, 10, 10, 10], 3, 12))
+# print(anomaly_tst(ts, 2, 40))
+# print(anomaly_tst(ts, 2, 100))
+# print(anomaly_tst([3, 0, 2, 40, 11], 3, 14))
+
+# -----------------------------------------------------------------------
+
+# import math
+
+
+# def anomaly_tst(ts, w, threshold):
+#     number2 = 0
+
+#     average_distance = list()
+
+#     # cycles through the subsequences
+#     while number2 < (len(ts) - (w - 1)):
+#         distance_list = list()
+#         subsequence1 = ts[number2 : w + number2]
+#         number2 += 1
+#         number3 = 0
+
+#         while number3 < (len(ts) - (w - 1)):
+
+#             subsequence2 = ts[number3 : w + number3]
+#             print(subsequence1, subsequence2)
+#             number3 += 1
+#             distance = math.sqrt(
+#                 (subsequence1[0] - subsequence2[0]) ** 2
+#                 + (subsequence1[1] - subsequence2[1]) ** 2
+#             )
+#             distance_list.append(distance)
+
+#         average_distance.append(sum(distance_list) / 3)
+
+#     if max(average_distance) > threshold:
+#         return average_distance.index(max(average_distance))
+
+#     return -1
+
+
+# ts = [3, 0, 2, 40, 1]
+# # print(anomaly_tst([10, 10, 10, 10, 0, 0, 10], 2, 12))
+# # print(anomaly_tst([10, 10, 10, 10, 10, 10, 10], 3, 12))
+# # print(anomaly_tst(ts, 2, 40))
+# # print(anomaly_tst(ts, 2, 100))
+# print(anomaly_tst([3, 0, 2, 40, 1], 3, 14))
+
+# ------------------------------------------------------------------------
+
+
+# def basenum(num, base):
+#     def create_generator():
+#         for i in range(len(str(num))):
+#             yield i
+
+#     generator = create_generator()
+#     for x in generator:
+#         if base < int(str(num)[x]):
+#             return False
+#     return True
+
+
+# print(basenum(1232614, 5))
+
+# ---------------------------------------------------------------------------
+
+
+# def basenum(num, base):
+#     def conver(n, b):
+#         a = 0
+#         i = 0
+#         while n:
+#             n, r = divmod(n, b)
+#             a += 10 ** i * r
+#             i += 1
+
+#         return a
+
+#     for i in range(num + 1):
+#         if conver(i, base) == num:
+#             return True
+#         elif i == num & base == 10:
+#             return True
+#     return False
+
+
+# print(basenum(1012121211212, 2))
+
+
+# def conver(n, b):
+#     a = 0
+#     i = 0
+#     while n:
+#         n, r = divmod(n, b)
+#         a += 10 ** i * r
+#         i += 1
+
+#     return print(type(a))
+
+
+# conver(10, 9)
+
+
+# def basenum(num, base):
+
+#     n1 = str(num)
+#     length = len(n1)
+#     for i in range(length):
+#         if base <= int(n1[i]):
+#             return False
+#     return True
+
+
+# print(basenum(0, 0))
+
+# --------------------------------------------------------------
+
+
+# def matching_codons(complements, pool1, pool2):
+
+#     result = []
+
+#     for i in pool1:
+#         complement = ""
+#         for k in i:
+#             complement += complements[k]
+
+#         for j in pool2:
+#             if complement == j:
+#                 result.append((i, j))
+
+#     return result
+
+
+# def matching_codons(complements, pool1, pool2):
+#     match = []
+#     compare_lst = []
+#     result = []
+#     for codon1 in pool1:
+#         for nucleotides in codon1:
+#             match.append(complements[nucleotides])
+#     for i in range(len(match) - 2):
+#         codon = match[i] + match[i + 1] + match[i + 2]
+#         compare_lst.append(codon)
+
+#     for codon2 in pool2:
+#         if codon2 in compare_lst:
+#             result.append(codon2)
+#     return result
+
+
+# complements = {"A": "T", "C": "G", "T": "A", "G": "C"}
+# p1 = ["AAG", "TAC", "CGG", "GAT", "TTG", "GTG", "CAT", "GGC", "ATT", "TCT"]
+# p2 = ["TAA", "CTA", "AAC", "TTC", "AGA", "CCC", "CCG", "GTA"]
+
+# print(matching_codons(complements, p1, p2))
+
+# ----------------------------------------------------
+
+
+# def add(n):
+#     if n > 100:
+#         return print("Finished")
+#     else:
+#         print(n)
+#         return add(n + n)
+
+
+# add(5)
+
+
+# -----------------------------------------------------------
+
+# def super_digit(n, k):
+#     if len(n) == 1:
+#         return int(n)
+#     else:
+#         sumNum = sum([int(x) for x in (k * n)])
+#         return super_digit(str(sumNum), 1)
+
+
+# print(super_digit("148", 3))
+
+
+# ------------------------------------------------------------------
+
+
+# def reverse(x):
+#     result = [i for i in str(abs(x))]
+#     if x < 0:
+#         result.reverse()
+#         result.insert(0, "-")
+#         result = int("".join(result))
+#     else:
+#         result.reverse()
+#         result = int("".join(result))
+
+#     if -(2 ** 31) < result < ((2 ** 31) - 1):
+#         return result
+#     else:
+#         return 0
+
+
+# print(reverse(213123))
+
+# --------------------------------------------------------------------
+
+
+# def atbash(code):
+#     cipher = [
+#         "a",
+#         "b",
+#         "c",
+#         "d",
+#         "e",
+#         "f",
+#         "g",
+#         "h",
+#         "i",
+#         "j",
+#         "k",
+#         "l",
+#         "m",
+#         "n",
+#         "o",
+#         "p",
+#         "q",
+#         "r",
+#         "s",
+#         "t",
+#         "u",
+#         "v",
+#         "w",
+#         "x",
+#         "y",
+#         "z",
+#     ]
+
+#     result = ""
+#     for x in range(len(code)):
+#         if code[x].lower() in cipher:
+#             if code[x].isupper():
+#                 result += cipher[
+#                     len(cipher) - cipher.index(code[x].lower()) - 1
+#                 ].upper()
+#             else:
+#                 result += cipher[len(cipher) - cipher.index(code[x].lower()) - 1]
+#         else:
+#             result += code[x]
+
+#     return result
+
+
+# print(atbash("apple"))
+# print(atbash("Hello world!"))
+# print(atbash("Christmas is the 25th of December"))
+
+# -----------------------------------------------------------------
+
+
+# def knightBFS(x1, y1, x2, y2):
+#     start = (x1, y1)
+#     end = (x2, y2)
+#     queue = [[start]]
+
+#     def adj(node):
+#         adjacentNodes = []
+#         moves = [(1, 2), (1, -2), (2, 1), (2, -1), (-1, 2), (-1, -2), (-2, 1), (-2, -1)]
+#         for x in moves:
+#             if (
+#                 node[0] + x[0] >= 1
+#                 and node[0] + x[0] <= 8
+#                 and node[1] + x[1] >= 1
+#                 and node[1] + x[1] <= 8
+#             ):
+#                 transNode = tuple(map(lambda i, j: i + j, x, node))
+#                 if (
+#                     transNode not in [a for item in queue for a in item]
+#                     and transNode not in adjacentNodes
+#                 ):
+#                     adjacentNodes.append(transNode)
+#         return adjacentNodes
+
+#     for i, value1 in enumerate(queue):
+#         sublist = []
+#         for value2 in value1:
+#             if value2 == end:
+#                 return i
+#             else:
+#                 sublist += adj(value2)
+#         queue.append(sublist)
+
+
+# print(knightBFS(8, 8, 3, 3))
+
+# What is a better way of keeping track of which layer you are on in BFS?
+
+# -----------------------------------------------------------------------------
+
+
+# def numgrid(grid):
+#     def adj(node):
+#         adjacentNodes = []
+#         transformations = [
+#             (0, 1),
+#             (1, 1),
+#             (0, -1),
+#             (-1, -1),
+#             (-1, 0),
+#             (1, 0),
+#             (-1, 1),
+#             (1, -1),
+#         ]
+#         for x in transformations:
+#             if (
+#                 node[0] + x[0] >= 0
+#                 and node[0] + x[0] <= len(grid[0]) - 1
+#                 and node[1] + x[1] >= 0
+#                 and node[1] + x[1] <= len(grid) - 1
+#             ):
+#                 adjacentNodes.append(tuple(map(lambda i, j: i + j, x, node)))
+#         return adjacentNodes
+
+#     for index_I, i in enumerate(grid):
+#         for index_J, j in enumerate(i):
+#             pos = (index_I, index_J)
+#             adj_lst = adj(pos)
+#             count = 0
+#             if j == "-":
+#                 for a in adj_lst:
+#                     if grid[a[0]][a[1]] == "#":
+#                         count += 1
+#                 grid[index_I][index_J] = str(count)
+
+#     return grid
+
+
+# sample_grid = [
+#     ["-", "-", "-", "-", "-"],
+#     ["-", "-", "-", "-", "-"],
+#     ["-", "-", "#", "-", "-"],
+#     ["-", "-", "-", "-", "-"],
+#     ["-", "-", "-", "-", "-"],
+# ]
+
+# print(numgrid(sample_grid))
+
+# -----------------------------------------------------------
+
+# b1 = [["X", "O", "X"], ["O", "X", "O"], ["O", "X", "X"]]
+
+
+# def tic_tac_toe(board):
+
+#     # Check horizontal
+#     for i in board:
+#         if i[0] == i[1] and i[0] == i[2]:
+#             return i[0]
+
+#     # Check vertical
+
+#     for x in range(len(board)):
+#         if board[0][x] == board[1][x] and board[0][x] == board[2][x]:
+#             return board[0][x]
+
+#     # Check diagonals
+
+#     if board[1][1] == board[0][0] and board[1][1] == board[2][2]:
+#         return board[1][1]
+
+#     if board[1][1] == board[2][0] and board[1][1] == board[0][2]:
+#         return board[1][1]
+
+#     return "Draw"
+
+
+# print(tic_tac_toe(b1))
+
+
+# ---------------------------------------------------------
+
+
+# def deepest(arr):
+#     res = 0
+#     lst = arr
+
+#     while True:
+#         sublist = []
+#         res += 1
+#         for i in lst:
+#             if type(i) == list:
+#                 for x in i:
+#                     sublist.append(x)
+#         lst = sublist
+#         if len(sublist) == 0:
+#             return res
+
+
+# print(deepest([1, [2, 3], 4, [5, 6]]))
+
+# print(deepest([1, 3, 4, 5]))
+
+# # Better way
+# def deepest(lst):
+#     	if type(lst)!= list: return 0
+# 	return 1 + max(deepest(e) for e in lst)
+
+# -------------------------------------------------------------
+
+
+# def will_hit(equation, pos):
+#     x, y = pos
+#     eqn = equation.replace("=", "==").replace("x", "*x")
+#     print(eqn)
+#     return eval(eqn)
+
+
+# print((will_hit("y = 2x - 5", (0, 0))))
+# print((will_hit("y = -4x + 6", (1, 2))))
+# print((will_hit("y = 2x + 6", (3, 2))))
+
+# -------------------------------------------------------------
+
+
+# maze1 = [
+#     [0, 1, 1, 1, 1, 1, 1],
+#     [0, 0, 1, 1, 0, 1, 1],
+#     [1, 0, 0, 0, 0, 1, 1],
+#     [1, 1, 1, 1, 0, 0, 1],
+#     [1, 1, 1, 1, 1, 0, 0],
+# ]
+
+
+# def canExit(maze):
+#     start = (0, 0)
+#     visitedNodes = []
+
+#     def adj(node):
+#         adjLst = []
+#         transformations = [
+#             (-1, 0),
+#             (0, 1),
+#             (0, -1),
+#             (1, 0),
+#         ]
+
+#         for i in transformations:
+#             trans = tuple(map(lambda y, x: x + y, node, i))
+#             if (
+#                 trans[1] >= 0
+#                 and trans[1] < len(maze)
+#                 and trans[0] >= 0
+#                 and trans[0] < len(maze[0])
+#                 and maze[trans[1]][trans[0]] == 0
+#                 and trans not in visitedNodes
+#             ):
+#                 adjLst.append(trans)
+
+#         return adjLst
+
+#     def dfs(currentNode):
+#         adjList = adj(currentNode)
+
+#         if currentNode == (len(maze[0]) - 1, len(maze) - 1):
+#             return True
+
+#         if len(adjList) == 0:
+#             return
+#         else:
+#             for x in adjList:
+#                 visitedNodes.append(currentNode)
+#                 # If you do 'return dfs(x)' it will recursively return none when it hits a len(adjList == 0), we need it to continue the loop in order to continue searching the path.
+#                 if dfs(x):
+#                     return True
+
+#         return False
+
+#     return dfs(start)
+
+
+# print(canExit(maze1))
+
+# -------------------------------------------------------------------------------------
+
+
+# def guess_score(code, guess):
+#     black = 0
+#     white = 0
+#     c = code
+
+#     for i in range(len(c)):
+#         if code[i] == guess[i]:
+#             c = c.replace(guess[i], "", 1)
+#             black += 1
+
+#     for x in guess:
+#         for index_k, k in enumerate(c):
+#             if x == k:
+#                 white += 1
+#         c = c.replace(x, "", 1)
+
+#     return {"black": black, "white": white}
+
+
+# print(
+#     guess_score("1423", "5678"),
+#     guess_score("1423", "2222"),
+#     guess_score("1423", "1234"),
+#     guess_score("1423", "2211"),
+#     guess_score("2928", "7722"),
+# )
+
+
+# --------------------------------------------------------------------------------------
+
+
+# def priority_sort(lst, s):
+#     return sorted(sorted(lst), key=lambda num: float("-inf") if num in s else num)
+
+
+# def priority_sort(lst, s):
+#     return sorted(lst, key=lambda x: (not x in s, x))
+
+
+# print(priority_sort([1, 3, 2, -4, 7, -2, 6], [2, 3]))
+# print(priority_sort([5, 4, 3, 2, 1], {2, 3}))
+
+# x = [1, 2, 3, 4]
+# a = 1
+
+# print(not a in x)
+
+# ------------------------------------------------------------------------------------
+
+
+# def kaprekar(lower, upper):
+
+#     res = []
+
+#     for i in range(lower, upper + 1):
+#         l = (
+#             0
+#             if str(i ** 2)[0 : len(str(i ** 2)) - len(str(i))] == ""
+#             else int(str(i ** 2)[0 : len(str(i ** 2)) - len(str(i))])
+#         )
+
+#         r = int(str(i ** 2)[len(str(i ** 2)) - len(str(i)) :])
+#         if l + r == i:
+#             res.append(str(i))
+
+#     if not res:
+#         return "INVALID RANGE"
+#     else:
+#         return " ".join(res)
+
+
+# print(kaprekar(1, 10))
+# print(kaprekar(100, 300))
+# print(kaprekar(2, 4))
+# 100 => 10000 l = remaining r = 2 digits
+
+# -------------------------------------------------------------
+
+
+# def discount(lst):
+
+#     import math
+
+#     total_free_items = sum(sorted(lst)[0 : math.floor(len(lst) / 3)])
+#     percentage = (100 - (100 * total_free_items) / sum(lst)) / 100
+
+#     res = []
+
+#     for i in lst:
+#         res.append(round((i * percentage), 2))
+#     return res
+
+
+# print(discount([2.99, 5.75, 3.35, 4.99]))
+
+# -------------------------------------------------------------
+
+
+# def validateCard(card):
+
+#     cardNums = []
+
+#     if len(str(card)) < 14 or len(str(card)) > 19:
+#         return False
+
+#     for i, v in enumerate(list(str(card)[0 : len(str(card)) - 1])[::-1]):
+#         if i % 2 == 0 or i == 0:
+#             x = int(v) * 2
+#             if len(str(x)) == 2:
+#                 q = int(str(x)[0]) + int(str(x)[1])
+#                 cardNums.append(q)
+#                 continue
+#             else:
+#                 cardNums.append(x)
+#                 continue
+#         cardNums.append(int(v))
+
+#     if 10 - int(str(sum(cardNums))[1]) == int(str(card)[len(str(card)) - 1]):
+#         return True
+#     else:
+#         return False
+
+
+# print(validateCard(709092739800713))
+
+# --------------------------------------------------------------------------
+
+
+# def shuffle(num):
+
+#     nums = tuple([i for i in range(num)])
+
+#     res = [i for i in range(num)]
+
+#     count = 0
+#     while True:
+#         count += 1
+#         sub = []
+#         n1 = res[0 : int(num / 2)]
+#         n2 = res[int(num / 2) :]
+#         for x in range(int(num / 2)):
+#             sub.append(n1[x])
+#             sub.append(n2[x])
+#         res = sub
+#         if tuple(res) == nums:
+#             return count
+
+
+# print(shuffle(14))
+
+
+# ----------------------------------------------------------------------
+
+
+# def sort_records(csv_filename, new_filename):
+#     f = open("./" + csv_filename)
+#     r = f.read()
+#     test = r.split(",")
+#     row = r.split("\n")
+#     sort = sorted(row[1:], key=lambda char: char[0])
+#     result = " \n".join(row[:1] + sort)
+
+#     writeFile = open("./" + new_filename, "w")
+#     writeFile.write(result)
+#     writeFile.close()
+#     f.close()
+
+
+# sort_records("max_temp.csv", "sorted.csv")
+
+# import csv
+
+
+# def sort_records(csv_filename, new_filename):
+#     with open("./" + csv_filename) as csvfile:
+#         content = csv.reader(csvfile, delimiter=",")
+#         table = [i for i in content]
+#         sort = [table[0]] + sorted(table[1:], key=lambda row: row[0][0])
+#         print(sort)
+
+#         with open("./" + new_filename, "w", encoding="UTF8", newline="") as writeFile:
+#             writer = csv.writer(writeFile)
+#             for i in sort:
+#                 print(i)
+#                 writer.writerow(i)
+
+
+# sort_records("max_temp.csv", "hello.csv")
+
+# -------------------------------------------------------------------------------------
+
+# import csv
+# import math
+
+
+# def hottest_cities(csv_filename):
+#     with open("./" + csv_filename) as csvfile:
+#         content = csv.reader(csvfile, delimiter=",")
+#         cities = [i for i in content][1:]
+
+#         highest_temp = 0
+#         highest_temp_cities = []
+
+#         for x in cities:
+#             val = round(
+#                 float(sorted(x[1:], key=lambda num: float(num), reverse=True)[0]), 1
+#             )
+#             if val == highest_temp:
+#                 highest_temp_cities.append(x[0])
+#             elif val > highest_temp:
+#                 highest_temp = val
+#                 highest_temp_cities = [x[0]]
+
+#         return highest_temp, sorted(highest_temp_cities)
+
+
+# print(hottest_cities("max_temp.csv"))
+# print(float(100.00) == float("00100.00"))
+
+# ------------------------------------------------------------------------------------------
+
+
+# def execute2_lds(plan, start, capacity):
+
+#     # Greedy Search
+#     greedy_plan = []
+#     node = start
+
+#     while len(plan) > 0:
+#         shortest = sorted(
+#             plan,
+#             key=lambda delivery: abs(node[0] - delivery[1][0])
+#             + abs(node[1] - delivery[1][1]),
+#         )[0]
+
+#         greedy_plan.append(shortest)
+#         node = shortest[2]
+#         plan.remove(shortest)
+
+#     total_distance = 0
+
+#     for subplan in greedy_plan:
+#         delivery_qty = subplan[0]
+#         distance1 = abs(start[0] - subplan[1][0]) + abs(start[1] - subplan[1][1])
+
+#         distance2 = abs(subplan[1][0] - subplan[2][0]) + abs(
+#             subplan[1][1] - subplan[2][1]
+#         )
+
+#         total_distance += distance1 + distance2
+#         start = subplan[2]
+
+#         while delivery_qty > capacity:
+#             total_distance += 2 * distance2
+#             delivery_qty -= capacity
+
+#     return total_distance
+
+
+# ----------------------------------------------------------------------------
+
+
+# from itertools import permutations
+
+
+# def execute2_lds(plan, start, capacity):
+
+#     # Exhaustive Search
+#     exhaustive_plan = [[x for x in i] for i in permutations(plan)]
+
+#     shortest_distance = 0
+
+#     for perm in exhaustive_plan:
+
+#         start_node = start
+
+#         total_distance = 0
+
+#         for subplan in perm:
+#             delivery_qty = subplan[0]
+#             distance1 = abs(start_node[0] - subplan[1][0]) + abs(
+#                 start_node[1] - subplan[1][1]
+#             )
+
+#             distance2 = abs(subplan[1][0] - subplan[2][0]) + abs(
+#                 subplan[1][1] - subplan[2][1]
+#             )
+#             total_distance += distance1 + distance2
+#             start_node = subplan[2]
+
+#             while delivery_qty > capacity:
+#                 total_distance += 2 * distance2
+#                 delivery_qty -= capacity
+
+#         if total_distance < shortest_distance or shortest_distance == 0:
+
+#             shortest_distance = total_distance
+
+#     return shortest_distance
+
+
+# print(execute2_lds([(3, (1, 0), (3, 2)), (7, (2, 1), (0, 0))], (3, 3), 9))
+
+# print(
+#     execute2_lds(
+#         [(8, (0, 0), (1, 4)), (2, (1, 0), (1, 4)), (4, (0, 0), (1, 0))], (0, 0), 5
+#     )
+# )
+# print(execute2_lds([(3, (1, 0), (3, 2)), (7, (2, 1), (0, 0))], (0, 0), 9))
+# print(execute2_lds([(3, (1, 0), (3, 2)), (7, (2, 1), (0, 0))], (3, 3), 9))
+
+# print(
+#     execute2_lds(
+#         [(8, (0, 0), (1, 4)), (2, (1, 0), (1, 4)), (4, (0, 0), (1, 0))], (0, 0), 5
+#     )
+# )
+
+# 10 + 5 + 1 + 4
+
+# ---------------------------------------------------------------------------------
+
+# import re
+
+# lst = ["bad cookie", "good cookie", "bad cookie", "good cookie", "good cookie"]
+
+# pattern = "(?<!good )cookie"
+
+# print(len(re.findall(pattern, ", ".join(lst))))
+
+# -------------------------------------------------------------------------------------
+
+# s1 = [0, 0, 0, 1, 0, 0, 1, 0, 0, 0]
+# s2 = [0, 0, 0, 0]
+
+# import math
+
+
+# def maximumSeating(lst):
+
+#     for i, val in enumerate(lst):
+#         if val == 0:
+#             isValid = True
+#             for x in range(i - 2, i + 3):
+#                 if x != i and x >= 0 and x < len(lst):
+#                     if lst[x] != 0:
+#                         isValid = False
+#                         break
+#             if isValid:
+#                 lst[i] = 2
+#     return lst.count(2)
+
+
+# print(maximumSeating(s1))
+
+# --------------------------------------------------------------------------------------
+
+
+# # Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
+# class Solution(object):
+#     def mergeTwoLists(self, l1, l2):
+
+#         listAll = []
+
+#         node = l1
+#         node2 = l2
+#         while l1 != None:
+#             listAll.append(node.val)
+#             if node.next == None:
+#                 break
+#             else:
+#                 node = node.next
+
+#         while l2 != None:
+#             listAll.append(node2.val)
+#             if node2.next == None:
+#                 break
+#             else:
+#                 node2 = node2.next
+
+#         sorted_list = sorted(listAll)
+
+#         list_final = res_list = ListNode()
+
+#         for i in sorted_list:
+#             res_list.next = ListNode(i)
+#             res_list = res_list.next
+
+#         return list_final.next
+
+
+# n4 = ListNode(7)
+# n3 = ListNode(5, n4)
+# n2 = ListNode(3, n3)
+# n1 = ListNode(2, n2)
+
+# m4 = ListNode(9)
+# m3 = ListNode(3, m4)
+# m2 = ListNode(2, m3)
+# m1 = ListNode(1, m2)
+
+# result = Solution()
+
+# print(result.mergeTwoLists(ListNode(), ListNode()))
+
+
+# ------------------------------------------------------------------------
+
+# # Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+# class Solution(object):
+#     def countNodes(self, root):
+
+#         self.count = 0
+
+#         def recursion(main):
+#             node = main
+#             self.count += 1
+#             if node.left == None:
+#                 return
+#             else:
+#                 for i in [node.left, node.right]:
+#                     if i != None:
+#                         recursion(i)
+
+#         if root != None:
+#             recursion(root)
+
+#         return self.count
+
+
+# s = TreeNode(
+#     1,
+#     TreeNode(2, TreeNode(4, None, None), TreeNode(5, None, None)),
+#     TreeNode(3, TreeNode(6, None, None), None),
+# )
+
+# a = Solution()
+
+# print(a.countNodes(s))
+
+# ---------------------------------------------------------------------------
+
+
+# def tidy_link(url, name, hover=""):
+#     n1 = "[%s]" % (name,)
+
+#     n2 = "(%s " '"%s"' ")" % (url, hover) if hover != "" else "(%s)" % (url,)
+
+#     return n1 + n2
+
+
+# print(
+#     tidy_link("https://www.google.com", "Google", "Google Search"),
+# )
+
+# ---------------------------------------------------------------------------
+
+
+def awardPrizes(n):
+
+    a = sorted(n, key=lambda item: n[item], reverse=True)
+
+    for index, value in enumerate(a):
+        if index == 0:
+            n[value] = "Gold"
+        elif index == 1:
+            n[value] = "Silver"
+        elif index == 2:
+            n[value] = "Bronze"
+        else:
+            n[value] = "Participation"
+
+    return n
+
+
+awardPrizes(
+    {"Person A": 1, "Person B": 2, "Person C": 3, "Person D": 4, "Person E": 102}
+)
+
+awardPrizes({"Mario": 99, "Luigi": 100, "Yoshi": 299, "Toad": 2})
