@@ -1,5 +1,6 @@
 # JSpractice
-Edabit and Leetcode Practice Sheet - JavasScript and Python
+
+Edabit and Leetcode Practice Sheet - JavaScript and Python
 
 Repository for all Leetcode and Edabit questions. Can be found in practice.js and practice.py.
 
