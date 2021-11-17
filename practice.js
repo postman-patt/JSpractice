@@ -2883,49 +2883,635 @@
 // l2 = [5, 6, 4]
 
 //  Definition for singly-linked list.
-function ListNode(val, next) {
-  this.val = val === undefined ? 0 : val
-  this.next = next === undefined ? null : next
-}
+// function ListNode(val, next) {
+//   this.val = val === undefined ? 0 : val
+//   this.next = next === undefined ? null : next
+// }
 
-const addTwoNumber = (l1, l2) => {
-  var n1 = l1
-  var n2 = l2
-  let node = new ListNode()
-  const start = node
-  while (true) {
-    if (!n1 && !n2) {
-      return start
+// const addTwoNumber = (l1, l2) => {
+//   var n1 = l1
+//   var n2 = l2
+//   let node = new ListNode()
+//   const start = node
+//   while (true) {
+//     if (!n1 && !n2) {
+//       return start
+//     }
+//     var val1 = !n1 ? 0 : n1.val
+//     var val2 = !n2 ? 0 : n2.val
+
+//     var sum = val1 + val2
+
+//     n1 = n1 ? n1.next : null
+//     n2 = n2 ? n2.next : null
+
+//     if (sum >= 10 || node.val + sum == 10) {
+//       node.val = (node.val + sum) % 10
+//       node.next = new ListNode(1)
+//     } else {
+//       node.val += sum
+//       if (!n1 && !n2) {
+//         return start
+//       } else {
+//         node.next = new ListNode()
+//       }
+//     }
+
+//     node = node.next
+//   }
+// }
+
+// var s3 = new ListNode(3)
+// var s2 = new ListNode(4, s3)
+// var s1 = new ListNode(2, s2)
+// var m3 = new ListNode(4)
+// var m2 = new ListNode(6, m3)
+// var m1 = new ListNode(5, m2)
+
+// console.log(addTwoNumber(s1, m1))
+
+// --------------------------------------------------------------------------
+
+// const parking_exit = (arr) => {
+//   let res = []
+
+//   let pos
+
+//   for (i = 0; i < arr.length; i++) {
+//     pos = arr[i].indexOf(2) != -1 ? arr[i].indexOf(2) : pos
+
+//     if (arr[i].indexOf(1) != -1 && pos != undefined) {
+//       let moves = arr[i].indexOf(1) - pos
+
+//       switch (true) {
+//         case moves < 0:
+//           res.push('L' + Math.abs(moves))
+//           break
+//         case moves > 0:
+//           res.push('R' + Math.abs(moves))
+//           break
+//       }
+
+//       pos = arr[i].indexOf(1)
+
+//       count = 1
+//       while (arr[Number(i) + 1][pos] == 1) {
+//         count += 1
+//         i += 1
+//       }
+
+//       res.push('D' + count)
+//     } else {
+//       if (arr[i].length - 1 - pos != 0) {
+//         res.push('R' + (arr[i].length - 1 - pos))
+//       }
+//     }
+//   }
+
+//   return res
+// }
+
+// console.log(
+//   parking_exit([
+//     [0, 2, 0, 0, 1],
+//     [0, 0, 0, 0, 1],
+//     [0, 0, 0, 0, 1],
+//     [0, 0, 0, 0, 0],
+//   ])
+// )
+
+// --------------------------------------------------------------------
+
+// const danceConvert = (pin) => {
+//   let res = []
+
+//   const MOVES = [
+//     'Shimmy',
+//     'Shake',
+//     'Pirouette',
+//     'Slide',
+//     'Box Step',
+//     'Headspin',
+//     'Dosado',
+//     'Pop',
+//     'Lock',
+//     'Arabesque',
+//   ]
+
+//   for (i in pin) {
+//     if (isNaN(pin[i])) {
+//       return 'Invalid input.'
+//     } else {
+//       index =
+//         Number(pin[i]) + Number(i) < MOVES.length
+//           ? Number(pin[i]) + Number(i)
+//           : (Number(pin[i]) + Number(i)) % MOVES.length
+
+//       res.push(MOVES[index])
+//     }
+//   }
+
+//   if (pin.length != 4) {
+//     return 'Invalid input.'
+//   } else {
+//     return res
+//   }
+// }
+
+// console.log(
+//   danceConvert('0000'),
+//   danceConvert('3856'),
+//   danceConvert('9999'),
+//   danceConvert('32a1')
+// )
+
+// ----------------------------------------------------------------
+
+// const zeroesToEnd = (nums) => {
+//   let z = []
+
+//   while (nums.indexOf(0) != -1) {
+//     z.push(...nums.splice(nums.indexOf(0), 1))
+//   }
+//   nums.push(...z)
+//   return nums
+// }
+
+// console.log(zeroesToEnd([1, 2, 0, 0, 4, 0, 5]))
+
+// -----------------------------------------------------------------
+
+// const kixCode = (address) => {
+//   const houseNum = address.match(/\d+.+(?=,)/)[0].replace(/[^\d\w]/, 'X')
+//   const postalCode = address.match(/(?<=, )[\d-]{4}/)[0]
+//   const suffix = address.match(/ [A-Z]{2} /)
+
+//   return (postalCode + suffix[0].trim() + houseNum).toUpperCase()
+// }
+
+// console.log(
+//   kixCode(`PostNL, Postbus 30250, 2500 GG ’s Gravenhage`),
+//   kixCode(`Liesanne B Wilkens, Kogge 11-1, 1657 KA Abbekerk`),
+//   kixCode('Jet de Wit, Wielingenstraat 129/7, 3522 PG Utrecht')
+// )
+
+// ----------------------------------------------------------------
+
+// const recurIndex = (s) => {
+//   const hashMap = new Map()
+
+//   for (i in s) {
+//     if (hashMap.has(s[i])) {
+//       const res = {}
+//       res[s[i]] = [Number(hashMap.get(s[i])), Number(i)]
+//       return res
+//     } else {
+//       hashMap.set(s[i], i)
+//     }
+//   }
+
+//   return {}
+// }
+
+// console.log(recurIndex('DXTDXTXDTXD'))
+
+// -------------------------------------------------------------------
+
+// const dominoesFall = (s) => {
+//   if (/RI(?!L)|(?<!R)IL/.test(s)) {
+//     const regex1 = [...s.matchAll(/RI(?!L)/g)]
+//     const regex2 = [...s.matchAll(/(?<!R)IL/g)]
+
+//     let next = s
+
+//     if (regex1.length) {
+//       for (i in regex1) {
+//         next =
+//           next.substr(0, regex1[i].index) +
+//           'RR' +
+//           next.substr(regex1[i].index + 2)
+//       }
+//     }
+//     if (regex2.length) {
+//       for (x in regex2) {
+//         next =
+//           next.substr(0, regex2[x].index) +
+//           'LL' +
+//           next.substr(regex2[x].index + 2)
+//       }
+//     }
+//     return dominoesFall(next)
+//   } else {
+//     return s
+//   }
+// }
+
+// console.log(dominoesFall('ILIRIIILRIILII'))
+
+// -----------------------------------------------------------
+
+// const maxArea = (height) => {
+//   let max = 0
+//   for (i = 0; i < height.length; i++) {
+//     for (j = i + 1; j < height.length; j++) {
+//       const area = (j - i) * Math.min(height[i], height[j])
+//       if (area > max) {
+//         max = area
+//       }
+//     }
+//   }
+
+//   return max
+// }
+
+// console.log(maxArea([2, 3, 4, 5, 18, 17, 6]))
+
+// --------------------------------------------------------
+
+// Slidign window version
+
+// const maxArea = (height) => {
+//   var right = height.length - 1
+//   var left = 0
+//   let res = 0
+
+//   while (left < right) {
+//     const area = (right - left) * Math.min(height[right], height[left])
+//     if (height[left] < height[right]) {
+//       left += 1
+//     } else {
+//       right -= 1
+//     }
+
+//     if (area > res) {
+//       res = area
+//     }
+//   }
+
+//   return res
+// }
+
+// console.log(maxArea([2, 3, 4, 5, 18, 17, 6]))
+
+// -----------------------------------------------------------------
+
+// 1,5,15,34,65, 111
+// 4, 10, 19,31, 46
+// 6, 9,12, 15
+// 3, 3, 3
+
+// const rowSum = (n) => {
+//   return (n ** 3 + n) / 2
+// }
+
+// -------------------------------------------------------------------
+
+// const plusSign = (str) => {
+//   const regex = /(?<=\+)[a-zA-Z](?=\+)/g
+//   const charCheck = /[a-zA-Z]/g
+
+//   let res = str.replace(regex, '')
+
+//   if (charCheck.test(res)) {
+//     return false
+//   } else {
+//     return true
+//   }
+// }
+
+// console.log(plusSign('+f+d+c+#+f+'))
+
+// -------------------------------------------------------------------
+
+//Using sliding window
+// const isPalindrome = (int) => {
+//   if (int < 0) {
+//     return false
+//   }
+
+//   let num = String(int)
+//   let left = 0
+//   let right = num.length - 1
+
+//   while (left < right) {
+//     if (num[left] == num[right]) {
+//       left += 1
+//       right -= 1
+//     } else {
+//       return false
+//     }
+//   }
+
+//   return true
+// }
+
+// console.log(isPalindrome(112321))
+
+// ---------------------------------------------------------------------
+
+// const isPandigital = (num) => {
+//   console.log(`${num}`)
+//   for (i = 0; i < 10; i++) {
+//     console.log(String(num))
+//     if (String(num).indexOf(String(i)) == -1) {
+//       return false
+//     }
+//   }
+
+//   return true
+// }
+
+// console.log(isPandigital(112233445566778899))
+
+// -----------------------------------------------------------
+
+// const rearrange = (sentence) => {
+//   if (sentence.trim() == '') {
+//     return ''
+//   } else {
+//     return sentence
+//       .split(' ')
+//       .sort((a, b) => {
+//         return /\d/.exec(a)[0] - /\d/.exec(b)[0]
+//       })
+//       .map((word) => {
+//         return word.replace(/\d/, '')
+//       })
+//       .join(' ')
+//   }
+// }
+
+// rearrange('sf2s rgfsrg1 grd7gdrg fwefe3 gswgdrzfgh7')
+
+// // ------------------------------------------------------------
+
+// const dice = (roll) => {
+//   if (roll == 0) {
+//     return ''
+//   }
+//   const rolls = [
+//     '---/-O-/---',
+//     'O--/---/--O',
+//     'O--/-O-/--O',
+//     'O-O/---/O-O',
+//     'O-O/-O-/O-O',
+//     'O-O/O-O/O-O',
+//   ]
+//   if (roll <= 6) {
+//     return rolls[roll - 1]
+//   } else {
+//     let numDice = Math.floor(roll / 6)
+//     let remainder = roll % 6
+//     var res = []
+
+//     for (i = 0; i < numDice; i++) {
+//       res.unshift(rolls[5])
+//     }
+//     if (remainder) {
+//       res.push(rolls[remainder - 1])
+//     }
+//     return res.join(', ')
+//   }
+// }
+
+// dice(20)
+
+// ------------------------------------------------------------
+
+// const ulam = (n) => {
+//   var nums = new Map([
+//     [1, null],
+//     [2, null],
+//   ])
+
+//   i = 3
+//   while (true) {
+//     if (nums.size == n) {
+//       return Array.from(nums.keys())[nums.size - 1]
+//     }
+
+//     let count = 0
+
+//     for (const item of nums.keys()) {
+//       const sumNum = i - item
+//       if (nums.has(sumNum) && sumNum != item) {
+//         count += 1
+//       }
+//     }
+
+//     if (count == 2) {
+//       nums.set(i, true)
+//     }
+//     i++
+//   }
+// }
+
+// console.log(ulam(7))
+
+// ---------------------------------------------------------------
+
+// const switchGravityOn = (state) => {
+//   const count = []
+
+//   for (x in state[0]) {
+//     count.push(0)
+//   }
+
+//   for (i = 0; i < state.length; i++) {
+//     for (j = 0; j < state[i].length; j++) {
+//       if (state[i][j] == '#') {
+//         count[j] += 1
+//       }
+//     }
+//   }
+
+//   let res = []
+
+//   for (k = 0; k < state.length; k++) {
+//     let subRes = []
+//     for (x = 0; x < count.length; x++) {
+//       if (count[x] > 0) {
+//         subRes.push('#')
+//         count[x] -= 1
+//       } else {
+//         subRes.push('-')
+//       }
+//     }
+
+//     res.unshift(subRes)
+//   }
+
+//   return res
+// }
+
+// console.log(
+//   switchGravityOn([
+//     ['-', '#', '#', '#', '#', '-'],
+//     ['#', '-', '-', '#', '#', '-'],
+//     ['-', '#', '-', '-', '-', '-'],
+//     ['-', '-', '-', '-', '-', '-'],
+//   ])
+// )
+
+// --------------------------------------------------------
+
+// const split = (p) => {
+//   var left = 0
+//   var right = 0
+//   var pointer = 0
+
+//   let res = []
+
+//   for (i in p) {
+//     if (p[i] == '(') {
+//       left += 1
+//     }
+
+//     if (p[i] == ')') {
+//       right += 1
+//     }
+
+//     if (left == right && left + right != 0) {
+//       res.push(p.slice(pointer, Number(i) + 1))
+//       pointer = Number(i) + 1
+//       left = 0
+//       right = 0
+//     }
+//   }
+
+//   return res
+// }
+
+// console.log(split('((())())(()(()()))'))
+
+// ------------------------------------------------------------
+
+// const countAndSay = (n) => {
+//   res = '1'
+
+//   num = ''
+//   countNums = 0
+
+//   while (n > 1) {
+//     let numArray = res.match(/(.)\1*/g)
+
+//     let subres = ''
+
+//     for (i in numArray) {
+//       subres += String(numArray[i].length) + numArray[i][0]
+//     }
+
+//     res = subres
+//     n -= 1
+//   }
+
+//   return res
+// }
+
+// console.log(countAndSay(30))
+
+// --------------------------------------------------------------
+
+// const funcSort = (fns) => {
+//   const recursion = (n, count = 0) => {
+//     if (typeof n == 'function') {
+//       count += 1
+//       return recursion(n(), count)
+//     }
+//     return count
+//   }
+
+//   return fns.sort((a, b) => {
+//     return recursion(a) - recursion(b)
+//   })
+// }
+
+// f1 = (_) => 'hello'
+
+// f2 = (_) => (_) => 'edabit'
+
+// f3 = (_) => (_) => (_) => 'user'
+
+// console.log(funcSort([f2, f3, f1]))
+
+// --------------------------------------------------------------
+
+// const dartsSolver = (sections, darts, target) => {
+//   let result = []
+//   const recursive = (s, d, t, res = []) => {
+//     if (t < 0 || d < 0) {
+//       return
+//     }
+
+//     if (d == 0 && t == 0) {
+//       console.log(res)
+//       result.push(res.join('-'))
+//       return
+//     }
+
+//     for (i in s) {
+//       recursive(s.slice(i), d - 1, t - s[i], [...res, s[i]])
+//     }
+//   }
+
+//   recursive(sections, darts, target)
+
+//   return result
+// }
+
+// console.log(dartsSolver([3, 7, 11, 14, 18, 20, 25], 3, 32))
+
+// ------------------------------------------------------------------
+
+// const makeChange = (num) => {
+//   var q = 0
+//   var d = 0
+//   var n = 0
+//   var p = 0
+
+//   let change = num
+//   if (change / 25 >= 1) {
+//     q += Math.floor(change / 25)
+//     change -= Math.floor(change / 25) * 25
+//   }
+
+//   if (change / 10 >= 1) {
+//     d += Math.floor(change / 10)
+//     change -= Math.floor(change / 10) * 10
+//   }
+
+//   if (change / 5 >= 1) {
+//     n += Math.floor(change / 5)
+//     change -= Math.floor(change / 5) * 5
+//   }
+
+//   p = change
+
+//   return { q: q, d: d, n: n, p: p }
+// }
+
+// console.log(makeChange(47))
+
+// -------------------------------------------------------------
+
+const mostExpensive = (obj) => {
+  let res = ''
+  let count = 0
+
+  for (const item in obj) {
+    if (obj[item] > count) {
+      res = item
+      count = obj[item]
     }
-    var val1 = !n1 ? 0 : n1.val
-    var val2 = !n2 ? 0 : n2.val
-
-    var sum = val1 + val2
-
-    n1 = n1 ? n1.next : null
-    n2 = n2 ? n2.next : null
-
-    if (sum >= 10 || node.val + sum == 10) {
-      node.val = (node.val + sum) % 10
-      node.next = new ListNode(1)
-    } else {
-      node.val += sum
-      if (!n1 && !n2) {
-        return start
-      } else {
-        node.next = new ListNode()
-      }
-    }
-
-    node = node.next
   }
+
+  return `The most expensive one is the ${res}`
 }
 
-var s3 = new ListNode(3)
-var s2 = new ListNode(4, s3)
-var s1 = new ListNode(2, s2)
-var m3 = new ListNode(4)
-var m2 = new ListNode(6, m3)
-var m1 = new ListNode(5, m2)
-
-console.log(addTwoNumber(s1, m1))
+console.log(
+  mostExpensive({
+    'Diamond Earrings': 980,
+    'Gold Watch': 250,
+    'Pearl Necklace': 4650,
+  })
+)

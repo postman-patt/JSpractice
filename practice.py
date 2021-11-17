@@ -1,4 +1,4 @@
-from typing import Pattern
+from typing import OrderedDict, Pattern
 import unittest
 
 # def number_length(n):
@@ -1865,25 +1865,703 @@ import unittest
 # ---------------------------------------------------------------------------
 
 
-def awardPrizes(n):
+# def awardPrizes(n):
 
-    a = sorted(n, key=lambda item: n[item], reverse=True)
+#     a = sorted(n, key=lambda item: n[item], reverse=True)
 
-    for index, value in enumerate(a):
-        if index == 0:
-            n[value] = "Gold"
-        elif index == 1:
-            n[value] = "Silver"
-        elif index == 2:
-            n[value] = "Bronze"
+#     for index, value in enumerate(a):
+#         if index == 0:
+#             n[value] = "Gold"
+#         elif index == 1:
+#             n[value] = "Silver"
+#         elif index == 2:
+#             n[value] = "Bronze"
+#         else:
+#             n[value] = "Participation"
+
+#     return n
+
+
+# awardPrizes(
+#     {"Person A": 1, "Person B": 2, "Person C": 3, "Person D": 4, "Person E": 102}
+# )
+
+# awardPrizes({"Mario": 99, "Luigi": 100, "Yoshi": 299, "Toad": 2})
+
+# ------------------------------------------------------------------------
+
+
+# def is_valid(str):
+
+#     from collections import Counter
+
+#     frequency = [x for x in Counter([char for char in str]).values()]
+
+#     unique = list(set(frequency))
+
+#     for i in unique:
+#         if frequency.count(i) < len(frequency) - 1 and frequency.count(i) != 1:
+#             return "NO"
+
+#     if len(unique) == 2:
+#         if abs(unique[0] - unique[1]) != 1:
+#             return "NO"
+
+#     return "YES"
+
+
+# print(is_valid("abcdefghhgfedecba"))
+
+# --------------------------------------------------------------------
+
+
+# def canCompleteCircuit(gas, cost):
+
+#     for start in range(len(gas)):
+#         tank = 0
+#         i = start
+#         while i < len(gas):
+#             tank += gas[i]
+#             tank -= cost[i]
+#             if tank < 0:
+#                 break
+#             i += 1
+
+#             if i == start:
+#                 return start
+
+#             if i >= len(gas):
+#                 i = 0
+
+#             if start == 0 and i == 0:
+#                 return start
+
+#     return -1
+
+
+# g1 = [1, 2, 3, 4, 5]
+# c1 = [3, 4, 5, 1, 2]
+
+# g2 = [2, 3, 4]
+# c2 = [3, 4, 3]
+# print(canCompleteCircuit(g2, c2))
+
+
+# def canCompleteCircuit(gas, cost):
+
+#     tank = 0
+#     count = 0
+#     index = 0
+#     for i in range(len(gas)):
+
+#         tank += gas[i] - cost[i]
+
+#         if tank < 0:
+#             index = i + 1
+#             count += tank
+#             tank = 0
+
+#         if i == len(gas) - 1:
+#             if tank + count >= 0:
+#                 return index
+#             else:
+#                 return -1
+
+
+# g1 = [1, 2, 3, 4, 5]
+# c1 = [3, 4, 5, 1, 2]
+
+# g2 = [2, 3, 4]
+# c2 = [3, 4, 3]
+
+# g3 = [4, 5, 2, 6, 5, 3]
+# c3 = [3, 2, 7, 3, 2, 9]
+# print(canCompleteCircuit(g2, c2))
+
+# -------------------------------------------------------
+
+# INORDER TRAVERSIAL - provides the correct order
+
+
+# def isValidBST(root):
+
+#     inorder = []
+
+#     def inorder_traversial(r, inorder):
+#         if r:
+#             inorder_traversial(r.left, inorder)
+#             inorder.append(r.val)
+#             inorder_traversial(r.right, inorder)
+
+#     inorder_traversial(root, inorder)
+
+#     return sorted(inorder) == inorder and len(inorder) == len(set(inorder))
+
+
+# # --------------------------------------------------------
+
+
+# def bingo_check(board):
+
+#     # Check horizontals
+#     for i in board:
+#         h = True
+#         for x in i:
+#             if x != "x":
+#                 h = False
+#                 break
+#         if h == True:
+#             return True
+
+#     # Check verticals
+#     for x in range(len(board[0])):
+#         v = True
+#         for k in board:
+#             if k[x] != "x":
+#                 v = False
+#                 break
+#         if v == True:
+#             return True
+
+#     for m in range(len(board)):
+#         if board[m][m] != "x":
+#             break
+#         return True
+
+#     s = 0
+#     d = True
+#     for l in range(len(board) - 1, 0, -1):
+#         if board[s][l] != "x":
+#             d = False
+#             break
+#         s += 1
+#     return d
+
+
+# print(
+#     bingo_check(
+#         [
+#             ["x", 43, 31, 74, 87],
+#             [64, "x", 47, 32, 90],
+#             [37, 65, "x", 83, 54],
+#             [67, 98, 39, "x", 44],
+#             [21, 59, 24, 30, "x"],
+#         ]
+#     )
+# )
+
+# print(
+#     bingo_check(
+#         [
+#             [45, "x", 31, 74, 87],
+#             [64, 78, 47, "x", 90],
+#             [37, "x", 68, 83, 54],
+#             [67, "x", 98, "x", 44],
+#             [21, "x", 24, 30, 52],
+#         ]
+#     )
+# )
+
+# -------------------------------------------------------------------------
+
+# Please don't modify the code below the traverse function is in BST class
+
+# # Node class
+# class Node:
+#     def __init__(self, data):
+#         self.data = data
+#         self.left = None
+#         self.right = None
+
+
+# # BST Class
+# class BST:
+#     def __init__(self):
+#         self.head = None
+
+#     def insert(self, data):
+#         new_node = Node(data)
+#         if self.head == None:
+#             self.head = new_node
+#         else:
+#             current = self.head
+#             while True:
+#                 if data > current.data and current.right:
+#                     current = current.right
+#                 elif data < current.data and current.left:
+#                     current = current.left
+#                 elif data > current.data:
+#                     current.right = new_node
+#                     break
+#                 else:
+#                     current.left = new_node
+#                     break
+#         return self.head
+
+#     def traverse(self):
+#         # Complete the code here
+#         res = []
+
+#         to_visit = [self.head]
+
+#         current_node = self.head
+
+#         while current_node:
+
+#             if current_node.left:
+#                 to_visit.append(current_node.left)
+
+#             if current_node.right:
+#                 to_visit.append(current_node.right)
+
+#             res.append(to_visit[0].data)
+#             to_visit.pop(0)
+#             if not to_visit:
+#                 break
+#             current_node = to_visit[0]
+#         return res
+
+
+# b = BST()
+# b.insert(100)
+# b.insert(200)
+# b.insert(70)
+# b.insert(34)
+# b.insert(80)
+# b.insert(85)
+# b.insert(85)
+# b.insert(111)
+
+# print(b.traverse())
+
+
+# ---------------------------------------------------------------------------------------
+
+
+# def can_see_stage(seats):
+
+#     for i in range(len(seats[0])):
+
+#         col = []
+
+#         for j in range(len(seats)):
+
+#             col.append(seats[j][i])
+
+#         if sorted(col) != col or len(set(col)) != len(col):
+#             return False
+
+#     return True
+
+
+# print(can_see_stage([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
+
+
+# --------------------------------------------------------------------------------------
+
+
+# def show_the_love(lst):
+
+#     count = 0
+#     lowest = lst.index(sorted(lst)[0])
+
+#     for i in range(len(lst)):
+#         if lst[i] != sorted(lst)[0]:
+#             count += lst[i] * 0.25
+#             lst[i] -= lst[i] * 0.25
+
+#     lst[lowest] += count
+
+#     return lst
+
+
+# print(show_the_love([16, 10, 8]))
+# print(show_the_love([54, 62, 59]))
+
+
+# -------------------------------------------------------------------------------------
+
+# Memoisation
+
+
+# def wordbreak(s, wordDict):
+#     dp = [False] * (len(s) + 1)
+#     dp[len(s)] = True
+
+#     for i in range(len(s) - 1, -1, -1):
+#         for w in wordDict:
+#             if (i + len(w)) <= len(s) and s[i : i + len(w)] == w:
+#                 dp[i] = dp[i + len(w)]
+#             if dp[i]:
+#                 break
+
+#     return dp[0]
+
+# ------------------------------------------------------------------------------------
+
+
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
+# def removeNthNode(head, n):
+
+#     nodes = []
+
+#     node = head
+
+#     while True:
+
+#         if node == None:
+#             break
+
+#         nodes.append(node)
+
+#         node = node.next
+
+#     if nodes[len(nodes) - n] != head:
+#         nodes[len(nodes) - n - 1].next = nodes[len(nodes) - n].next
+#         return head
+#     else:
+#         return head.next
+
+
+# n5 = ListNode(5, None)
+# n4 = ListNode(4, n5)
+# n3 = ListNode(3, n4)
+# n2 = ListNode(2, n3)
+# n1 = ListNode(1, n2)
+
+# # removeNthNode(n1, 2)
+
+# m = n1
+# while True:
+#     if m == None:
+#         break
+#     print(m.val)
+#     m = m.next
+
+
+# -------------------------------------------------------
+
+
+# def swapPairs(head):
+
+#     if head == None:
+#         return
+
+#     if head.next == None:
+#         return head
+
+#     nextNode = head.next.next
+
+#     transNode = head.next
+
+#     head.next.next = head
+
+#     head.next = swapPairs(nextNode)
+
+#     return transNode
+
+
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
+# n5 = ListNode(5, None)
+# n4 = ListNode(4, n5)
+# n3 = ListNode(3, n4)
+# n2 = ListNode(2, n3)
+# n1 = ListNode(1, n2)
+
+# swapPairs(n1)
+
+# m = n2
+# while True:
+#     if m == None:
+#         break
+#     print(m.val)
+#     m = m.next
+
+# ---------------------------------------------------------------
+
+
+# def replace_chars(word, k):
+
+#     chars = "abcdefghijklmnopqrstuvwxyz"
+
+#     res = ""
+
+#     for i in range(len(word)):
+#         if i >= k - 1:
+#             index = chars.index(word[i])
+#             res += chars[len(chars) - index - 1]
+#         else:
+#             res += word[i]
+
+#     return res
+
+
+# print(replace_chars("smiley", 1))
+# print(replace_chars("hello", 1))
+# print(replace_chars("playground", 1))
+# print(replace_chars("paint", 3))
+# print(replace_chars("computer", 9))
+
+
+# ---------------------------------------------------
+
+
+# def assign_colours(message, lower_cols_list, upper_cols_list):
+
+#     res = []
+
+#     lowerCount = 0
+#     upperCount = 0
+#     for i in message:
+#         subres = []
+#         if i == " ":
+#             subres = [" ", None]
+#         elif i.isalpha() == False:
+#             subres = [i, "Silver"]
+#         elif i.isupper():
+#             subres = [i, upper_cols_list[upperCount % len(upper_cols_list)]]
+#             upperCount += 1
+#         else:
+#             subres = [i, lower_cols_list[lowerCount % len(lower_cols_list)]]
+#             lowerCount += 1
+
+#         res.append(subres)
+
+#     return res
+
+
+# print(assign_colours("A cat hat", ["red", "green", "blue"], ["yellow"]))
+# print(
+#     assign_colours(
+#         "Congrats on Graduation!", ["blue", "turquoise", "black"], ["yellow"]
+#     )
+# )
+# print(
+#     assign_colours(
+#         "?We are having twins?",
+#         ["purple", "black"],
+#         ["red", "orange", "yellow", "green", "blue"],
+#     )
+# )
+
+# -----------------------------------------------------------
+
+
+# def switcheroo(str):
+#     import re
+
+#     res = []
+
+#     for i in str.split(" "):
+#         if bool(re.search("nce(?!\w)", i)):
+#             res.append(re.sub("nce(?!\w)", "nts", i))
+#             continue
+#         if bool(re.search("nts(?!\w)", i)):
+#             res.append(re.sub("nts(?!\w)", "nce", i))
+#             continue
+#         res.append(i)
+#     return " ".join(res)
+
+
+# print(switcheroo("While he rants, I fall into ance trance..."))
+
+
+# --------------------------------------------------------------
+
+
+# def identify(*cube):
+
+#     cube_list = [len(i) for i in cube]
+#     maximum = max(cube_list)
+#     count = 0
+#     for i in cube_list:
+#         count += maximum - i
+
+#     if count > 0:
+#         return "Missing {}".format(count)
+#     elif len(cube_list) != maximum:
+#         return "Non-Full"
+#     else:
+#         return "Full"
+
+
+# print(identify(["O", "O", "O"], ["O", "O", "O"], ["O", "O", "O"]))
+# print(identify(["O", "O", "O"], ["O", "O", "O"]))
+
+
+# --------------------------------------------------------------
+
+
+# def isRobotBounded(instructions):
+
+#     orientation = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+#     pos = (0, 0)
+#     index = 0
+
+#     for i in instructions:
+#         direction = orientation[index % len(orientation)]
+#         if i == "G":
+#             pos = tuple(map(lambda k, j: k + j, direction, pos))
+#         elif i == "R":
+#             index += 1
+#         else:
+#             index -= 1
+
+#     if index % len(orientation) != 0 or pos == (0, 0):
+#         return True
+#     return False
+
+
+# print(isRobotBounded("GLGLGGLGL"))
+
+# -----------------------------------------------------------------
+
+# non-capturing groups essentially mean that we do not want the items in the non-capture group to be present by themselves int he resulting output
+
+# import re
+
+
+# def nonCapture(str):
+
+#     pattern = "(?<=\W)(?:an|a|the)(?! an | a | the ) (?:\w+)"
+#     pattern2 = r"(?:\ban\b|\ba\b|\bthe\b)(?! an | a | the ) (?:\w+)"
+#     # Need to use prefix "r" on pattern2 as regex will interpret the \b as a backspace character - note the different colouring. Using "r" as a prefix on the string makes it interpret it as a raw string. You can see the same thing happening with the "+" symbol
+
+#     return re.findall(pattern2, str)
+
+
+# print(nonCapture("the chick the Italian and she is French an this"))
+
+# ------------------------------------------------------------------
+
+
+# def sudoku_validator(bo):
+
+#     # Check horiztonal
+#     for i in bo:
+#         if len(set(i)) != 9:
+#             return False
+
+#     # Check certical
+#     for i in range(len(bo)):
+#         check = []
+#         for j in range(len(bo[i])):
+#             check.append(bo[j][i])
+#         if len(set(check)) != 9:
+#             return False
+
+#     # Check box
+#     box1 = []
+#     box2 = []
+#     box3 = []
+#     for i in range(len(bo)):
+#         for x in range(len(bo[i])):
+#             if x // 3 == 0:
+#                 box1.append(bo[i][x])
+#             if x // 3 == 1:
+#                 box2.append(bo[i][x])
+#             if x // 3 == 2:
+#                 box3.append(bo[i][x])
+
+#         if (i + 1) % 3 == 0:
+#             if len(set(box1)) != 9 or len(set(box2)) != 9 or len(set(box2)) != 9:
+#                 return False
+#             box1 = []
+#             box2 = []
+#             box3 = []
+
+#     return True
+
+
+# bo1 = [
+#     [1, 5, 2, 4, 8, 9, 3, 7, 6],
+#     [7, 3, 9, 2, 5, 6, 8, 4, 1],
+#     [4, 6, 8, 3, 7, 1, 2, 9, 5],
+#     [3, 8, 7, 1, 2, 4, 6, 5, 9],
+#     [5, 9, 1, 7, 6, 3, 4, 2, 8],
+#     [2, 4, 6, 8, 9, 5, 7, 1, 3],
+#     [9, 1, 4, 6, 3, 7, 5, 8, 2],
+#     [6, 2, 5, 9, 4, 8, 1, 3, 7],
+#     [8, 7, 3, 5, 1, 2, 9, 6, 4],
+# ]
+
+# bo2 = [
+#     [1, 1, 2, 4, 8, 9, 3, 7, 6],
+#     [7, 3, 9, 2, 5, 6, 8, 4, 1],
+#     [4, 6, 8, 3, 7, 1, 2, 9, 5],
+#     [3, 8, 7, 1, 2, 4, 6, 5, 9],
+#     [5, 9, 1, 7, 6, 3, 4, 2, 8],
+#     [2, 4, 6, 8, 9, 5, 7, 1, 3],
+#     [9, 1, 4, 6, 3, 7, 5, 8, 2],
+#     [6, 2, 5, 9, 4, 8, 1, 3, 7],
+#     [8, 7, 3, 5, 1, 2, 9, 6, 4],
+# ]
+
+# bo3 = [
+#     [1, 5, 2, 4, 8, 9, 3, 7, 6],
+#     [7, 3, 9, 2, 5, 6, 8, 4, 1],
+#     [4, 6, 5, 3, 7, 1, 2, 9, 8],
+#     [3, 8, 7, 1, 2, 4, 6, 5, 9],
+#     [8, 9, 1, 7, 6, 3, 4, 2, 5],
+#     [2, 4, 6, 5, 9, 8, 7, 1, 3],
+#     [9, 1, 4, 6, 3, 7, 5, 8, 2],
+#     [6, 2, 8, 9, 4, 5, 1, 3, 7],
+#     [5, 7, 3, 8, 1, 2, 9, 6, 4],
+# ]
+
+# bo4 = [
+#     [2, 5, 1, 4, 6, 9, 3, 7, 8],
+#     [7, 8, 9, 2, 1, 3, 4, 5, 6],
+#     [4, 3, 6, 5, 8, 7, 2, 9, 1],
+#     [6, 1, 3, 8, 7, 2, 5, 4, 9],
+#     [9, 7, 4, 1, 5, 6, 8, 2, 3],
+#     [8, 2, 5, 9, 3, 4, 1, 6, 7],
+#     [5, 6, 7, 3, 4, 8, 9, 1, 2],
+#     [2, 4, 8, 6, 9, 1, 7, 3, 5],
+#     [3, 9, 1, 7, 2, 5, 6, 8, 4],
+# ]
+# print(sudoku_validator(bo4))
+
+
+# -----------------------------------------------------------------------
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+def inorder(root):
+
+    lst = []
+
+    def traversal(r, lst):
+        if r:
+            traversal(r.left, lst)
+            lst.append(r)
+            traversal(r.right, lst)
         else:
-            n[value] = "Participation"
+            return
 
-    return n
+    traversal(root, lst)
+
+    return lst
 
 
-awardPrizes(
-    {"Person A": 1, "Person B": 2, "Person C": 3, "Person D": 4, "Person E": 102}
-)
+n3 = TreeNode(3, None, None)
+n2 = TreeNode(2, n3, None)
+n1 = TreeNode(1, None, n2)
 
-awardPrizes({"Mario": 99, "Luigi": 100, "Yoshi": 299, "Toad": 2})
+print(inorder(n1))
