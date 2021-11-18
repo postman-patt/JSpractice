@@ -2536,32 +2536,53 @@ import unittest
 # -----------------------------------------------------------------------
 
 # Definition for a binary tree node.
-class TreeNode(object):
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 
 
-def inorder(root):
+# def inorder(root):
 
-    lst = []
+#     lst = []
 
-    def traversal(r, lst):
-        if r:
-            traversal(r.left, lst)
-            lst.append(r)
-            traversal(r.right, lst)
-        else:
-            return
+#     def traversal(r, lst):
+#         if r:
+#             traversal(r.left, lst)
+#             lst.append(r)
+#             traversal(r.right, lst)
+#         else:
+#             return
 
-    traversal(root, lst)
+#     traversal(root, lst)
 
-    return lst
+#     return lst
 
 
-n3 = TreeNode(3, None, None)
-n2 = TreeNode(2, n3, None)
-n1 = TreeNode(1, None, n2)
+# n3 = TreeNode(3, None, None)
+# n2 = TreeNode(2, n3, None)
+# n1 = TreeNode(1, None, n2)
 
-print(inorder(n1))
+# print(inorder(n1))
+
+
+# ------------------------------------------------
+
+# leetCode Valid Parenthese
+def isValid(s):
+
+    if len(s) == 0:
+        return True
+
+    n = {"(": ")", "{": "}", "[": "]", ")": "", "}": "", "]": ""}
+
+    for i in range(len(s) - 1, 0, -1):
+        if n[s[0]] == s[i]:
+            if isValid(s[1:i]) and isValid(s[i + 1 :]):
+                return True
+
+    return False
+
+
+print(isValid("(()())())"))

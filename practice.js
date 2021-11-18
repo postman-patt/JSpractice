@@ -3494,24 +3494,44 @@
 
 // -------------------------------------------------------------
 
-const mostExpensive = (obj) => {
-  let res = ''
-  let count = 0
+// const mostExpensive = (obj) => {
+//   let res = ''
+//   let count = 0
 
-  for (const item in obj) {
-    if (obj[item] > count) {
-      res = item
-      count = obj[item]
+//   for (const item in obj) {
+//     if (obj[item] > count) {
+//       res = item
+//       count = obj[item]
+//     }
+//   }
+
+//   return `The most expensive one is the ${res}`
+// }
+
+// console.log(
+//   mostExpensive({
+//     'Diamond Earrings': 980,
+//     'Gold Watch': 250,
+//     'Pearl Necklace': 4650,
+//   })
+// )
+
+// ----------------------------------------
+
+const advancedSort = (nums) => {
+  let hashMap = {}
+
+  for (i in nums) {
+    //JavaScript auto sorts object by key if the key is a number, this is why we put  a ' ' to prevent sorting in this instance.
+    //The alternative is to use the Map() object in order to preserve order of insertion
+    if (hashMap[' ' + String(nums[i])]) {
+      hashMap[' ' + String(nums[i])].push(nums[i])
+    } else {
+      hashMap[' ' + String(nums[i])] = [nums[i]]
     }
   }
 
-  return `The most expensive one is the ${res}`
+  return Object.values(hashMap)
 }
 
-console.log(
-  mostExpensive({
-    'Diamond Earrings': 980,
-    'Gold Watch': 250,
-    'Pearl Necklace': 4650,
-  })
-)
+console.log(advancedSort([6, 2, 1, 2, 2, 1, 3]))
