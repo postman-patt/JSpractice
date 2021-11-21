@@ -3518,20 +3518,89 @@
 
 // ----------------------------------------
 
-const advancedSort = (nums) => {
-  let hashMap = {}
+// const advancedSort = (nums) => {
+//   let hashMap = {}
 
-  for (i in nums) {
-    //JavaScript auto sorts object by key if the key is a number, this is why we put  a ' ' to prevent sorting in this instance.
-    //The alternative is to use the Map() object in order to preserve order of insertion
-    if (hashMap[' ' + String(nums[i])]) {
-      hashMap[' ' + String(nums[i])].push(nums[i])
-    } else {
-      hashMap[' ' + String(nums[i])] = [nums[i]]
+//   for (i in nums) {
+//     //JavaScript auto sorts object by key if the key is a number, this is why we put  a ' ' to prevent sorting in this instance.
+//     //The alternative is to use the Map() object in order to preserve order of insertion
+//     if (hashMap[' ' + String(nums[i])]) {
+//       hashMap[' ' + String(nums[i])].push(nums[i])
+//     } else {
+//       hashMap[' ' + String(nums[i])] = [nums[i]]
+//     }
+//   }
+
+//   return Object.values(hashMap)
+// }
+
+// console.log(advancedSort([6, 2, 1, 2, 2, 1, 3]))
+
+// -----------------------------------------
+// Postfix Notation - edabit
+
+// const postfix = (expr) => {
+//   const expression = expr.split(' ')
+
+//   if (expression.length == 1) {
+//     return Number(expr)
+//   }
+
+//   let evalNext = 0
+//   let newExpr = []
+//   if (isNaN(expression[2])) {
+//     eval_next = eval(`${expression[0]} ${expression[2]} ${expression[1]}`)
+//     newExpr = expression.slice(3)
+//     newExpr.unshift(String(eval_next))
+//   } else {
+//     eval_next = eval(`${expression[1]} ${expression[3]} ${expression[2]}`)
+//     newExpr = expression.slice(4)
+//     newExpr.unshift(String(eval_next))
+//     newExpr.unshift(expression[0])
+//   }
+
+//   return postfix(newExpr.join(' '))
+// }
+
+// console.log(postfix('1 1 + 2 2 + -'))
+
+// ------------------------------------------------------
+
+// Lemonade Stand - edabit
+
+const lemonade = (bills) => {
+  let change = { 5: 0, 10: 0, 20: 0 }
+
+  for (i in bills) {
+    change[bills[i]] += 1
+
+    if (bills[i] == 10) {
+      if (change[5] - 1 >= 0) {
+        change[5] -= 1
+      } else {
+        return false
+      }
+    }
+
+    if (bills[i] == 20) {
+      if (change[10] - 1 >= 0 && change[5] - 1 >= 0) {
+        change[10] -= 1
+        change[5] -= 1
+      } else if (change[5] - 3 >= 0) {
+        change[5] -= 3
+      } else {
+        return false
+      }
     }
   }
 
-  return Object.values(hashMap)
+  return true
 }
 
-console.log(advancedSort([6, 2, 1, 2, 2, 1, 3]))
+console.log(
+  lemonade([5, 5, 5, 10, 20]),
+  lemonade([5, 5, 10, 10, 20]),
+  lemonade([10, 10])
+)
+
+// [5, 5, 5, 10, 20, 10]

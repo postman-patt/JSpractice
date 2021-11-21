@@ -1,6 +1,3 @@
-from typing import OrderedDict, Pattern
-import unittest
-
 # def number_length(n):
 #     count = 0
 #     for i in str(n):
@@ -2570,19 +2567,83 @@ import unittest
 # ------------------------------------------------
 
 # leetCode Valid Parenthese
-def isValid(s):
+# def isValid(s):
 
-    if len(s) == 0:
+#     if len(s) == 0:
+#         return True
+
+#     n = {"(": ")", "{": "}", "[": "]", ")": "", "}": "", "]": ""}
+
+#     for i in range(len(s) - 1, 0, -1):
+#         if n[s[0]] == s[i]:
+#             if isValid(s[1:i]) and isValid(s[i + 1 :]):
+#                 return True
+
+#     return False
+
+
+# print(isValid("(()())())"))
+
+
+# -----------------------------------------------
+
+
+#  3SumClosest - leetcode
+
+
+# def threeSumClosest(nums, target):
+
+#     sort = sorted(nums)
+#     res = float("inf")
+#     subres = 0
+#     for i in range(len(nums) - 1):
+
+#         left = i + 1
+#         right = len(sort) - 1
+
+#         count = float("inf")
+#         while left < right:
+
+#             numSum = sort[i] + sort[left] + sort[right]
+
+#             if numSum == target:
+#                 return numSum
+
+#             if numSum > target:
+#                 right -= 1
+#             elif numSum < target:
+#                 left += 1
+
+#             if abs(numSum - target) < count:
+#                 count = abs(numSum - target)
+#                 subres = numSum
+
+#         if abs(subres - target) < abs(res - target):
+#             res = subres
+
+#     return res
+
+
+# print(threeSumClosest([0, 1, 2], 0))
+# -4, -1, 1. 2
+
+# -------------------------------------------------------
+
+#  Fives and Threes Only - edabit
+
+
+def only5and3(num):
+
+    if num == 5 or num == 3:
         return True
 
-    n = {"(": ")", "{": "}", "[": "]", ")": "", "}": "", "]": ""}
+    if num < 1:
+        return False
 
-    for i in range(len(s) - 1, 0, -1):
-        if n[s[0]] == s[i]:
-            if isValid(s[1:i]) and isValid(s[i + 1 :]):
-                return True
-
-    return False
+    if only5and3(num - 5) or only5and3(num / 3):
+        return True
+    else:
+        return False
 
 
-print(isValid("(()())())"))
+print(only5and3(25))
