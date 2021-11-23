@@ -3568,39 +3568,78 @@
 
 // Lemonade Stand - edabit
 
-const lemonade = (bills) => {
-  let change = { 5: 0, 10: 0, 20: 0 }
+// const lemonade = (bills) => {
+//   let change = { 5: 0, 10: 0, 20: 0 }
 
-  for (i in bills) {
-    change[bills[i]] += 1
+//   for (i in bills) {
+//     change[bills[i]] += 1
 
-    if (bills[i] == 10) {
-      if (change[5] - 1 >= 0) {
-        change[5] -= 1
-      } else {
-        return false
-      }
-    }
+//     if (bills[i] == 10) {
+//       if (change[5] - 1 >= 0) {
+//         change[5] -= 1
+//       } else {
+//         return false
+//       }
+//     }
 
-    if (bills[i] == 20) {
-      if (change[10] - 1 >= 0 && change[5] - 1 >= 0) {
-        change[10] -= 1
-        change[5] -= 1
-      } else if (change[5] - 3 >= 0) {
-        change[5] -= 3
-      } else {
-        return false
-      }
-    }
-  }
+//     if (bills[i] == 20) {
+//       if (change[10] - 1 >= 0 && change[5] - 1 >= 0) {
+//         change[10] -= 1
+//         change[5] -= 1
+//       } else if (change[5] - 3 >= 0) {
+//         change[5] -= 3
+//       } else {
+//         return false
+//       }
+//     }
+//   }
 
-  return true
-}
+//   return true
+// }
 
-console.log(
-  lemonade([5, 5, 5, 10, 20]),
-  lemonade([5, 5, 10, 10, 20]),
-  lemonade([10, 10])
-)
+// console.log(
+//   lemonade([5, 5, 5, 10, 20]),
+//   lemonade([5, 5, 10, 10, 20]),
+//   lemonade([10, 10])
+// )
 
 // [5, 5, 5, 10, 20, 10]
+
+// ---------------------------------------------------------------
+
+// Splitting Objects Inside a List
+
+// const split_bunches = (bunches) => {
+//   let res = []
+//   for (i = 0; i < bunches.length; i++) {
+//     for (x = 0; x < bunches[i].quantity; x++) {
+//       res.push({ name: bunches[i].name, quantity: 1 })
+//     }
+//   }
+
+//   return res
+// }
+
+// console.log(split_bunches([{ name: 'grapes', quantity: 2 }]))
+
+// ---------------------------------------------------------------
+
+// MemeSum - edabit
+
+const memeSum = (a, b) => {
+  let numA = String(a)
+  let numB = String(b)
+
+  let res = []
+
+  for (i = 0; i < Math.max(numA.length, numB.length); i++) {
+    let num1 = numA.length - 1 - i < 0 ? 0 : Number(numA[numA.length - 1 - i])
+    let num2 = numB.length - 1 - i < 0 ? 0 : Number(numB[numB.length - 1 - i])
+
+    res.unshift(String(num1 + num2))
+  }
+
+  return Number(res.join(''))
+}
+
+console.log(memeSum(12439, 26))

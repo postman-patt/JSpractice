@@ -2632,18 +2632,105 @@
 #  Fives and Threes Only - edabit
 
 
-def only5and3(num):
+# def only5and3(num):
 
-    if num == 5 or num == 3:
-        return True
+#     if num == 5 or num == 3:
+#         return True
 
-    if num < 1:
-        return False
+#     if num < 1:
+#         return False
 
-    if only5and3(num - 5) or only5and3(num / 3):
-        return True
-    else:
-        return False
+#     if only5and3(num - 5) or only5and3(num / 3):
+#         return True
+#     else:
+#         return False
 
 
-print(only5and3(25))
+# print(only5and3(25))
+
+
+# -----------------------------------------------------
+
+
+# Imaginary Coding Interview - edabit
+
+
+# def interview(lst, tot):
+
+#     if tot > 120 or len(lst) != 8:
+#         return "disqualified"
+
+#     difficulty = [
+#         "very easy",
+#         "very easy",
+#         "easy",
+#         "easy",
+#         "medium",
+#         "medium",
+#         "hard",
+#         "hard",
+#     ]
+
+#     for i, v in enumerate(lst):
+#         if (
+#             (difficulty[i] == "very easy" and v > 5)
+#             or (difficulty[i] == "easy" and v > 10)
+#             or (difficulty[i] == "medium" and v > 15)
+#             or (difficulty[i] == "hard" and v > 20)
+#         ):
+#             return "disqualified"
+
+#     return "qualified"
+
+
+# print(
+#     interview([5, 5, 10, 10, 15, 15, 20, 20], 120),
+#     interview([5, 5, 10, 10, 25, 15, 20, 20], 120),
+# )
+
+# ------------------------------------------------------------
+
+# Roman to Interger - leetcode
+
+
+# def romanToInt(s):
+
+#     res = 0
+
+#     romanDict = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+
+#     for i in range(len(s) - 1, -1, -1):
+
+#         if i < len(s) - 1 and list(romanDict).index(s[i]) < list(romanDict).index(
+#             s[i + 1]
+#         ):
+#             res -= romanDict[s[i]]
+#         else:
+#             res += romanDict[s[i]]
+
+#     return res
+
+
+# print(romanToInt("XIV"), romanToInt("LVIII"))
+
+
+# --------------------------------------------------------------
+
+# Majority Element - leetcode
+
+
+def majorityElement(nums):
+
+    hashTable = {}
+
+    for i in nums:
+
+        if i in hashTable:
+            hashTable[i] += 1
+        else:
+            hashTable[i] = 1
+
+    return sorted(hashTable, key=lambda x: hashTable[x], reverse=True)[0]
+
+
+print(majorityElement([3, 3, 3, 2, 2, 2, 2, 1]))
