@@ -2719,18 +2719,281 @@
 # Majority Element - leetcode
 
 
-def majorityElement(nums):
+# def majorityElement(nums):
 
-    hashTable = {}
+#     hashTable = {}
 
-    for i in nums:
+#     for i in nums:
 
-        if i in hashTable:
-            hashTable[i] += 1
-        else:
-            hashTable[i] = 1
+#         if i in hashTable:
+#             hashTable[i] += 1
+#         else:
+#             hashTable[i] = 1
 
-    return sorted(hashTable, key=lambda x: hashTable[x], reverse=True)[0]
+#     return sorted(hashTable, key=lambda x: hashTable[x], reverse=True)[0]
 
 
-print(majorityElement([3, 3, 3, 2, 2, 2, 2, 1]))
+# print(majorityElement([3, 3, 3, 2, 2, 2, 2, 1]))
+
+# --------------------------------------------------------------
+
+#  Count Animals - edabit
+
+# Goal is to find the deepest point of the tree (non-binary)
+
+
+# def count_animals(txt):
+
+#     animals = [
+#         "dog",
+#         "cat",
+#         "bat",
+#         "cock",
+#         "cow",
+#         "pig",
+#         "fox",
+#         "ant",
+#         "bird",
+#         "lion",
+#         "wolf",
+#         "deer",
+#         "bear",
+#         "frog",
+#         "hen",
+#         "mole",
+#         "duck",
+#         "goat",
+#     ]
+
+#     res = []
+
+#     def recursion(text, count=0):
+
+#         for i in animals:
+
+#             newText = text
+
+#             match = True
+
+#             print(newText, i)
+
+#             for x in i:
+#                 if newText.find(x) != -1:
+#                     newText = newText.replace(x, "", 1)
+#                 else:
+#                     match = False
+#                     break
+
+#             if match:
+#                 recursion(newText, count + 1)
+
+#         res.append(count)
+
+#     recursion(txt)
+
+#     return max(res)
+
+
+# print(count_animals("goatcode"))
+
+# ----------------------------------------------------------
+
+# WordSearch - edabit
+
+
+# def wordSearch(letters, words):
+
+#     grid = [[rows for rows in letters][8 * i : 8 * i + 8] for i in range(8)]
+
+#     horizontal = ["".join(row) for row in grid]
+
+#     horizontalReverse = ["".join(reversed(row)) for row in grid]
+
+#     vertical = ["".join(col) for col in [[row[i] for row in grid] for i in range(8)]]
+
+#     verticalReverse = [
+#         "".join(reversed(col)) for col in [[row[i] for row in grid] for i in range(8)]
+#     ]
+
+#     diagonalRight = [
+#         "".join([grid[x][x - i] for x in range(i, 8)]) for i in range(8)
+#     ] + ["".join([grid[x - i][x] for x in range(i, 8)]) for i in range(1, 8)]
+
+#     diagonalRightMirror = [
+#         "".join([grid[x][x - i] for x in range(7, i - 1, -1)]) for i in range(8)
+#     ] + ["".join([grid[x - i][x] for x in range(7, i - 1, -1)]) for i in range(1, 8)]
+
+#     diagonalLeft = [
+#         "".join([grid[x][i - x] for x in range(i + 1)]) for i in range(7, -1, -1)
+#     ] + ["".join([grid[i - x][x] for x in range(7, i, -1)]) for i in range(8)]
+
+#     diagonalLeftMirror = [
+#         "".join([grid[x][i - x] for x in range(i, -1, -1)]) for i in range(7, -1, -1)
+#     ] + ["".join([grid[x][i - x] for x in range(7, i, -1)]) for i in range(8)]
+
+#     for word in words:
+#         match = False
+#         for q in (
+#             horizontalReverse
+#             + horizontal
+#             + vertical
+#             + verticalReverse
+#             + diagonalRight
+#             + diagonalRightMirror
+#             + diagonalLeft
+#             + diagonalLeftMirror
+#         ):
+
+#             if word.upper() in q:
+#                 match = True
+
+#         if match == False:
+#             return False
+
+#     return True
+
+
+# # 17, 16, 15, 14, 13
+
+# l = "PSUWHATSLPACKAGENYOLRDVLFINGEZBMIREHQNJOATBVGYESJDUWUESTPSTICKEY"
+# w = ["stick", "most", "key", "vein", "yes", "package", "tube", "target", "elm", "spy"]
+
+# print(wordSearch(l, w))
+
+
+# Word Search (Part 2) - edabit
+
+# Quick solution - simply double each row, col and diagonals - For the word to wrap the word must appear within 2 passes of the row, col, diagonal etc.
+
+
+# def wordSearch(letters, words):
+
+#     grid = [[rows for rows in letters][8 * i : 8 * i + 8] for i in range(8)]
+
+#     horizontal = ["".join(row) * 2 for row in grid]
+
+#     horizontalReverse = ["".join(reversed(row)) * 2 for row in grid]
+
+#     vertical = [
+#         "".join(col) * 2 for col in [[row[i] for row in grid] for i in range(8)]
+#     ]
+
+#     verticalReverse = [
+#         "".join(reversed(col)) * 2
+#         for col in [[row[i] for row in grid] for i in range(8)]
+#     ]
+
+#     diagonalRight = [
+#         "".join([grid[x][x - i] for x in range(i, 8)]) * 2 for i in range(8)
+#     ] + ["".join([grid[x - i][x] for x in range(i, 8)]) * 2 for i in range(1, 8)]
+
+#     diagonalRightMirror = [
+#         "".join([grid[x][x - i] for x in range(7, i - 1, -1)]) * 2 for i in range(8)
+#     ] + [
+#         "".join([grid[x - i][x] for x in range(7, i - 1, -1)]) * 2 for i in range(1, 8)
+#     ]
+
+#     diagonalLeft = [
+#         "".join([grid[x][i - x] for x in range(i + 1)]) * 2 for i in range(7, -1, -1)
+#     ] + ["".join([grid[i - x][x] for x in range(7, i, -1)]) * 2 for i in range(8)]
+
+#     diagonalLeftMirror = [
+#         "".join([grid[x][i - x] for x in range(i, -1, -1)]) * 2
+#         for i in range(7, -1, -1)
+#     ] + ["".join([grid[x][i - x] for x in range(7, i, -1)]) * 2 for i in range(8)]
+
+#     for word in words:
+#         match = False
+#         for q in (
+#             horizontalReverse
+#             + horizontal
+#             + vertical
+#             + verticalReverse
+#             + diagonalRight
+#             + diagonalRightMirror
+#             + diagonalLeft
+#             + diagonalLeftMirror
+#         ):
+
+#             if word.upper() in q:
+#                 match = True
+
+#         if match == False:
+#             return False
+
+#     return True
+
+
+# l2 = "HWAVEOWCFONNANFABEOAMOIAHODOXORTACTIDINOBWZODGELINEEAFASTETAPELL"
+# w2 = [
+#     "slot",
+#     "donate",
+#     "orthodox",
+#     "rated",
+#     "wave",
+#     "tape",
+#     "leg",
+#     "habit",
+#     "add",
+#     "fox",
+# ]
+
+# print(wordSearch(l2, w2))
+
+# ----------------------------------------------------------------------
+
+# 144. Binary Preorder Traversial - leetcode
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+# def preorder_traversial(root):
+
+#     order = []
+
+#     def preorder(r, order=[]):
+
+#         if r:
+#             order.append(r.val)
+#             preorder(r.left, order)
+#             preorder(r.right, order)
+
+#     preorder(root, order)
+#     return order
+
+
+# n6 = TreeNode(6)
+# n5 = TreeNode(5)
+# n4 = TreeNode(4)
+# n3 = TreeNode(3, n6)
+# n2 = TreeNode(2, n4, n5)
+# n1 = TreeNode(1, n2, n3)
+
+# print(preorder_traversial(n1))
+
+
+# -----------------------------------------------------
+
+# Party People Part I: Make it Recursive - edabit
+
+
+def party_people(lst):
+
+    people = []
+
+    for i in lst:
+        if i <= len(lst):
+            people.append(i)
+
+    if len(lst) == len(people):
+        return len(people)
+
+    return party_people(people)
+
+
+print(party_people([4, 5, 4, 1]))

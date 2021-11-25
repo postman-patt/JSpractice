@@ -3626,20 +3626,72 @@
 
 // MemeSum - edabit
 
-const memeSum = (a, b) => {
-  let numA = String(a)
-  let numB = String(b)
+// const memeSum = (a, b) => {
+//   let numA = String(a)
+//   let numB = String(b)
 
+//   let res = []
+
+//   for (i = 0; i < Math.max(numA.length, numB.length); i++) {
+//     let num1 = numA.length - 1 - i < 0 ? 0 : Number(numA[numA.length - 1 - i])
+//     let num2 = numB.length - 1 - i < 0 ? 0 : Number(numB[numB.length - 1 - i])
+
+//     res.unshift(String(num1 + num2))
+//   }
+
+//   return Number(res.join(''))
+// }
+
+// console.log(memeSum(12439, 26))
+
+// ---------------------------------------------------------------
+
+// First Letter Shift - edabit
+
+// const shiftSentence = (sentence) => {
+//   const s = sentence.split(' ')
+
+//   res = []
+//   for (i in s) {
+//     res.push(s[i - 1 < 0 ? s.length - 1 : i - 1][0] + s[i].slice(1))
+//   }
+
+//   return res.join(' ')
+// }
+
+// console.log(shiftSentence('create a function'))
+
+// -----------------------------------------------------------------
+
+// Making a Box 2.0 - edabit
+
+const charBox = (n) => {
   let res = []
 
-  for (i = 0; i < Math.max(numA.length, numB.length); i++) {
-    let num1 = numA.length - 1 - i < 0 ? 0 : Number(numA[numA.length - 1 - i])
-    let num2 = numB.length - 1 - i < 0 ? 0 : Number(numB[numB.length - 1 - i])
-
-    res.unshift(String(num1 + num2))
+  if (n == 0) {
+    return [[]]
   }
 
-  return Number(res.join(''))
+  if (n < 0 || typeof n == 'string' || n % 1 != 0) {
+    return -1
+  }
+
+  for (i = 0; i < n; i++) {
+    let sub = []
+    for (j = 0; j < n; j++) {
+      if (i == 0 || i == n - 1) {
+        sub.push('#')
+      } else {
+        if (j == 0 || j == n - 1) {
+          sub.push('#')
+        } else {
+          sub.push(' ')
+        }
+      }
+    }
+    res.push(sub)
+  }
+  return res
 }
 
-console.log(memeSum(12439, 26))
+console.log(typeof -0.23)
