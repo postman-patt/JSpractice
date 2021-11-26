@@ -2982,18 +2982,101 @@
 # Party People Part I: Make it Recursive - edabit
 
 
-def party_people(lst):
+# def party_people(lst):
 
-    people = []
+#     people = []
 
-    for i in lst:
-        if i <= len(lst):
-            people.append(i)
+#     for i in lst:
+#         if i <= len(lst):
+#             people.append(i)
 
-    if len(lst) == len(people):
-        return len(people)
+#     if len(lst) == len(people):
+#         return len(people)
 
-    return party_people(people)
+#     return party_people(people)
 
 
-print(party_people([4, 5, 4, 1]))
+# print(party_people([4, 5, 4, 1]))
+
+# ---------------------------------------------------
+
+
+# Permutations - leetcode
+
+# import itertools
+
+
+# def permute(n):
+
+#     res = []
+#     for i in itertools.permutations(n):
+#         res.append(list(i))
+
+#     return res
+
+
+# permute([1, 2, 3])
+
+# ------------------------------------------------------------------------
+
+
+# counter - edabit
+
+
+# def counter():
+#     if hasattr(counter, "count"):
+#         counter.count += 1
+#     else:
+#         counter.count = 0
+
+#     print(counter.count)
+
+
+# counter()
+# counter()
+# counter()
+# counter()
+
+# -------------------------------------------------------------------------
+
+# Manipulating Randomness - edabit
+
+
+# def manipulate():
+
+#     class s:
+#         def __eq__(self, other):
+#             return True
+
+#     return s()
+
+# --------------------------------------------------------------------------
+
+# Piggy Bank - edabit
+
+
+def num_of_days(cost, savings, start):
+
+    target = cost - savings
+
+    sum = 0
+
+    current = start
+
+    days = 0
+
+    while sum < target:
+
+        if days != 0 and days % 7 == 0:
+            current -= 6
+
+        sum += current
+
+        current += 1
+
+        days += 1
+
+    return days
+
+
+print(num_of_days(10000, 2500, 50))

@@ -3665,33 +3665,84 @@
 
 // Making a Box 2.0 - edabit
 
-const charBox = (n) => {
-  let res = []
+// const charBox = (n) => {
+//   let res = []
 
-  if (n == 0) {
-    return [[]]
-  }
+//   if (n == 0) {
+//     return [[]]
+//   }
 
-  if (n < 0 || typeof n == 'string' || n % 1 != 0) {
-    return -1
-  }
+//   if (n < 0 || typeof n == 'string' || n % 1 != 0) {
+//     return -1
+//   }
 
-  for (i = 0; i < n; i++) {
-    let sub = []
-    for (j = 0; j < n; j++) {
-      if (i == 0 || i == n - 1) {
-        sub.push('#')
-      } else {
-        if (j == 0 || j == n - 1) {
-          sub.push('#')
-        } else {
-          sub.push(' ')
-        }
-      }
-    }
-    res.push(sub)
-  }
-  return res
-}
+//   for (i = 0; i < n; i++) {
+//     let sub = []
+//     for (j = 0; j < n; j++) {
+//       if (i == 0 || i == n - 1) {
+//         sub.push('#')
+//       } else {
+//         if (j == 0 || j == n - 1) {
+//           sub.push('#')
+//         } else {
+//           sub.push(' ')
+//         }
+//       }
+//     }
+//     res.push(sub)
+//   }
+//   return res
+// }
 
-console.log(typeof -0.23)
+// console.log(typeof -0.23)
+
+// --------------------------------------------------------------
+
+// Permutations - leetcode
+
+// Backtracking
+
+// const permute = (nums) => {
+//   let res = []
+//   const backtracking = (n, r = []) => {
+//     if (n.length == 0) {
+//       res.push(r)
+//     }
+//     for (let i = 0; i < n.length; i++) {
+//       backtracking(n.slice(0, i).concat(n.slice(i + 1)), [...r, n[i]])
+//     }
+//   }
+
+//   backtracking(nums)
+
+//   return res
+// }
+
+// console.log(permute([1, 2, 3]))
+
+// ---------------------------------------------------------------------
+
+// Cup Swapping - edabit
+
+// const cup_swapping = (swaps) => {
+//   let pos = { A: false, B: true, C: false }
+
+//   for (i in swaps) {
+//     ;[pos[swaps[i][0]], pos[swaps[i][1]]] = [pos[swaps[i][1]], pos[swaps[i][0]]]
+//   }
+
+//   for (const h in pos) {
+//     if (pos[h]) {
+//       return h
+//     }
+//   }
+// }
+
+// console.log(cup_swapping(['AB', 'CA', 'AB']))
+
+// --------------------------------------------------------------
+
+
+// Manipulating Randomness - edabit
+
+def manipulate()
