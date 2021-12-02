@@ -3742,7 +3742,261 @@
 
 // --------------------------------------------------------------
 
+// Clockwise Cipher - edabit
 
-// Manipulating Randomness - edabit
+// function clockwiseCipher(message) {
+//   message = [...message]
+//   const size = Math.ceil(Math.sqrt(message.length))
+//   let square = Array.from({ length: size }, (_) => new Array(size).fill(' '))
+//   let j = 0
+//   let k = 4 * (size - 2 * j - 1) || 1
 
-def manipulate()
+//   while (k > 0) {
+//     console.log(square, message)
+//     for (let i = 0; i < k && message.length; i++) {
+//       let y, x
+//       if (i % 4 === 0) [y, x] = [j, i / 4 + j]
+//       if (i % 4 === 1) [y, x] = [(i - 1) / 4 + j, size - 1 - j]
+//       if (i % 4 === 2) [y, x] = [size - 1 - j, size - 1 - ((i - 2) / 4 + j)]
+//       if (i % 4 === 3) [y, x] = [size - 1 - ((i - 3) / 4 + j), j]
+//       square[y][x] = message.shift()
+//     }
+//     j++
+//     k = 4 * (size - 2 * j - 1) || 1
+//   }
+
+//   return square.flat().join('')
+// }
+
+// console.log(clockwiseCipher('Mubashir Hassan'))
+
+// --------------------------------------------------------
+
+// Complex Number Sum - edabit
+
+// const sumComplex = (numList) => {
+//   let regex_i = /[+-][0-9i]+(?=i)/g
+//   let regex_n = /[+-]?[0-9]+(?![0-9i]+)/g
+//   let regex_additional = /[+-]?(?<![0-9])i/g
+
+//   const nums = numList.join('+')
+
+//   let i =
+//     nums.match(regex_i) != null
+//       ? Number(
+//           nums.match(regex_i).reduce((a, b) => {
+//             return Number(a) + Number(b)
+//           })
+//         )
+//       : 0
+
+//   let n =
+//     nums.match(regex_n) != null
+//       ? Number(
+//           nums.match(regex_n).reduce((a, b) => {
+//             return Number(a) + Number(b)
+//           })
+//         )
+//       : 0
+
+//   const additionals =
+//     nums.match(regex_additional) != null ? nums.match(regex_additional) : []
+
+//   for (h in additionals) {
+//     if (additionals[h][0] == '-') {
+//       i -= 1
+//     } else {
+//       i += 1
+//     }
+//   }
+
+//   let res = ''
+
+//   if (n > 0) {
+//     res += n
+//   }
+
+//   if (n < 0) {
+//     res += n
+//   }
+
+//   if (n != 0 && i > 0) {
+//     res += '+' + `${i == 1 ? '' : i == -1 ? '-' : i}` + 'i'
+//   }
+
+//   if (n != 0 && i < 0) {
+//     res += `${i == 1 ? '' : i == -1 ? '-' : i}` + 'i'
+//   }
+
+//   if (n == 0 && i != 0) {
+//     res += `${i == 1 ? '' : i == -1 ? '-' : i}` + 'i'
+//   }
+
+//   if (res == '') {
+//     return '0'
+//   } else {
+//     return res
+//   }
+// }
+
+// console.log(sumComplex(['123+456i']))
+
+// --------------------------------------------------------------------
+
+// Can You Make the Numbers? - edabit
+
+// const canBuild = (digits, arr) => {
+//   let d = digits
+
+//   for (i in arr) {
+//     let n = String(arr[i])
+
+//     for (x in n) {
+//       if (d[Number(n[x])] > 0) {
+//         d[Number(n[x])] -= 1
+//       } else {
+//         return false
+//       }
+//     }
+//   }
+
+//   return true
+// }
+
+// console.log(canBuild([0, 1, 2, 2, 3, 0, 0, 0, 1, 1], [123, 444, 92]))
+// console.log(canBuild([0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [3]))
+// console.log(canBuild([0, 0, 0, 0, 0, 0, 0, 0, 0, 0], []))
+
+// ------------------------------------------------------
+
+// Ungroop Datae in an Object - edabit
+
+// const ungroupStudents = (students) => {
+//   let res = []
+
+//   for (i in students) {
+//     let s = { teacher: students[i].teacher }
+
+//     for (x in students[i].data) {
+//       res.push({ teacher: students[i].teacher, ...students[i].data[x] })
+//     }
+//   }
+//   return res
+// }
+
+// console.log(
+//   ungroupStudents([
+//     {
+//       teacher: 'Ms. Car',
+//       data: [
+//         {
+//           name: 'James',
+//           emergenceNumber: '617-771-1082',
+//         },
+//         {
+//           name: 'Alice',
+//           alergies: ['nuts', 'carrots'],
+//         },
+//       ],
+//     },
+//     {
+//       teacher: 'Mr. Lamb',
+//       data: [
+//         {
+//           name: 'Aaron',
+//           age: 3,
+//         },
+//       ],
+//     },
+//   ])
+// )
+
+// ------------------------------------------------------------------------
+
+// A Watermelon - edabit
+
+// const totalSeeds = (watermelon) => {
+//   let res = 0
+//   for (i = 0; i < 2; i++) {
+//     let h1 = 0
+//     let h2 = 0
+//     for (
+//       x = i * (watermelon.length / 2);
+//       x < i * (watermelon.length / 2) + watermelon.length / 2;
+//       x++
+//     ) {
+//       for (s = 0; s < watermelon[x].length; s++) {
+//         if (watermelon[x][s] == 1 && watermelon[x].length / s > 2) {
+//           h1 += 1
+//         }
+
+//         if (watermelon[x][s] == 1 && watermelon[x].length / s <= 2) {
+//           h2 += 1
+//         }
+//       }
+//     }
+
+//     if (h1 > 5) {
+//       res += h1
+//     }
+
+//     if (h2 > 5) {
+//       res += h2
+//     }
+//   }
+
+//   return res
+// }
+
+// const w = [
+//   [1, 0, 0, 1, 1, 1, 0, 1],
+//   [1, 0, 1, 0, 1, 1, 0, 0],
+//   [1, 1, 1, 1, 0, 0, 0, 0],
+//   [0, 1, 0, 1, 1, 1, 1, 0],
+//   [0, 0, 0, 1, 0, 1, 0, 0],
+//   [1, 1, 1, 0, 0, 0, 1, 1],
+//   [1, 0, 1, 1, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0],
+// ]
+
+// console.log(totalSeeds(w))
+
+// -----------------------------------------------------------------
+
+// Mutations Only - edabit
+
+// const zeroesToEnd = (nums) => {
+//   for (let i = nums.length - 1; i >= 0; i--) {
+//     if (nums[i] == 0) {
+//       nums.push(nums.splice(i, 1)[0])
+//     }
+//   }
+
+//   return nums
+// }
+
+// console.log(zeroesToEnd([1, 2, 0, 0, 4, 0, 5]))
+
+// -----------------------------------------------------------------
+
+// Cleaning Project Files - edabit
+
+const cleanUp = (files, method) => {
+  const regex = method == 'prefix' ? /.+(?=\.)/g : /(?<=\.).+/g
+
+  let res = {}
+
+  for (i in files) {
+    const match = files[i].match(regex)[0]
+
+    if (match in res) {
+      res[match].push(files[i])
+    } else {
+      res[match] = [files[i]]
+    }
+  }
+
+  return Object.values(res)
+}
+
+console.log(cleanUp(['ex1.html', 'ex1.js', 'ex2.html', 'ex2.js'], 'prefix'))

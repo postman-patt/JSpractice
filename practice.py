@@ -3055,28 +3055,205 @@
 # Piggy Bank - edabit
 
 
-def num_of_days(cost, savings, start):
+# def num_of_days(cost, savings, start):
 
-    target = cost - savings
+#     target = cost - savings
 
-    sum = 0
+#     sum = 0
 
-    current = start
+#     current = start
 
-    days = 0
+#     days = 0
 
-    while sum < target:
+#     while sum < target:
 
-        if days != 0 and days % 7 == 0:
-            current -= 6
+#         if days != 0 and days % 7 == 0:
+#             current -= 6
 
-        sum += current
+#         sum += current
 
-        current += 1
+#         current += 1
 
-        days += 1
+#         days += 1
 
-    return days
+#     return days
 
 
-print(num_of_days(10000, 2500, 50))
+# print(num_of_days(10000, 2500, 50))
+
+# ---------------------------------------------------------------
+
+# Eight Sums Up - edabit
+
+
+# def sums_up(lst):
+
+#     res = {"pairs": []}
+
+#     hashMap = {}
+
+#     for i in lst:
+#         if str(8 - i) in hashMap:
+#             res["pairs"].append([min(8 - i, i), max(8 - i, i)])
+#         else:
+#             hashMap[str(i)] = 1
+#     return res
+
+
+# print(sums_up([1, 6, 5, 4, 8, 2, 3, 7]))
+
+# ----------------------------------------------------------------
+
+# Two Sum - leetcode
+
+
+# def twoSum(nums, target):
+
+#     hashMap = {}
+
+#     for i, v in enumerate(nums):
+#         print(str(target - v) in hashMap)
+#         if str(target - v) in hashMap:
+#             return [hashMap[str(target - v)], i]
+#         else:
+#             hashMap[str(v)] = i
+
+#     return hashMap
+
+
+# n = [2, 7, 11, 15]
+
+# t = 9
+
+# print(twoSum(n, t))
+
+
+# ---------------------------------------------------------
+
+# Linked List Cycle - leetcode
+
+
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
+# def hasCycle(head):
+
+#     # To account for head == none '[]'
+
+#     if head == None:
+#         return False
+
+#     hashTable = {}
+
+#     node = head
+
+#     while True:
+
+#         if node.next == None:
+#             return False
+
+#         if str(node.val) in hashTable:
+#             hashTable[str(node.val)].append(node)
+#         else:
+#             hashTable[str(node.val)] = [node]
+
+#         if (
+#             str(node.next.val) in hashTable
+#             and node.next in hashTable[str(node.next.val)]
+#         ):
+#             return True
+
+#         node = node.next
+
+
+# l1 = ListNode(1)
+
+
+# print(hasCycle(l1))
+
+# ------------------------------------------------------------------
+
+# Linked List Cycle II - leetcode
+
+
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
+# def hasCycle(head):
+
+#     # To account for head == none '[]'
+
+#     if head == None:
+#         return
+
+#     hashTable = {}
+
+#     node = head
+
+#     while True:
+
+#         if node.next == None:
+#             return
+
+#         if str(node.val) in hashTable:
+#             hashTable[str(node.val)].append(node)
+#         else:
+#             hashTable[str(node.val)] = [node]
+
+#         if (
+#             str(node.next.val) in hashTable
+#             and node.next in hashTable[str(node.next.val)]
+#         ):
+#             return node.next
+
+#         node = node.next
+
+
+# l1 = ListNode(1)
+
+
+# print(hasCycle(l1))
+
+
+# ----------------------------------------------------------------------
+
+# FizzBuzz - edabit
+
+
+# def fizzBuzz(n):
+
+#     if n % 3 == 0 and n % 5 == 0:
+#         return "FizzBuzz"
+#     if n % 3 == 0:
+#         return "Fizz"
+#     if n % 5 == 0:
+#         return "Buzz"
+#     return str(n)
+
+
+# print(fizzBuzz(3))
+
+# ----------------------------------------------------------------------
+
+# Contact List - edabit
+
+
+def sort_contacts(names, sort):
+
+    if names == None or len(names) == 0:
+        return []
+
+    s = True if sort == "DESC" else False
+
+    return sorted(
+        names, key=lambda name: name.split(" ")[len(name.split(" ")) - 1], reverse=s
+    )
+
+
+print(sort_contacts(None, "ASC"))
