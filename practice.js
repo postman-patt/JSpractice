@@ -3981,22 +3981,145 @@
 
 // Cleaning Project Files - edabit
 
-const cleanUp = (files, method) => {
-  const regex = method == 'prefix' ? /.+(?=\.)/g : /(?<=\.).+/g
+// const cleanUp = (files, method) => {
+//   const regex = method == 'prefix' ? /.+(?=\.)/g : /(?<=\.).+/g
 
-  let res = {}
+//   let res = {}
 
-  for (i in files) {
-    const match = files[i].match(regex)[0]
+//   for (i in files) {
+//     const match = files[i].match(regex)[0]
 
-    if (match in res) {
-      res[match].push(files[i])
-    } else {
-      res[match] = [files[i]]
+//     if (match in res) {
+//       res[match].push(files[i])
+//     } else {
+//       res[match] = [files[i]]
+//     }
+//   }
+
+//   return Object.values(res)
+// }
+
+// console.log(cleanUp(['ex1.html', 'ex1.js', 'ex2.html', 'ex2.js'], 'prefix'))
+
+// ----------------------------------------------------------------
+
+// Searching Two Objects at Once - edabit
+
+// // english class object
+// const english = {
+//   advanced: {
+//     // advanced curriculum
+//     teacher: 'Ms. Abrimian',
+//     acceptsLateWork: false,
+//   },
+//   standard: {
+//     // standard curriculum
+//     teacher: 'Mr. Sheehan',
+//     acceptsLateWork: true,
+//   },
+// }
+
+// // math class object
+// const math = {
+//   advanced: {
+//     teacher: 'Mr. Citrano',
+//     acceptsLateWork: false,
+//   },
+//   standard: {
+//     teacher: 'Ms. Marinelli',
+//     acceptsLateWork: false,
+//   },
+// }
+
+// const acceptsLateWork = (teacher) => {
+//   const teachers = Object.values(english).concat(Object.values(math))
+
+//   return teachers.filter((t) => {
+//     return teacher == t.teacher
+//   })[0].acceptsLateWork
+// }
+
+// console.log(acceptsLateWork('Mr. Citrano'))
+
+// -----------------------------------------------------------------------------
+
+// Remove Computer Virus - edabit
+
+// const removeVirus = (files) => {
+//   const regex = /(?<!anti|not)virus|malware/
+
+//   let f = files.split(', ').filter((file) => {
+//     return !regex.test(file)
+//   })
+
+//   if (f.length == 0) {
+//     return 'PC Files: Empty'
+//   } else {
+//     return f.join(', ')
+//   }
+// }
+
+// console.log(removeVirus('PC Files: virus.exe, bestmalware.exe, memzvirus.exe'))
+
+// -----------------------------------------------------------------------------
+
+// Wheres the Bomb? - edabit
+
+// const bomb = (p) => {
+//   const sound = 0.343
+
+//   const distance = (pos1, pos2) => {
+//     return Math.sqrt(
+//       Math.pow(pos2[0] - pos1[0], 2) + Math.pow(pos2[1] - pos1[1], 2)
+//     ).toFixed(1)
+//   }
+
+//   for (i = 0; i < 51; i++) {
+//     for (j = 0; j < 51; j++) {
+//       if (
+//         distance(p[0], [i, j]) == (sound * p[0][2]).toFixed(1) &&
+//         distance(p[1], [i, j]) == (sound * p[1][2]).toFixed(1) &&
+//         distance(p[2], [i, j]) == (sound * p[2][2]).toFixed(1)
+//       ) {
+//         return [i, j]
+//       }
+//     }
+//   }
+// }
+
+// console.log(
+//   bomb([
+//     [3, 49, 127.815],
+//     [16, 27, 58.672],
+//     [11, 40, 92.792],
+//   ])
+// )
+
+// ----------------------------------------------------------------------
+
+// Books and Book Ends - edabit
+
+const countUniqueBooks = (stringSequence, bookend) => {
+  let b = false
+  let count = 0
+  let books = []
+
+  for (i in stringSequence) {
+    if (
+      b === true &&
+      stringSequence[i] != bookend &&
+      books.indexOf(stringSequence[i]) == -1
+    ) {
+      books.push(stringSequence[i])
+      count += 1
+    }
+
+    if (stringSequence[i] == bookend) {
+      b = b ? false : true
     }
   }
 
-  return Object.values(res)
+  return count
 }
 
-console.log(cleanUp(['ex1.html', 'ex1.js', 'ex2.html', 'ex2.js'], 'prefix'))
+console.log(countUniqueBooks('AZYWABBCATTTA', 'A'))

@@ -3244,16 +3244,97 @@
 # Contact List - edabit
 
 
-def sort_contacts(names, sort):
+# def sort_contacts(names, sort):
 
-    if names == None or len(names) == 0:
-        return []
+#     if names == None or len(names) == 0:
+#         return []
 
-    s = True if sort == "DESC" else False
+#     s = True if sort == "DESC" else False
 
-    return sorted(
-        names, key=lambda name: name.split(" ")[len(name.split(" ")) - 1], reverse=s
-    )
+#     return sorted(
+#         names, key=lambda name: name.split(" ")[len(name.split(" ")) - 1], reverse=s
+#     )
 
 
-print(sort_contacts(None, "ASC"))
+# print(sort_contacts(None, "ASC"))
+
+# -----------------------------------------------------------------------
+
+# Best Time to Buy and Sell Stock - leetcode
+
+
+# def maxProfit(prices):
+
+#     res = 0
+
+#     for i, v in enumerate(prices):
+#         if i < len(prices) - 1 and max(prices[i + 1 :]) - v > res:
+#             res = max(prices[i + 1 :]) - v
+
+#     return res
+
+
+# print(maxProfit([7, 3, 4, 5, 1]))
+
+
+# def maxProfit(prices):
+
+#     maxProfit = 0
+#     minPrice = float("inf")
+
+#     for i in prices:
+#         if i < minPrice:
+#             minPrice = i
+#         elif i - minPrice > maxProfit:
+#             maxProfit = i - minPrice
+
+#     return maxProfit
+
+
+# print(maxProfit([7, 1, 5, 3, 6, 4]))
+
+# --------------------------------------------------------
+
+# Single Number - leetcode
+
+
+# def singleNumber(nums):
+
+#     hashMap = {}
+
+#     for i in nums:
+#         if str(i) in hashMap:
+#             hashMap[str(i)] = True
+#         else:
+#             hashMap[str(i)] = False
+
+#     for i in hashMap:
+#         if hashMap[i] == False:
+#             return int(i)
+
+
+# print(singleNumber([4, 1, 2, 1, 2]))
+
+# ---------------------------------------------------------
+
+# Maximum Sum - edabit
+
+# Kadane's Algorithm
+
+s1 = [10, -9, 0, -8, 76, 5, -40, 43]
+
+
+def maxSum(nums):
+    max_current = max_global = 0
+
+    for i in nums:
+        max_current = max(i, max_current + i)
+        if max_current > max_global:
+            max_global = max_current
+
+    return max_global
+
+
+print(maxSum(s1))
+
+# -------------------------------------------------------------
