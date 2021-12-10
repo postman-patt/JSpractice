@@ -4099,27 +4099,195 @@
 
 // Books and Book Ends - edabit
 
-const countUniqueBooks = (stringSequence, bookend) => {
-  let b = false
-  let count = 0
-  let books = []
+// const countUniqueBooks = (stringSequence, bookend) => {
+//   let b = false
+//   let count = 0
+//   let books = []
 
-  for (i in stringSequence) {
-    if (
-      b === true &&
-      stringSequence[i] != bookend &&
-      books.indexOf(stringSequence[i]) == -1
-    ) {
-      books.push(stringSequence[i])
-      count += 1
-    }
+//   for (i in stringSequence) {
+//     if (
+//       b === true &&
+//       stringSequence[i] != bookend &&
+//       books.indexOf(stringSequence[i]) == -1
+//     ) {
+//       books.push(stringSequence[i])
+//       count += 1
+//     }
 
-    if (stringSequence[i] == bookend) {
-      b = b ? false : true
-    }
+//     if (stringSequence[i] == bookend) {
+//       b = b ? false : true
+//     }
+//   }
+
+//   return count
+// }
+
+// console.log(countUniqueBooks('AZYWABBCATTTA', 'A'))
+
+// -----------------------------------------------------------
+
+// Inside, not Outside a Box - edabit
+
+// const count = (box) => {
+//   const regex = /(?<=#)[^#]+(?=#)/g
+
+//   let items = []
+
+//   for (i in box) {
+//     let item = box[i].match(regex)
+
+//     if (item != null) {
+//       for (x in item[0]) {
+//         if (item[0][x] != ' ' && !(item[0][x] in items)) {
+//           items.push(item[0][x])
+//         }
+//       }
+//     }
+//   }
+
+//   return new Set(items).size
+// }
+
+// console.log(
+//   count(['??????Z', 'Z?####?V', '$?#  #?X', '$@#BA#?P', '$T####?T', 'ZAAAAAAT'])
+// )
+
+// ---------------------------------------------------------
+
+// Calculate Depth of Array - edabit
+
+// const depth = (arr) => {
+//   let count = 0
+//   const r = (n, c = 0) => {
+//     if (Array.isArray(n)) {
+//       for (i in n) {
+//         r(n[i], c + 1)
+//       }
+//     }
+//     if (c > count) {
+//       count = c
+//     }
+//   }
+
+//   r(arr)
+
+//   return count
+// }
+
+// console.log(typeof [1, 2])
+
+// console.log(depth([1, [2], 3, [4], 5, [6]]))
+
+// ----------------------------------------------------------------
+
+// Simplify Path - leetcode
+
+// const simplifyPath = (path) => {
+//   const p = path.split('/')
+
+//   let res = []
+
+//   for (i in p) {
+//     if (p[i].length > 0) {
+//       switch (true) {
+//         case p[i] == '.':
+//           continue
+//         case p[i] == '..':
+//           if (res.length > 0) {
+//             res.pop()
+//           }
+//           break
+//         default:
+//           res.push(p[i])
+//       }
+//     }
+//   }
+
+//   return '/' + res.join('/')
+// }
+
+// console.log(simplifyPath('/a/./b/../../c/'))
+
+// -----------------------------------------------------
+
+// Level Order Traversal - edabit
+
+class Node {
+  constructor(data) {
+    this.data = data
+    this.right = null
+    this.left = null
   }
-
-  return count
 }
 
-console.log(countUniqueBooks('AZYWABBCATTTA', 'A'))
+class BST {
+  constructor() {
+    this.root = null
+  }
+  insert(element) {
+    const node = new Node(element)
+    if (!this.root) {
+      this.root = node
+    } else {
+      this.insertNode(this.root, node)
+    }
+  }
+  insertNode(node, newNode) {
+    if (node.data > newNode.data) {
+      if (!node.left) {
+        node.left = newNode
+      } else {
+        this.insertNode(node.left, newNode)
+      }
+    } else {
+      if (!node.right) {
+        node.right = newNode
+      } else {
+        this.insertNode(node.right, newNode)
+      }
+    }
+  }
+  // Write your code here
+  traverse() {
+    let res = []
+
+    let nodes = [this.root]
+
+    while (true) {
+      let c = []
+
+      for (let i = 0; i < nodes.length; i++) {
+        res.push(nodes[i].data)
+
+        if (nodes[i].left != null) {
+          c.push(nodes[i].left)
+        }
+
+        if (nodes[i].right != null) {
+          c.push(nodes[i].right)
+        }
+      }
+
+      if (c.length == 0) {
+        break
+      }
+
+      nodes = c
+    }
+
+    return res
+  }
+  // End
+}
+
+const b = new BST()
+b.insert(100)
+b.insert(200)
+b.insert(70)
+b.insert(34)
+b.insert(80)
+b.insert(85)
+b.insert(85)
+b.insert(111)
+
+console.log(b.traverse())

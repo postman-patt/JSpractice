@@ -3321,20 +3321,120 @@
 
 # Kadane's Algorithm
 
-s1 = [10, -9, 0, -8, 76, 5, -40, 43]
+# s1 = [10, -9, 0, -8, 76, 5, -40, 43]
 
 
-def maxSum(nums):
-    max_current = max_global = 0
+# def maxSum(nums):
+#     max_current = max_global = 0
 
-    for i in nums:
-        max_current = max(i, max_current + i)
-        if max_current > max_global:
-            max_global = max_current
+#     for i in nums:
+#         max_current = max(i, max_current + i)
+#         if max_current > max_global:
+#             max_global = max_current
 
-    return max_global
+#     return max_global
 
 
-print(maxSum(s1))
+# print(maxSum(s1))
 
 # -------------------------------------------------------------
+
+# Path Sum - leetcode
+
+
+# def hasPathSum(root, targetSum):
+
+#     if root == None:
+#         return False
+
+#     def preorder(r, sum=0):
+
+#         if r == None:
+#             return False
+
+#         newSum = sum + r.val
+
+#         if r.left == None and r.right == None and newSum == targetSum:
+#             return True
+
+#         if r:
+#             if preorder(r.left, newSum):
+#                 return True
+#             else:
+#                 return preorder(r.right, newSum)
+
+#         return False
+
+#     return preorder(root)
+
+
+# # Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+# n7 = TreeNode(7)
+# n2 = TreeNode(2)
+# n11 = TreeNode(11, n7, n2)
+# n4 = TreeNode(4, n11)
+# n1 = TreeNode(1)
+# n4r = TreeNode(4, None, n1)
+# n13 = TreeNode(13)
+# n8 = TreeNode(8, n13, n4r)
+# n5 = TreeNode(5, n4, n8)
+
+# print(hasPathSum(n5, 22))
+
+# s2 = TreeNode(2)
+# s3 = TreeNode(3)
+# s1 = TreeNode(1, s2, s3)
+
+# print(hasPathSum(s1, 5))
+
+# ---------------------------------------------------------------
+
+# Postman Harry - edabit
+
+
+def harry(matrix):
+
+    if len(matrix[0]) == 0:
+        return -1
+
+    res = []
+
+    def bfs(node, s=0):
+        if node == (len(matrix) - 1, len(matrix[len(matrix) - 1]) - 1):
+            res.append(s + matrix[node[0]][node[1]])
+            return
+
+        adj = []
+
+        if node[0] + 1 < len(matrix):
+            adj.append((node[0] + 1, node[1]))
+
+        if node[1] + 1 < len(matrix[len(matrix) - 1]):
+            adj.append((node[0], node[1] + 1))
+
+        for i in adj:
+            bfs(i, s + matrix[node[0]][node[1]])
+
+    bfs((0, 0))
+
+    return max(res)
+
+
+print(
+    harry(
+        [
+            [5, 6, 2, 5, 1],
+            [7, 2, 4, 1, 2],
+            [0, 7, 111, 2, 14],
+            [9, 5, 12, 5, 9],
+            [19, 5, 2, 6, 2],
+        ]
+    )
+)
