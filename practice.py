@@ -3399,42 +3399,174 @@
 # Postman Harry - edabit
 
 
-def harry(matrix):
+# def harry(matrix):
 
-    if len(matrix[0]) == 0:
-        return -1
+#     if len(matrix[0]) == 0:
+#         return -1
 
-    res = []
+#     res = []
 
-    def bfs(node, s=0):
-        if node == (len(matrix) - 1, len(matrix[len(matrix) - 1]) - 1):
-            res.append(s + matrix[node[0]][node[1]])
-            return
+#     def bfs(node, s=0):
+#         if node == (len(matrix) - 1, len(matrix[len(matrix) - 1]) - 1):
+#             res.append(s + matrix[node[0]][node[1]])
+#             return
 
-        adj = []
+#         adj = []
 
-        if node[0] + 1 < len(matrix):
-            adj.append((node[0] + 1, node[1]))
+#         if node[0] + 1 < len(matrix):
+#             adj.append((node[0] + 1, node[1]))
 
-        if node[1] + 1 < len(matrix[len(matrix) - 1]):
-            adj.append((node[0], node[1] + 1))
+#         if node[1] + 1 < len(matrix[len(matrix) - 1]):
+#             adj.append((node[0], node[1] + 1))
 
-        for i in adj:
-            bfs(i, s + matrix[node[0]][node[1]])
+#         for i in adj:
+#             bfs(i, s + matrix[node[0]][node[1]])
 
-    bfs((0, 0))
+#     bfs((0, 0))
 
-    return max(res)
+#     return max(res)
 
 
-print(
-    harry(
-        [
-            [5, 6, 2, 5, 1],
-            [7, 2, 4, 1, 2],
-            [0, 7, 111, 2, 14],
-            [9, 5, 12, 5, 9],
-            [19, 5, 2, 6, 2],
-        ]
-    )
-)
+# print(
+#     harry(
+#         [
+#             [5, 6, 2, 5, 1],
+#             [7, 2, 4, 1, 2],
+#             [0, 7, 111, 2, 14],
+#             [9, 5, 12, 5, 9],
+#             [19, 5, 2, 6, 2],
+#         ]
+#     )
+# )
+
+# ----------------------------------------------------------------------
+
+
+# Search a 2D Matrix - leetcode
+
+
+# def searchMatrix(matrix, target):
+
+#     start, end = 0, len(matrix) - 1
+
+#     while start <= end:
+#         mid = round((start + end) / 2)
+
+#         if target in matrix[mid]:
+#             return True
+
+#         if target > max(matrix[mid]):
+#             start = mid + 1
+#         else:
+#             end = mid - 1
+
+#     return False
+
+
+# print(searchMatrix([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 34))
+
+# ------------------------------------------------------------------------
+
+
+# Ordering People in Line - edabit
+
+
+# def order_people(space, nums):
+
+#     if space[0] * space[1] < nums:
+#         return "overcrowded"
+
+#     res = []
+
+#     x = 1
+
+#     for i in range(space[0]):
+
+#         s = []
+
+#         for j in range(space[1]):
+
+#             if x <= nums:
+#                 if i == 0 or i % 2 == 0:
+#                     s.append(x)
+#                 else:
+#                     s.insert(0, x)
+#             else:
+#                 if i == 0 or i % 2 == 0:
+#                     s.append(0)
+#                 else:
+#                     s.insert(0, 0)
+#             x += 1
+
+#         res.append(s)
+
+#     return res
+
+
+# print(order_people([4, 3], 5))
+
+# -------------------------------------------------------
+
+# Up the Hill, Down the Hill - edabit
+
+
+# def ave_spd(u_time, u_rate, d_rate):
+
+#     total_distance = (u_time / 60 * u_rate) * 2
+
+#     total_time = u_time / 60 + (u_time / 60 * u_rate) / d_rate
+
+#     return round(total_distance / total_time)
+
+
+# print(ave_spd(18, 20, 60))
+
+# ---------------------------------------------------------
+
+# Smiley Faces - edabit
+
+
+# def happinessNumber(s):
+
+#     count = 0
+
+#     for i in range(len(s)):
+#         if i > 0:
+#             if s[i] == "(" and s[i - 1] == ":":
+#                 count -= 1
+#             if s[i] == ")" and s[i - 1] == ":":
+#                 count += 1
+#             if s[i] == ":" and s[i - 1] == "(":
+#                 count += 1
+#             if s[i] == ":" and s[i - 1] == ")":
+#                 count -= 1
+#     return count
+
+
+# print(happinessNumber(":):("))
+
+# ----------------------------------------------------------
+
+# Intersecting Rows and Columns - edabit
+
+
+def transform_matrix(m):
+
+    res = [[0 for i in x] for x in m]
+
+    for i, val in enumerate(m):
+
+        for j, val2 in enumerate(val):
+
+            count = val.count(1) - 1 if m[i][j] == 1 else val.count(1)
+
+            for x in range(len(m)):
+                if m[x][j] == 1 and x != i:
+                    count += 1
+
+            res[i][j] = count
+
+    return res
+
+
+print(transform_matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]]))

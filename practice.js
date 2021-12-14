@@ -4212,82 +4212,258 @@
 
 // Level Order Traversal - edabit
 
-class Node {
-  constructor(data) {
-    this.data = data
-    this.right = null
-    this.left = null
+// class Node {
+//   constructor(data) {
+//     this.data = data
+//     this.right = null
+//     this.left = null
+//   }
+// }
+
+// class BST {
+//   constructor() {
+//     this.root = null
+//   }
+//   insert(element) {
+//     const node = new Node(element)
+//     if (!this.root) {
+//       this.root = node
+//     } else {
+//       this.insertNode(this.root, node)
+//     }
+//   }
+//   insertNode(node, newNode) {
+//     if (node.data > newNode.data) {
+//       if (!node.left) {
+//         node.left = newNode
+//       } else {
+//         this.insertNode(node.left, newNode)
+//       }
+//     } else {
+//       if (!node.right) {
+//         node.right = newNode
+//       } else {
+//         this.insertNode(node.right, newNode)
+//       }
+//     }
+//   }
+//   // Write your code here
+//   traverse() {
+//     let res = []
+
+//     let nodes = [this.root]
+
+//     while (true) {
+//       let c = []
+
+//       for (let i = 0; i < nodes.length; i++) {
+//         res.push(nodes[i].data)
+
+//         if (nodes[i].left != null) {
+//           c.push(nodes[i].left)
+//         }
+
+//         if (nodes[i].right != null) {
+//           c.push(nodes[i].right)
+//         }
+//       }
+
+//       if (c.length == 0) {
+//         break
+//       }
+
+//       nodes = c
+//     }
+
+//     return res
+//   }
+//   // End
+// }
+
+// const b = new BST()
+// b.insert(100)
+// b.insert(200)
+// b.insert(70)
+// b.insert(34)
+// b.insert(80)
+// b.insert(85)
+// b.insert(85)
+// b.insert(111)
+
+// console.log(b.traverse())
+
+// ----------------------------------------------------------------------
+
+// Coffee Shop - edabit
+
+// class CoffeeShop {
+//   constructor(name, menu, orders) {
+//     this.name = name
+//     this.menu = menu
+//     this.orders = orders
+//   }
+
+//   addOrder(order) {
+//     let menuItem = this.menu.filter((x) => {
+//       return x.item == order
+//     })
+
+//     if (menuItem.length > 0) {
+//       this.orders.push(menuItem[0])
+//       return 'Order added!'
+//     } else {
+//       return 'This item is currently unavailable!'
+//     }
+//   }
+
+//   fulfillOrder() {
+//     if (this.orders.length > 0) {
+//       return `The ${this.orders.shift().item} is ready!`
+//     } else {
+//       return 'All orders have been fulfilled!'
+//     }
+//   }
+
+//   listOrders() {
+//     return this.orders.map((i) => {
+//       return i.item
+//     })
+//   }
+
+//   dueAmount() {
+//     return +this.orders
+//       .reduce((a, b) => {
+//         return a + b.price
+//       }, 0)
+//       .toFixed(2)
+//   }
+
+//   cheapestItem() {
+//     return [...this.menu].sort((a, b) => {
+//       return a.price - b.price
+//     })[0].item
+//   }
+
+//   drinksOnly() {
+//     return this.menu
+//       .filter((i) => {
+//         return i.type == 'drink'
+//       })
+//       .map((x) => {
+//         if (x.type == 'drink') {
+//           return x.item
+//         }
+//       })
+//   }
+
+//   foodOnly() {
+//     return this.menu
+//       .filter((i) => {
+//         return i.type == 'food'
+//       })
+//       .map((x) => {
+//         if (x.type == 'food') {
+//           return x.item
+//         }
+//       })
+//   }
+// }
+// let [menuA, menuB, menuC] = [
+//     [
+//       ['orange juice', 'drink', 2.13],
+//       ['lemonade', 'drink', 0.85],
+//       ['cranberry juice', 'drink', 3.36],
+//       ['pineapple juice', 'drink', 1.89],
+//       ['lemon iced tea', 'drink', 1.28],
+//       ['apple iced tea', 'drink', 1.28],
+//       ['vanilla chai latte', 'drink', 2.48],
+//       ['hot chocolate', 'drink', 0.99],
+//       ['iced coffee', 'drink', 1.12],
+//       ['tuna sandwich', 'food', 0.95],
+//       ['ham and cheese sandwich', 'food', 1.35],
+//       ['bacon and egg', 'food', 1.15],
+//       ['steak', 'food', 3.28],
+//       ['hamburger', 'food', 1.05],
+//       ['cinnamon roll', 'food', 1.05],
+//     ],
+//     [
+//       ['turkey english muffin', 'food', 7.99],
+//       ['avocado toast', 'food', 5.05],
+//       ['chocolate croissant', 'food', 3.0],
+//       ['espresso', 'drink', 2.99],
+//       ['iced caramel macchiato', 'drink', 4.5],
+//       ['cortado', 'drink', 4.0],
+//       ['nitro cold brew tester', 'drink', 8.0],
+//     ],
+//     [
+//       ['cheeseburger with fries', 'food', 5.44],
+//       ['cinnamon roll', 'food', 4.99],
+//       ['hot chocolate', 'drink', 2.99],
+//       ['lemon tea', 'drink', 2.5],
+//       ['iced coffee', 'drink', 3.0],
+//       ['vanilla chai latte', 'drink', 4.0],
+//     ],
+//   ].reduce(
+//     (a, r) => [
+//       ...a,
+//       [...r.map(([n, t, p]) => ({ item: n, type: t, price: p }))],
+//     ],
+//     []
+//   ),
+//   [shopA, shopB, shopC] = [
+//     new CoffeeShop('*** Deep Into Coffee ***', menuA, []),
+//     new CoffeeShop("*** Xavier's ***", menuB, []),
+//     new CoffeeShop("*** Tesha's ***", menuC, []),
+//   ]
+
+// console.log(shopC.drinksOnly())
+
+// ------------------------------------------------------------------
+
+// Shared vs Unique Letters - edabit
+
+// const letters = (w1, w2) => {
+//   const chars = new Set((w1 + w2).split('').sort())
+
+//   let res = ['', '', '']
+
+//   chars.forEach((char) => {
+//     switch (true) {
+//       case w1.indexOf(char) != -1 && w2.indexOf(char) != -1:
+//         res[0] += char
+//         break
+//       case w1.indexOf(char) != -1:
+//         res[1] += char
+//         break
+//       case w2.indexOf(char) != -1:
+//         res[2] += char
+//         break
+//     }
+//   })
+
+//   return res
+// }
+
+// console.log(letters('sharp', 'soap'))
+
+// -----------------------------------------------------
+
+// Excel Sheet Column Number - edabit
+
+const title_to_number = (s) => {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+  let count = 0
+
+  for (i in s) {
+    let pos = alphabet.indexOf(s[i]) + 1
+
+    let m1 = s.length - (+i + 1)
+
+    count += pos * alphabet.length ** m1
   }
+
+  return count
 }
 
-class BST {
-  constructor() {
-    this.root = null
-  }
-  insert(element) {
-    const node = new Node(element)
-    if (!this.root) {
-      this.root = node
-    } else {
-      this.insertNode(this.root, node)
-    }
-  }
-  insertNode(node, newNode) {
-    if (node.data > newNode.data) {
-      if (!node.left) {
-        node.left = newNode
-      } else {
-        this.insertNode(node.left, newNode)
-      }
-    } else {
-      if (!node.right) {
-        node.right = newNode
-      } else {
-        this.insertNode(node.right, newNode)
-      }
-    }
-  }
-  // Write your code here
-  traverse() {
-    let res = []
-
-    let nodes = [this.root]
-
-    while (true) {
-      let c = []
-
-      for (let i = 0; i < nodes.length; i++) {
-        res.push(nodes[i].data)
-
-        if (nodes[i].left != null) {
-          c.push(nodes[i].left)
-        }
-
-        if (nodes[i].right != null) {
-          c.push(nodes[i].right)
-        }
-      }
-
-      if (c.length == 0) {
-        break
-      }
-
-      nodes = c
-    }
-
-    return res
-  }
-  // End
-}
-
-const b = new BST()
-b.insert(100)
-b.insert(200)
-b.insert(70)
-b.insert(34)
-b.insert(80)
-b.insert(85)
-b.insert(85)
-b.insert(111)
-
-console.log(b.traverse())
+console.log(title_to_number('FANG'))
