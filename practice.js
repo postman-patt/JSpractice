@@ -4450,20 +4450,280 @@
 
 // Excel Sheet Column Number - edabit
 
-const title_to_number = (s) => {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+// const title_to_number = (s) => {
+//   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-  let count = 0
+//   let count = 0
 
-  for (i in s) {
-    let pos = alphabet.indexOf(s[i]) + 1
+//   for (i in s) {
+//     let pos = alphabet.indexOf(s[i]) + 1
 
-    let m1 = s.length - (+i + 1)
+//     let m1 = s.length - (+i + 1)
 
-    count += pos * alphabet.length ** m1
+//     count += pos * alphabet.length ** m1
+//   }
+
+//   return count
+// }
+
+// console.log(title_to_number('FANG'))
+
+// ------------------------------------------------------
+
+// Grocery Store Prices - edabit
+
+// const getPrices = (s) => {
+//   return s
+//     .join(' ')
+//     .match(/(?<=\(\$).+?(?=\))/g)
+//     .map((price) => {
+//       return parseFloat(price)
+//     })
+// }
+
+// console.log(
+//   getPrices([
+//     'ice cream ($5.99)',
+//     'banana ($0.20)',
+//     'sandwich ($8.50)',
+//     'soup ($1.99)',
+//   ])
+// )
+
+// ---------------------------------------------------
+
+// Find All Digits - edabit
+
+// const findAllDigits = (nums) => {
+//   let digits = '0123456789'
+
+//   for (let i of nums) {
+//     String(i)
+//       .split('')
+//       .forEach((num) => {
+//         digits = digits.replace(num, '')
+//       })
+
+//     if (digits.length < 1) {
+//       return i
+//     }
+//   }
+
+//   return 'Missing digits!'
+// }
+
+// console.log(
+//   findAllDigits([5175, 4538, 2926, 5057, 6401, 4376, 2280, 6137, 8798, 9083])
+// )
+
+// --------------------------------------------------------
+
+// Dice Score - edabit
+
+// const diceScore = (dice) => {
+//   let hashMap = {}
+
+//   for (i in dice) {
+//     if (String(dice[i]) in hashMap) {
+//       hashMap[String(dice[i])] += 1
+//     } else {
+//       hashMap[String(dice[i])] = 1
+//     }
+//   }
+
+//   let count = 0
+
+//   for (i in hashMap) {
+//     switch (true) {
+//       case i == '1':
+//         count += Math.floor(hashMap[i] / 3) * 1000
+//         count += (hashMap[i] % 3) * 100
+//         break
+//       case i == '2':
+//         count += Math.floor(hashMap[i] / 3) * 200
+//         break
+//       case i == '3':
+//         count += Math.floor(hashMap[i] / 3) * 300
+//         break
+//       case i == '4':
+//         count += Math.floor(hashMap[i] / 3) * 400
+//         break
+//       case i == '5':
+//         count += Math.floor(hashMap[i] / 3) * 500
+//         count += (hashMap[i] % 3) * 50
+//         break
+//       case i == '6':
+//         count += Math.floor(hashMap[i] / 3) * 600
+//         break
+//     }
+//   }
+
+//   return count
+// }
+
+// console.log(diceScore([4, 4, 4, 3, 3]))
+
+// ----------------------------------------------------------------------
+
+// The Susquehanna Hat Company - edabit
+
+// const hats = (arr) => {
+//   const target = arr[0]
+
+//   const production = arr[1]
+
+//   let count = 0
+//   let i = 1
+
+//   while (true) {
+//     if (count > target) {
+//       return 'None'
+//     }
+
+//     for (x in production) {
+//       if (i % production[x] == 0) {
+//         count += 1
+//       }
+//     }
+
+//     if (count == target) {
+//       return `${i} minutes`
+//     }
+//     i++
+//   }
+// }
+
+// -------------------------------------------------------------------
+
+// an OSHA Approved Ladder - edabit
+
+// const isLadderSafe = (ladder) => {
+//   let rungs = []
+//   let width = ladder[0].length
+
+//   if (width < 5) {
+//     return false
+//   }
+
+//   for (i in ladder) {
+//     // Check width
+//     if (ladder[i].length < 5 || ladder[i].length != width) {
+//       return false
+//     }
+
+//     //Check for broken rungs
+//     let s = ladder[i].slice(1, ladder[i].length - 1).split('')
+//     if (
+//       !s.every((char) => {
+//         return char == s[0]
+//       })
+//     ) {
+//       return false
+//     }
+
+//     // Check rungs
+//     if (ladder[i].indexOf(' ') == -1) {
+//       rungs.push(i)
+//     }
+//   }
+
+//   let count = Number(rungs[1]) - Number(rungs[0])
+
+//   for (x in rungs) {
+//     if (x != 0) {
+//       if (rungs[x] - rungs[+x - 1] != count || rungs[x] - rungs[+x - 1] > 3) {
+//         return false
+//       }
+//     }
+//   }
+
+//   if (rungs.length < 1) {
+//     return false
+//   }
+
+//   return true
+// }
+
+// console.log(
+//   isLadderSafe([
+//     '#   #',
+//     '#####',
+//     '#   #',
+//     '#   #',
+//     '#####',
+//     '#   #',
+//     '#   #',
+//     '#####',
+//     '#   #',
+//   ])
+// )
+
+// -------------------------------------------------------------
+
+// Remove Duplicates from Sorted Array
+
+// const removeDuplicates = (nums) => {
+//   if (nums.length == 0) {
+//     return 0
+//   }
+
+//   let i = 1
+
+//   while (true) {
+//     if (nums[i] == '-' || i >= nums.length) {
+//       return i
+//     }
+
+//     if (nums[i] == nums[i - 1]) {
+//       nums.splice(i, 1)
+//       nums.push('-')
+//     } else {
+//       i++
+//     }
+//   }
+// }
+
+// console.log(removeDuplicates([1, 1]))
+
+// -------------------------------------------------------
+
+// Build a Diamond Machine - edabit
+
+const diamond = (n) => {
+  let left = n % 2 == 0 ? n / 2 - 1 : Math.floor(n / 2)
+  let right = n % 2 == 0 ? n / 2 : Math.floor(n / 2)
+
+  let d = []
+
+  while (left > 0 && right < n - 1) {
+    let diamondCut = []
+    for (let i = 0; i < n; i++) {
+      if (i == left || i == right) {
+        diamondCut.push(1)
+      } else {
+        diamondCut.push(0)
+      }
+    }
+    d.push(diamondCut)
+    left -= 1
+    right += 1
   }
 
-  return count
+  while (left <= right) {
+    let diamondCut = []
+    for (let i = 0; i < n; i++) {
+      if (i == left || i == right) {
+        diamondCut.push(1)
+      } else {
+        diamondCut.push(0)
+      }
+    }
+    d.push(diamondCut)
+    left += 1
+    right -= 1
+  }
+
+  return [d, n % 2 == 0 ? 'good cut' : 'perfect cut']
 }
 
-console.log(title_to_number('FANG'))
+console.log(diamond(10))

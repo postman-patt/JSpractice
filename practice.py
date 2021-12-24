@@ -3550,23 +3550,244 @@
 # Intersecting Rows and Columns - edabit
 
 
-def transform_matrix(m):
+# def transform_matrix(m):
 
-    res = [[0 for i in x] for x in m]
+#     res = [[0 for i in x] for x in m]
 
-    for i, val in enumerate(m):
+#     for i, val in enumerate(m):
 
-        for j, val2 in enumerate(val):
+#         for j, val2 in enumerate(val):
 
-            count = val.count(1) - 1 if m[i][j] == 1 else val.count(1)
+#             count = val.count(1) - 1 if m[i][j] == 1 else val.count(1)
 
-            for x in range(len(m)):
-                if m[x][j] == 1 and x != i:
-                    count += 1
+#             for x in range(len(m)):
+#                 if m[x][j] == 1 and x != i:
+#                     count += 1
 
-            res[i][j] = count
+#             res[i][j] = count
 
-    return res
+#     return res
 
 
-print(transform_matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]]))
+# print(transform_matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]]))
+
+# -------------------------------------------------
+
+# Block Dude - edabit
+
+
+# def can_traverse(stairs):
+
+#     prev_count = 0
+
+#     for i in range(len(stairs[0])):
+
+#         count = 0
+
+#         for j in range(len(stairs)):
+
+#             if stairs[j][i] == 1:
+#                 count += 1
+
+#         if abs(count - prev_count) > 1:
+#             return False
+
+#         prev_count = count
+
+#     return True
+
+
+# print(
+#     can_traverse(
+#         [
+#             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+#             [0, 0, 0, 1, 0, 0, 0, 0, 1],
+#             [0, 0, 1, 1, 1, 0, 1, 1, 1],
+#             [0, 1, 1, 1, 1, 1, 1, 1, 1],
+#         ]
+#     )
+# )
+
+# ---------------------------------------------------------------------
+
+# Valid Palindrome - leetcode
+
+
+# def isPalindrome(s):
+
+#     import re
+
+#     s1 = re.sub("[^a-z0-9]", "", s.lower())
+
+#     left = 0
+#     right = len(s1) - 1
+
+#     while left <= right:
+#         if s1[left] != s1[right]:
+#             return False
+
+#         left += 1
+
+#         right -= 1
+#     return True
+
+
+# print(isPalindrome("A man, a plan, a canal: Panama"))
+
+# -----------------------------------------------------------------
+
+# Two Product Problem - edabit
+
+
+# def twoProduct(arr, target):
+
+#     hashMap = {}
+
+#     for count, i in enumerate(arr):
+#         print(hashMap)
+#         if target / i in hashMap:
+#             return [int(target / i), i]
+#         else:
+#             hashMap[i] = count
+
+# ----------------------------------------------------------------
+
+# Minimum Path Sum - leetcode
+
+
+# def minPathSum(grid):
+
+#     count = []
+
+#     def bfs(n, s=0):
+
+#         newSum = grid[n[0]][n[1]] + s
+
+#         if n == (len(grid) - 1, len(grid[0]) - 1):
+#             count.append(newSum)
+
+#         if n[0] + 1 < len(grid):
+#             bfs((n[0] + 1, n[1]), newSum)
+
+#         if n[1] + 1 < len(grid[0]):
+#             bfs((n[0], n[1] + 1), newSum)
+
+#     bfs((0, 0))
+
+#     return min(count)
+
+
+# g = [[1, 3, 1], [1, 5, 1], [4, 2, 1]]
+
+# print(minPathSum(g))
+
+
+# def minPathSum(grid):
+
+#     if len(grid) == 0 or len(grid[0]) == 0:
+#         return 0
+
+#     newGrid = [[0 for i in grid[0]] for x in grid]
+
+#     newGrid[len(newGrid) - 1][len(newGrid[0]) - 1] = grid[len(grid) - 1][
+#         len(grid[0]) - 1
+#     ]
+
+#     for h in range(len(newGrid) - 1, -1, -1):
+#         for j in range(len(newGrid[h]) - 1, -1, -1):
+#             if (h, j) != (len(newGrid) - 1, len(newGrid[0]) - 1):
+#                 n1 = newGrid[h + 1][j] if (h + 1) < len(newGrid) else float("inf")
+#                 n2 = newGrid[h][j + 1] if (j + 1) < len(newGrid[0]) else float("inf")
+#                 newGrid[h][j] = min(n1, n2) + grid[h][j]
+
+#     return newGrid[0][0]
+
+
+# g = [[]]
+
+# print(minPathSum(g))
+
+# --------------------------------------------------------------
+
+
+# Simplified Josephus - edabit
+
+
+# def josephus(n):
+
+#     survivors = [i for i in range(1, n + 1)]
+
+#     x = 0
+#     while True:
+
+#         k = len(survivors)
+#         if x >= k:
+#             x = 0
+
+#         if k == 1:
+#             return survivors[0]
+
+#         survivors.pop(((x % k) + 1) % k)
+
+#         x += 1
+
+
+# print(josephus(7))
+
+# ----------------------------------------------------------
+
+# Josephus Permutation - edabit
+
+
+# def who_goes_free(n, k):
+
+#     survivors = [i for i in range(n)]
+
+#     x = 0
+
+#     while True:
+
+#         s = len(survivors)
+
+#         if s == 1:
+#             return survivors[0]
+
+#         print(survivors, x)
+#         survivors.pop(((x % s) + k - 1) % s)
+
+#         x = ((x % s) + k - 1) % s
+
+
+# print(who_goes_free(673, 13))
+
+
+# -----------------------------------------------------------------
+
+# Isomomorphic Strings - edabit
+
+
+# def is_isomorphic(s, t):
+
+#     hashMap1 = {}
+#     hashMap2 = {}
+
+#     if len(s) != len(t):
+#         return False
+
+#     for i in range(len(s)):
+
+#         if s[i] in hashMap1:
+#             if hashMap1[s[i]] != t[i]:
+#                 return False
+#         else:
+#             hashMap1[s[i]] = t[i]
+
+#         if t[i] in hashMap2:
+#             if hashMap2[t[i]] != s[i]:
+#                 return False
+#         else:
+#             hashMap2[t[i]] = s[i]
+
+#     return True
+
+# -------------------------------------------------------------
