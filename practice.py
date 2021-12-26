@@ -3791,3 +3791,102 @@
 #     return True
 
 # -------------------------------------------------------------
+
+# Switching Between Pencil - edabit
+
+
+# def color_pattern_times(cols):
+
+#     count = 0
+#     for i in range(len(cols)):
+
+#         if cols[i] == cols[i - 1] or i == 0:
+#             count += 2
+#         else:
+#             count += 3
+
+#     return count
+
+
+# print(color_pattern_times(["Blue", "Blue", "Blue", "Red", "Red", "Red"]))
+
+# ---------------------------------------------------------------
+
+# Letter Combinations of a Phone Number - leetcode
+
+
+# def letterCombinations(digits):
+
+#     if len(digits) == 0:
+#         return []
+
+#     phone = {
+#         "2": "abc",
+#         "3": "def",
+#         "4": "ghi",
+#         "5": "jkl",
+#         "6": "mno",
+#         "7": "pqrs",
+#         "8": "tuv",
+#         "9": "wxyz",
+#     }
+
+#     res = []
+
+#     def backtrack(num, current=""):
+
+#         if len(current) == len(digits):
+#             res.append(current)
+#             return
+
+#         for i in phone[num[0]]:
+#             backtrack(num[1:], current + i)
+
+#     backtrack(digits)
+
+#     return res
+
+
+# print(letterCombinations("23"))
+
+# ----------------------------------------------------
+
+# Reverse Linked List - leetcode
+
+
+def reverseList(head):
+
+    if head == None:
+        return None
+
+    node = None
+    next_node = head
+    node_next = head.next if head != None else None
+
+    while True:
+
+        next_node.next = node
+
+        node = next_node
+
+        next_node = node_next
+
+        if next_node == None:
+            return node
+
+        node_next = node_next.next
+
+
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+n5 = ListNode(5, None)
+n4 = ListNode(4, n5)
+n3 = ListNode(3, n4)
+n2 = ListNode(2, n3)
+n1 = ListNode(1, n2)
+
+print(reverseList(n1))

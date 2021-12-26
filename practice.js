@@ -1,5 +1,7 @@
 // sampleArray = ['coding', 'crackers', 'edabit', 'celebration']
 
+const { get } = require('express/lib/response')
+
 // const longestWord = (sampleArray) => {
 //   const invalidLetters = ['k', 'm', 'v', 'w', 'x']
 
@@ -4689,41 +4691,120 @@
 
 // Build a Diamond Machine - edabit
 
-const diamond = (n) => {
-  let left = n % 2 == 0 ? n / 2 - 1 : Math.floor(n / 2)
-  let right = n % 2 == 0 ? n / 2 : Math.floor(n / 2)
+// const diamond = (n) => {
+//   let left = n % 2 == 0 ? n / 2 - 1 : Math.floor(n / 2)
+//   let right = n % 2 == 0 ? n / 2 : Math.floor(n / 2)
 
-  let d = []
+//   let d = []
 
-  while (left > 0 && right < n - 1) {
-    let diamondCut = []
-    for (let i = 0; i < n; i++) {
-      if (i == left || i == right) {
-        diamondCut.push(1)
-      } else {
-        diamondCut.push(0)
+//   while (left > 0 && right < n - 1) {
+//     let diamondCut = []
+//     for (let i = 0; i < n; i++) {
+//       if (i == left || i == right) {
+//         diamondCut.push(1)
+//       } else {
+//         diamondCut.push(0)
+//       }
+//     }
+//     d.push(diamondCut)
+//     left -= 1
+//     right += 1
+//   }
+
+//   while (left <= right) {
+//     let diamondCut = []
+//     for (let i = 0; i < n; i++) {
+//       if (i == left || i == right) {
+//         diamondCut.push(1)
+//       } else {
+//         diamondCut.push(0)
+//       }
+//     }
+//     d.push(diamondCut)
+//     left += 1
+//     right -= 1
+//   }
+
+//   return [d, n % 2 == 0 ? 'good cut' : 'perfect cut']
+// }
+
+// console.log(diamond(10))
+
+// --------------------------------------------------------
+
+// Burglary Series (12): Get Vodka Bottle - edabit
+
+// const getVodkaBottle = (obj, num) => {
+//   for (let i in obj) {
+//     if (obj[i] == num && i.indexOf('Rammstein') != -1) {
+//       return i
+//     }
+//   }
+// }
+
+// console.log(
+//   getVodkaBottle({ whiskey: 100, 'Rammstein A': 100, 'Rammstein B': 50 }, 100)
+// )
+
+// --------------------------------------------------------
+
+// Simple Counting - edabit
+
+// const countDigits = (n, d) => {
+//   let count = 0
+//   const r = new RegExp(`${d}`, 'g')
+//   for (let i = 0; i <= n; i++) {
+//     count +=
+//       String(Math.pow(i, 2)).match(r) != null &&
+//       String(Math.pow(i, 2)).match(r).length
+//   }
+
+//   return count
+// }
+
+// console.log(countDigits(10, 1))
+
+// ---------------------------------------------------------
+
+// Multiplication tables - edabit
+
+// const mulTable = (n) => {
+//   let res = []
+//   for (i = 1; i <= n; i++) {
+//     let sub = []
+//     for (x = 1; x <= n; x++) {
+//       sub.push(i * x)
+//     }
+
+//     res.push(sub)
+//   }
+
+//   return res
+// }
+
+// console.log(mulTable(5))
+
+// --------------------------------------------------------
+
+// Mowing the lawn - edabit
+
+const cuttingGrass = (grass, ...args) => {
+  let res = []
+  for (i in args) {
+    let done = false
+    for (x in grass) {
+      if (grass[x] - args[i] <= 0) {
+        done = true
       }
+      grass[x] -= args[i]
     }
-    d.push(diamondCut)
-    left -= 1
-    right += 1
-  }
-
-  while (left <= right) {
-    let diamondCut = []
-    for (let i = 0; i < n; i++) {
-      if (i == left || i == right) {
-        diamondCut.push(1)
-      } else {
-        diamondCut.push(0)
-      }
+    if (done) {
+      res.push('Done')
+    } else {
+      res.push([...grass])
     }
-    d.push(diamondCut)
-    left += 1
-    right -= 1
   }
-
-  return [d, n % 2 == 0 ? 'good cut' : 'perfect cut']
+  return res
 }
 
-console.log(diamond(10))
+console.log(cuttingGrass([4, 2, 2], 2, 1, 1))
