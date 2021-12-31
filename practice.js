@@ -1,5 +1,6 @@
 // sampleArray = ['coding', 'crackers', 'edabit', 'celebration']
 
+const res = require('express/lib/response')
 const { get } = require('express/lib/response')
 
 // const longestWord = (sampleArray) => {
@@ -4788,23 +4789,119 @@ const { get } = require('express/lib/response')
 
 // Mowing the lawn - edabit
 
-const cuttingGrass = (grass, ...args) => {
-  let res = []
-  for (i in args) {
-    let done = false
-    for (x in grass) {
-      if (grass[x] - args[i] <= 0) {
-        done = true
-      }
-      grass[x] -= args[i]
-    }
-    if (done) {
-      res.push('Done')
-    } else {
-      res.push([...grass])
-    }
+// const cuttingGrass = (grass, ...args) => {
+//   let res = []
+//   for (i in args) {
+//     let done = false
+//     for (x in grass) {
+//       if (grass[x] - args[i] <= 0) {
+//         done = true
+//       }
+//       grass[x] -= args[i]
+//     }
+//     if (done) {
+//       res.push('Done')
+//     } else {
+//       res.push([...grass])
+//     }
+//   }
+//   return res
+// }
+
+// console.log(cuttingGrass([4, 2, 2], 2, 1, 1))
+
+// -------------------------------------------------------
+
+// Enter the Matrix - edabit
+
+// const transposeMatrix = (mtx) => {
+//   let res = []
+//   for (i in mtx[0]) {
+//     for (x in mtx) {
+//       res.push(mtx[x][i])
+//     }
+//   }
+
+//   return res.join(' ')
+// }
+
+// console.log(transposeMatrix([['Enter'], ['the'], ['Matrix!']]))
+
+// ----------------------------------------------------
+
+// Name Count Equality - edabit
+
+// const equalCount = (str, names) => {
+//   let n = names.split('&')
+
+//   let res = {}
+
+//   for (i in n) {
+//     const r = new RegExp(n[i], 'g')
+//     let matches = str.match(r)
+//     res[n[i]] = matches != null ? matches.length : 0
+//   }
+
+//   if (Object.values(res)[0] == Object.values(res)[1]) {
+//     res.equality = true
+//   } else {
+//     res.equality = false
+//     res.difference = Math.abs(Object.values(res)[1] - Object.values(res)[0])
+//   }
+
+//   return res
+// }
+
+// console.log(
+//   equalCount(
+//     'Elliot!@#$Sam!--@|#$Elliot@|Sam++Elliot$%^Elliot@|Sam!@#Elliot!@#$Sam!--@|#$Elliot',
+//     'Sam&Elliot'
+//   )
+// )
+
+// -------------------------------------------------------------------
+
+// Column with Maximum Sum - edabit
+
+// const colWithMaxSum = (nums, n) => {
+//   let res = Array.from(Array(n), () => {
+//     return []
+//   })
+//   let i = 0
+
+//   while (i < nums.length) {
+//     res[i % n].push(nums[i])
+//     i++
+//   }
+
+//   let sums = res.map((item) =>
+//     item.reduce((a, b) => {
+//       return a + b
+//     })
+//   )
+
+//   console.log(res, sums)
+//   return sums.indexOf(Math.max(...sums)) + 1
+// }
+
+// console.log(colWithMaxSum([4, 14, 12, 7, 14, 16, 5, 13, 7, 16, 11, 19], 4))
+
+// -------------------------------------------------------------------
+
+// Message from Space - edabit
+
+const space_message = (str) => {
+  let regex = /\[[^\[\]]+\]/
+
+  if (!regex.test(str)) {
+    return str
   }
-  return res
+
+  let main = str.match(regex)[0]
+  let chars = main.match(/[A-Z]+/g)[0].repeat(+main.match(/\d+/g)[0])
+  let newString = str.replace(regex, chars)
+
+  return space_message(newString)
 }
 
-console.log(cuttingGrass([4, 2, 2], 2, 1, 1))
+console.log(space_message('AB[2C[2EF]G]'))

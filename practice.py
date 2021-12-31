@@ -3854,39 +3854,225 @@
 # Reverse Linked List - leetcode
 
 
-def reverseList(head):
+# def reverseList(head):
 
-    if head == None:
-        return None
+#     if head == None:
+#         return None
 
-    node = None
-    next_node = head
-    node_next = head.next if head != None else None
+#     node = None
+#     next_node = head
+#     node_next = head.next if head != None else None
 
-    while True:
+#     while True:
 
-        next_node.next = node
+#         next_node.next = node
 
-        node = next_node
+#         node = next_node
 
-        next_node = node_next
+#         next_node = node_next
 
-        if next_node == None:
-            return node
+#         if next_node == None:
+#             return node
 
-        node_next = node_next.next
-
-
-class ListNode(object):
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+#         node_next = node_next.next
 
 
-n5 = ListNode(5, None)
-n4 = ListNode(4, n5)
-n3 = ListNode(3, n4)
-n2 = ListNode(2, n3)
-n1 = ListNode(1, n2)
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 
-print(reverseList(n1))
+
+# n5 = ListNode(5, None)
+# n4 = ListNode(4, n5)
+# n3 = ListNode(3, n4)
+# n2 = ListNode(2, n3)
+# n1 = ListNode(1, n2)
+
+# print(reverseList(n1))
+
+# ---------------------------------------------------------------
+
+# Word Search - leetcode
+
+
+# def exists(board, word):
+#     def backtrack(node, w):
+
+#         if node == None:
+#             return False
+
+#         if len(w) == 1 and w == board[node[0]][node[1]]:
+#             return True
+
+#         if board[node[0]][node[1]] == w[0]:
+
+#             # This crap makes it alot slower
+#             up = (node[0] - 1, node[1]) if node[0] - 1 >= 0 else None
+#             down = (node[0] + 1, node[1]) if node[0] + 1 <= len(board) - 1 else None
+#             left = (node[0], node[1] - 1) if node[1] - 1 >= 0 else None
+#             right = (node[0], node[1] + 1) if node[1] + 1 <= len(board[0]) - 1 else None
+
+#             c = board[node[0]][node[1]]
+#             board[node[0]][node[1]] = " "
+#             next = [
+#                 backtrack(up, w[1:]),
+#                 backtrack(down, w[1:]),
+#                 backtrack(left, w[1:]),
+#                 backtrack(right, w[1:]),
+#             ]
+#             if any(next):
+#                 return True
+#             board[node[0]][node[1]] = c
+#         else:
+#             return False
+
+#     for h in range(len(board)):
+#         for j in range(len(board[0])):
+#             if backtrack((h, j), word):
+#                 return True
+
+#     return False
+
+
+# bo = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
+# bo2 = [
+#     ["A", "A", "A", "A", "A", "A"],
+#     ["A", "A", "A", "A", "A", "A"],
+#     ["A", "A", "A", "A", "A", "A"],
+#     ["A", "A", "A", "A", "A", "A"],
+#     ["A", "A", "A", "A", "A", "A"],
+#     ["A", "A", "A", "A", "A", "A"],
+# ]
+# "AAAAAAAAAAAABAA"
+# bo3 = [["a"]]
+# bo4 = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
+# bo5 = [["a", "a", "a", "a"], ["a", "a", "a", "a"], ["a", "a", "a", "a"]]
+
+
+# better version
+
+
+# def exist(board, word):
+#     ROWS, COLS = len(board), len(board[0])
+
+#     def dfs(i, j, s):
+#         if not s:
+#             return True
+#         if i < 0 or i >= ROWS or j < 0 or j >= COLS or board[i][j] != s[0]:
+#             return False
+#         c = board[i][j]
+#         board[i][j] = " "
+#         nexts = [
+#             dfs(i + 1, j, s[1:]),
+#             dfs(i - 1, j, s[1:]),
+#             dfs(i, j + 1, s[1:]),
+#             dfs(i, j - 1, s[1:]),
+#         ]
+#         isFound = any(nexts)
+#         board[i][j] = c
+#         return isFound
+
+#     for i in range(ROWS):
+#         for j in range(COLS):
+#             if dfs(i, j, word):
+#                 return True
+#     return False
+
+
+# print(exists(bo2, "AAAAAAAAAABAA"))
+
+# -------------------------------------------------------------------------
+
+# Find the Secret Word - edabit
+
+
+# def secretWord(str, n):
+
+#     import itertools
+
+#     alpha = {
+#         "a": 1,
+#         "b": 2,
+#         "c": 3,
+#         "d": 4,
+#         "e": 5,
+#         "f": 6,
+#         "g": 7,
+#         "h": 8,
+#         "i": 9,
+#         "j": 10,
+#         "k": 11,
+#         "l": 12,
+#         "m": 13,
+#         "n": 14,
+#         "o": 15,
+#         "p": 16,
+#         "q": 17,
+#         "r": 18,
+#         "s": 19,
+#         "t": 20,
+#         "u": 21,
+#         "v": 22,
+#         "w": 23,
+#         "x": 24,
+#         "y": 25,
+#         "z": 26,
+#     }
+
+#     triplets = []
+
+#     for i in range(len(str) - 2):
+#         count = 0
+#         for x in range(3):
+#             count += alpha[str[i + x]]
+#         triplets.append(count)
+
+#     combinations = [x for x in itertools.combinations(triplets, n)]
+
+#     sequence = []
+
+#     for k in combinations:
+#         if len(k) > 1:
+#             diff = k[1] - k[0]
+#             check = True
+#             for j in range(len(k)):
+#                 if j > 1 and k[j] - k[j - 1] != diff:
+#                     check = False
+#                     break
+#             if check:
+#                 sequence = k
+#                 break
+#         else:
+#             sequence = k
+#             break
+
+#     res = ""
+#     start = 0
+
+#     for h in sequence:
+#         res += str[triplets.index(h, start) + 1]
+#         start = triplets.index(h, start)
+#     return res
+
+
+# print(secretWord("fsthorzrevexanstspre", 6), "stress")
+
+# --------------------------------------------------------------------
+
+# Maximum Subarray - leetcode
+
+
+def maxSubArray(nums):
+
+    subArray = nums[0]
+    current = 0
+
+    for i in nums:
+
+        if current < 0:
+            current = 0
+        current += i
+        subArray = max(current, subArray)
+
+    return subArray
