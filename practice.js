@@ -4890,18 +4890,136 @@ const { get } = require('express/lib/response')
 
 // Message from Space - edabit
 
-const space_message = (str) => {
-  let regex = /\[[^\[\]]+\]/
+// const space_message = (str) => {
+//   let regex = /\[[^\[\]]+\]/
 
-  if (!regex.test(str)) {
-    return str
+//   if (!regex.test(str)) {
+//     return str
+//   }
+
+//   let main = str.match(regex)[0]
+//   let chars = main.match(/[A-Z]+/g)[0].repeat(+main.match(/\d+/g)[0])
+//   let newString = str.replace(regex, chars)
+
+//   return space_message(newString)
+// }
+
+// console.log(space_message('AB[2C[2EF]G]'))
+
+// -----------------------------------------------------------------
+
+// Coin Trouble - edabit
+
+// const sum = (arr) => arr.reduce((acc, v) => acc + v, 0)
+
+// const coinsDiv = (arr) => {
+//   const coins = arr.sort((a, b) => a - b)
+//   const total = sum(coins)
+//   const third = total / 3
+
+//   const parts = Array(3).fill(third)
+
+//   for (let i = 0; i < 3; i++)
+//     while (parts[i]) {
+//       console.log(parts)
+//       let idx = coins.findIndex((coin) => coin === parts[i])
+//       if (idx === -1) idx = coins.findIndex((coin) => coin < parts[i])
+//       if (idx === -1) return false
+//       else parts[i] -= coins.splice(idx, 1)
+//     }
+
+//   return true
+// }
+
+// coinsDiv([2, 4, 3, 2, 4, 9, 7, 8, 6, 9])
+
+// ----------------------------------------------------------------
+
+// // MTG Mana Costs - edabit
+
+// const can_pay_cost = (mana, cost) => {
+//   let mana_pool = mana
+
+//   const chars = /[A-Z]+/g.test(cost) ? cost.match(/[A-Z]+/g)[0] : ''
+//   const nums = /[0-9]+/g.test(cost) ? +cost.match(/[0-9]+/g) : 0
+
+//   for (i in chars) {
+//     if (mana_pool.indexOf(chars[i]) == -1) {
+//       return false
+//     } else {
+//       mana_pool = mana_pool.replace(chars[i], '')
+//     }
+//   }
+//   if (mana_pool.length < nums) {
+//     return false
+//   }
+
+//   return true
+// }
+
+// console.log(can_pay_cost('WWWWUUUUBBBBRR', '13RR'))
+
+// ---------------------------------------------------------------
+
+// I Made a Mistake - edabit
+
+// const getValue = (arrs) => {
+//   if (!Array.isArray(arrs[0])) {
+//     if (arrs[0]) {
+//       return arrs[0]
+//     } else {
+//       return 'What... why did you make this?'
+//     }
+//   }
+
+//   return getValue(arrs.flat())
+// }
+
+// console.log(getValue([[[[[[[[[[[]]]]]]]]]]]))
+// console.log(getValue([[[[[[[[[[[[[[[['Bazinga']]]]]]]]], []]]]]]]]))
+
+// ---------------------------------------------------------------
+
+// Longest Slide - edabit
+
+// const longestSlide = (pyramid) => {
+//   let count = 0
+
+//   const recursion = (level, pos, sum) => {
+//     if (level >= pyramid.length && sum > count) {
+//       count = sum
+//       return
+//     }
+
+//     if (level < pyramid.length) {
+//       let right = pos + 1
+//       let left = pos
+
+//       recursion(level + 1, left, sum + pyramid[level][pos])
+//       recursion(level + 1, right, sum + pyramid[level][pos])
+//     }
+//   }
+
+//   recursion(0, 0, 0)
+
+//   return count
+// }
+
+// console.log(longestSlide([[2], [9, 4], [1, 8, 7], [6, 4, 7, 2]]))
+
+// ----------------------------------------------------------
+
+// More efficient pyramid solution
+
+const longestSlide = (pyramid) => {
+  for (let i = pyramid.length - 2; i >= 0; i--) {
+    for (let j = 0; j < pyramid[i].length; j++) {
+      pyramid[i][j] =
+        pyramid[i][j] + Math.max(pyramid[i + 1][j], pyramid[i + 1][j + 1])
+    }
   }
 
-  let main = str.match(regex)[0]
-  let chars = main.match(/[A-Z]+/g)[0].repeat(+main.match(/\d+/g)[0])
-  let newString = str.replace(regex, chars)
-
-  return space_message(newString)
+  return pyramid[0][0]
 }
 
-console.log(space_message('AB[2C[2EF]G]'))
+console.log(longestSlide([[2], [9, 4], [1, 8, 7], [6, 4, 7, 2]]))

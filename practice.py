@@ -4063,16 +4063,158 @@
 # Maximum Subarray - leetcode
 
 
-def maxSubArray(nums):
+# def maxSubArray(nums):
 
-    subArray = nums[0]
-    current = 0
+#     subArray = nums[0]
+#     current = 0
 
-    for i in nums:
+#     for i in nums:
 
-        if current < 0:
-            current = 0
-        current += i
-        subArray = max(current, subArray)
+#         if current < 0:
+#             current = 0
+#         current += i
+#         subArray = max(current, subArray)
 
-    return subArray
+#     return subArray
+
+# --------------------------------------------
+
+# Reverse Words in a String - leetcode
+
+
+# def reverseWords(s):
+
+#     new = [x for x in s.split(" ") if x != ""]
+
+#     new.reverse()
+
+#     return " ".join(new)
+
+
+# print(reverseWords("the sky   is blue"))
+
+# -----------------------------------------
+
+# Spiral Matrix Printing - edabit
+
+
+# def matrix(num):
+
+#     m = [[0 for x in range(num)] for i in range(num)]
+
+#     row = 0
+#     col = 0
+#     direction = "right"
+
+#     for i in range(1, (num ** 2) + 1):
+
+#         print(m)
+
+#         if direction == "up" and row >= 0:
+#             m[row][col] = i
+#             if row == 0 or m[row - 1][col] != 0:
+#                 direction = "right"
+#                 col += 1
+#                 continue
+#             row -= 1
+#             i += 1
+
+#         if direction == "left" and col >= 0:
+#             m[row][col] = i
+#             if col == 0 or m[row][col - 1] != 0:
+#                 direction = "up"
+#                 row -= 1
+#                 continue
+#             col -= 1
+#             i += 1
+
+#         if direction == "down" and row < len(m):
+#             m[row][col] = i
+#             if row == len(m) - 1 or m[row + 1][col] != 0:
+#                 direction = "left"
+#                 col -= 1
+#                 continue
+#             row += 1
+#             i += 1
+
+#         if direction == "right" and col < len(m[0]):
+#             m[row][col] = i
+#             if col == len(m[0]) - 1 or m[row][col + 1] != 0:
+#                 direction = "down"
+#                 row += 1
+#                 continue
+#             col += 1
+#             i += 1
+
+#     return m
+
+
+# matrix(10)
+
+# ---------------------------------------------------------------
+
+# Sort Colors - leetcode
+
+
+# def sortColors(nums):
+
+#     pointer = 0
+
+#     for i in range(len(nums)):
+#         if nums[i] == 0:
+#             nums.insert(0, nums.pop(i))
+#             pointer += 1
+#         if nums[i] == 1:
+#             nums.insert(pointer, nums.pop(i))
+
+#     return nums
+
+
+# print(sortColors([1, 2, 0]))
+
+# --------------------------------------------------------
+
+
+# License Plate - edabit
+
+
+# def licensePlate(s, n):
+
+#     import math
+
+#     res = []
+#     plate = "".join(s.split("-")).upper()
+
+#     for i in range(math.ceil(len(plate) / n)):
+
+#         res.insert(0, plate[-n : len(plate)])
+
+#         plate = plate[0 : len(plate) - n]
+
+#     return "-".join(res)
+
+
+# print(licensePlate("2-4A0r7-4k", 3))
+
+# ---------------------------------------------------
+
+# Remove Element - leetcode
+
+
+def removeElement(nums, val):
+
+    right = len(nums) - 1
+    left = 0
+
+    while left <= right:
+
+        if nums[left] == val:
+            nums[left], nums[right] = nums[right], "_"
+            right -= 1
+            continue
+        left += 1
+
+    return left
+
+
+print(removeElement([1], 1))
