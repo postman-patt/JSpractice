@@ -5011,15 +5011,39 @@ const { get } = require('express/lib/response')
 
 // More efficient pyramid solution
 
-const longestSlide = (pyramid) => {
-  for (let i = pyramid.length - 2; i >= 0; i--) {
-    for (let j = 0; j < pyramid[i].length; j++) {
-      pyramid[i][j] =
-        pyramid[i][j] + Math.max(pyramid[i + 1][j], pyramid[i + 1][j + 1])
-    }
+// Longest Slide - edabit
+
+// const longestSlide = (pyramid) => {
+//   for (let i = pyramid.length - 2; i >= 0; i--) {
+//     for (let j = 0; j < pyramid[i].length; j++) {
+//       pyramid[i][j] =
+//         pyramid[i][j] + Math.max(pyramid[i + 1][j], pyramid[i + 1][j + 1])
+//     }
+//   }
+
+//   return pyramid[0][0]
+// }
+
+// console.log(longestSlide([[2], [9, 4], [1, 8, 7], [6, 4, 7, 2]]))
+
+// ----------------------------------------------------------
+
+// East or West - edabit
+
+const direciton = (arr) => {
+  let res = []
+
+  for (i in arr) {
+    let n1 = arr[i]
+      .replace('e', 'w')
+      .replace('E', 'W')
+      .replace('a', 'e')
+      .replace('A', 'E')
+
+    res.push(n1)
   }
 
-  return pyramid[0][0]
+  return res
 }
 
-console.log(longestSlide([[2], [9, 4], [1, 8, 7], [6, 4, 7, 2]]))
+console.log(direciton(['east EAST', 'e a s t', 'E A S T']))

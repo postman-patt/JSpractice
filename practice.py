@@ -4201,20 +4201,259 @@
 # Remove Element - leetcode
 
 
-def removeElement(nums, val):
+# def removeElement(nums, val):
 
-    right = len(nums) - 1
-    left = 0
+#     right = len(nums) - 1
+#     left = 0
 
-    while left <= right:
+#     while left <= right:
 
-        if nums[left] == val:
-            nums[left], nums[right] = nums[right], "_"
-            right -= 1
-            continue
-        left += 1
+#         if nums[left] == val:
+#             nums[left], nums[right] = nums[right], "_"
+#             right -= 1
+#             continue
+#         left += 1
 
-    return left
+#     return left
 
 
-print(removeElement([1], 1))
+# print(removeElement([1], 1))
+
+# ----------------------------------------------------------
+
+# Hexagonal Grid Distance - edabit
+
+
+# def hexDistance(grid):
+
+#     lstGrid = [[x for x in row.split(" ") if x != ""] for row in grid]
+
+#     pos = []
+
+#     for count_i, i in enumerate(lstGrid):
+#         for count_k, k in enumerate(i):
+#             if k == "x":
+#                 if count_i < len(lstGrid) / 2:
+#                     pos.append((count_i, count_k + len(max(lstGrid, key=len)) - len(i)))
+#                 else:
+#                     pos.append((count_i, count_k))
+
+#     v = abs(pos[0][0] - pos[1][0])
+#     h = abs(pos[0][1] - pos[1][1])
+#     d = abs((pos[1][1] - pos[0][1]) + (pos[1][0] - pos[0][0]))
+
+#     return max(h, v, d)
+
+
+# print(
+#     hexDistance(
+#         [
+#             "    o x o o    ",
+#             "   o o o o o   ",
+#             "  o o o o o o  ",
+#             " o o o o o o o ",
+#             "  o o o o o o  ",
+#             "   o o o o x   ",
+#             "    o o o o    ",
+#         ]
+#     )
+# )
+
+# -----------------------------------------------------------------
+
+# Search Insert Position - leetcode
+
+
+# def searchInsert(nums, target):
+
+#     start = 0
+#     end = len(nums) - 1
+
+#     while start <= end:
+#         index = int(round((start + end) / 2))
+#         if nums[index] == target:
+#             return index
+
+#         if target > nums[index]:
+#             start = index + 1
+#         else:
+#             end = index - 1
+
+#     return start
+
+
+# print(
+#     searchInsert([1, 3, 5, 6], 2)
+# )
+
+
+# -------------------------------------------------------
+
+# Length of Sorting Cycle - edabit
+
+# def cycle_length(lst, n):
+
+#     sorted_lst = sorted(lst)
+
+#     swap = 0
+
+#     num = n
+
+#     while True:
+
+#         current_pos = lst.index(num)
+#         true_pos = sorted_lst.index(num)
+
+#         if current_pos == true_pos:
+#             return swap
+
+#         lst[current_pos], lst[true_pos] = lst[true_pos], lst[current_pos]
+
+#         num = lst[current_pos]
+
+#         swap += 1
+
+
+# print(
+#     cycle_length([1, 6, 7, 2, 4, 3, 8, 9, 5], 1)
+# )
+
+# -------------------------------------------------------------
+
+
+# Maximum Depth of Binary Tree - leetcode
+
+# def maxDepth(root):
+
+#     if root == None:
+#         return 0
+
+#     count = 1
+#     s = [root]
+
+#     while True:
+#         adj = []
+#         for i in s:
+#             if i.left != None:
+#                 adj.append(i.left)
+
+#             if i.right != None:
+#                 adj.append(i.right)
+
+#         if len(adj) == 0:
+#             return count
+
+#         s = adj
+
+#         count += 1
+
+
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+# n6 = TreeNode(10)
+# n5 = TreeNode(7, n6)
+# n4 = TreeNode(15)
+# n3 = TreeNode(20, n4, n5)
+# n2 = TreeNode(9)
+# n1 = TreeNode(3, n2, n3)
+
+
+# print(
+#     maxDepth(n1)
+# )
+
+
+# ---------------------------------------------------------
+
+# Missing Number - leetcode
+
+# def missingNumber(nums):
+
+#     hashTable = {}
+
+#     for i in range(len(nums) + 1):
+#         hashTable[str(i)] = i
+
+#     print(hashTable)
+#     for i in nums:
+#         del hashTable[str(i)]
+
+#     return list(hashTable.values())[0]
+
+
+# print(
+#     missingNumber([0, 1, 2, 4])
+# )
+
+# Faster Solution with O(1) Space Complexity
+
+
+# def missingNumber(nums):
+
+#     sum_nums = (len(nums)*(len(nums)+1))/2
+
+#     for i in nums:
+#         sum_nums -= i
+
+#     return int(sum_nums
+#                )
+
+
+# print(
+#     missingNumber([0, 1, 2, 4])
+# )
+
+
+# --------------------------------------------------------------
+
+# Construct Binary Free from Preorder and Inorder Traversal - leetcode
+
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+def buildTree(preorder, inorder):
+
+    print(preorder, inorder)
+
+    if len(inorder) == 0:
+        return None
+
+    if(len(inorder) == 1):
+        return TreeNode(inorder[0])
+
+    mid = inorder.index(preorder[0])
+
+    return TreeNode(inorder[mid], buildTree(preorder[1:mid], inorder[0:mid]), buildTree(preorder[mid+1:], inorder[mid+1:]))
+
+
+node = buildTree([1, 2, 3], [3, 2, 1])
+
+res = []
+
+
+def printTree(root):
+
+    if root == None:
+        res.append(None)
+        return
+
+    adj = [root.left, root.right]
+
+    res.append(root.val)
+
+    for i in adj:
+        printTree(i)
+
+
+printTree(node)
+
+print(res)
