@@ -4413,47 +4413,249 @@
 
 # Construct Binary Free from Preorder and Inorder Traversal - leetcode
 
-class TreeNode(object):
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 
 
-def buildTree(preorder, inorder):
+# def buildTree(preorder, inorder):
 
-    print(preorder, inorder)
+#     print(preorder, inorder)
 
-    if len(inorder) == 0:
-        return None
+#     if len(inorder) == 0:
+#         return None
 
-    if(len(inorder) == 1):
-        return TreeNode(inorder[0])
+#     if(len(inorder) == 1):
+#         return TreeNode(inorder[0])
 
-    mid = inorder.index(preorder[0])
+#     mid = inorder.index(preorder[0])
 
-    return TreeNode(inorder[mid], buildTree(preorder[1:mid], inorder[0:mid]), buildTree(preorder[mid+1:], inorder[mid+1:]))
-
-
-node = buildTree([1, 2, 3], [3, 2, 1])
-
-res = []
+#     return TreeNode(inorder[mid], buildTree(preorder[1:mid], inorder[0:mid]), buildTree(preorder[mid+1:], inorder[mid+1:]))
 
 
-def printTree(root):
+# node = buildTree([1, 2, 3], [3, 2, 1])
 
-    if root == None:
-        res.append(None)
-        return
-
-    adj = [root.left, root.right]
-
-    res.append(root.val)
-
-    for i in adj:
-        printTree(i)
+# res = []
 
 
-printTree(node)
+# def printTree(root):
 
-print(res)
+#     if root == None:
+#         res.append(None)
+#         return
+
+#     adj = [root.left, root.right]
+
+#     res.append(root.val)
+
+#     for i in adj:
+#         printTree(i)
+
+
+# printTree(node)
+
+# print(res)
+
+# ---------------------------------------------------------------
+
+# Strip URL Query Parameters - edabit
+
+# def stripUrlParams(url, params_To_Strip=[]):
+
+#     if(url.find('?') != -1):
+#         p = url.split('?')[1].split('&')
+
+#         hashMap = {}
+
+#         for i in p:
+#             key = i.split('=')[0]
+#             val = i.split('=')[1]
+#             hashMap[key] = val
+
+#         for x in params_To_Strip:
+#             if x in hashMap:
+#                 del hashMap[x]
+
+#         params = []
+
+#         for key, value in hashMap.items():
+#             params.append(key+'='+value)
+
+#         return url.split('?')[0] + '?' + '&'.join(params)
+#     else:
+#         return url
+
+
+# print(stripUrlParams("https://edabit.com?a=1&b=2&c=3&d=4", ["a", "d"]))
+
+
+# --------------------------------------------------------
+
+# Remove Duplicates from Sorted List - leetcode
+
+# def deleteDuplicates(head):
+
+#     node = head
+
+#     next_node = head
+
+#     while True:
+
+#         if node == None:
+#             return head
+
+#         while next_node.val == node.val:
+#             next_node = next_node.next
+#             if next_node == None:
+#                 break
+
+#         node.next = next_node
+
+#         node = node.next
+
+
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
+# n6 = ListNode(3)
+# n5 = ListNode(3, n6)
+# n4 = ListNode(2, n5)
+# n3 = ListNode(1, n4)
+# n2 = ListNode(1, n3)
+# n1 = ListNode(1, n2)
+
+# deleteDuplicates(None)
+
+
+# node = n1
+
+# while node != None:
+#     print(node.val)
+#     node = node.next
+
+# ------------------------------------------------
+
+# Path Sum II - leetcode
+
+# def pathSum(root, targetSum):
+
+#     res = []
+
+#     def r(n, sub=[]):
+
+#         node = n
+
+#         if node == None:
+#             return
+
+#         if sum(sub) + node.val == targetSum and node.left == None and node.right == None:
+#             res.append(sub + [node.val])
+#             return
+
+#         r(node.left, sub + [node.val])
+#         r(node.right, sub + [node.val])
+
+#     r(root)
+
+#     return res
+
+
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+# n10 = TreeNode(1)
+# n9 = TreeNode(5)
+# n8 = TreeNode(2)
+# n7 = TreeNode(7)
+# n6 = TreeNode(4, n9, n10)
+# n5 = TreeNode(13)
+# n4 = TreeNode(11, n7, n8)
+# n3 = TreeNode(8, n5, n6)
+# n2 = TreeNode(4, n4)
+# n1 = TreeNode(5, n2, n3)
+
+# print(pathSum(n10, 22))
+
+# ----------------------------------------------------------
+
+# Symmetric Tree - leetcode
+
+# def isSymmetric(root):
+
+#         def recursive(nodes):
+
+#             next_level = []
+
+#             node_vals = []
+
+#             for i in nodes:
+#                 if i != None:
+#                     node_vals.append(i.val)
+#                     next_level.extend([i.left, i.right])
+#                 else:
+#                     node_vals.append(None)
+
+#             print(node_vals)
+#             if len(set(node_vals)) == 1 and list(set(node_vals))[0] == None:
+#                 return True
+
+
+#             if tuple(node_vals[0: int(len(node_vals) / 2)]) != tuple(node_vals[len(node_vals):int(len(node_vals) / 2)-1:-1]):
+#                 return False
+
+#             return recursive(next_level)
+
+#         if recursive([root]):
+#             return True
+#         else:
+#             return False
+
+
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+# n7 = TreeNode(3)
+# n6 = TreeNode(4)
+# n5 = TreeNode(4)
+# n4 = TreeNode(3)
+# n3 = TreeNode(2)
+# n2 = TreeNode(2, n4, None)
+# n1 = TreeNode(1, n2, n3)
+
+# print(isSymmetric(n1))
+
+# ---------------------------------------------------------------------
+
+# Jump Game - leetcode
+
+def canJump(nums):
+
+    if len(nums) == 1:
+        return True
+
+    count = 1
+
+    for i in range(len(nums) - 2, -1, -1):
+        if nums[i] >= count:
+            count = 0
+
+        if i != 0:
+            count += 1
+
+    if count == 0:
+        return True
+    else:
+        return False

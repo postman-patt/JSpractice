@@ -5077,147 +5077,328 @@
 // φ = latitude (radians)
 // λ = longittude (radians)
 
-class GPS {
-  static decimal(degrees, minutes, seconds, directions) {
-    return directions == 'S' || directions == 'W'
-      ? (degrees + minutes / 60 + seconds / 3600) * -1
-      : degrees + minutes / 60 + seconds / 3600
+// class GPS {
+//   static decimal(degrees, minutes, seconds, directions) {
+//     return directions == 'S' || directions == 'W'
+//       ? (degrees + minutes / 60 + seconds / 3600) * -1
+//       : degrees + minutes / 60 + seconds / 3600
+//   }
+
+//   static radians(decimal) {
+//     return (decimal * Math.PI) / 180
+//   }
+
+//   static distance(cityA, cityB) {
+//     //City latitude and longitude (Coordinates --> Decimals --> Radians)
+
+//     const cityA_lat = this.radians(
+//       this.decimal(
+//         ...cityA
+//           .replace(/[^A-Za-z0-9 ]/g, '')
+//           .split(' ')
+//           .slice(0, 4)
+//           .map((char) => {
+//             if (!isNaN(char)) {
+//               return Number(char)
+//             } else {
+//               return char
+//             }
+//           })
+//       )
+//     )
+
+//     const cityA_lon = this.radians(
+//       this.decimal(
+//         ...cityA
+//           .replace(/[^A-Za-z0-9 ]/g, '')
+//           .split(' ')
+//           .slice(4)
+//           .map((char) => {
+//             if (!isNaN(char)) {
+//               return Number(char)
+//             } else {
+//               return char
+//             }
+//           })
+//       )
+//     )
+
+//     const cityB_lat = this.radians(
+//       this.decimal(
+//         ...cityB
+//           .replace(/[^A-Za-z0-9 ]/g, '')
+//           .split(' ')
+//           .slice(0, 4)
+//           .map((char) => {
+//             if (!isNaN(char)) {
+//               return Number(char)
+//             } else {
+//               return char
+//             }
+//           })
+//       )
+//     )
+//     const cityB_lon = this.radians(
+//       this.decimal(
+//         ...cityB
+//           .replace(/[^A-Za-z0-9 ]/g, '')
+//           .split(' ')
+//           .slice(4)
+//           .map((char) => {
+//             if (!isNaN(char)) {
+//               return Number(char)
+//             } else {
+//               return char
+//             }
+//           })
+//       )
+//     )
+
+//     const R = 6371e3 // Raidus of Earth (metres)
+//     const diff_lat = cityB_lat - cityA_lat
+//     const diff_lon = cityB_lon - cityA_lon
+
+//     const a =
+//       Math.pow(Math.sin(diff_lat / 2), 2) +
+//       Math.cos(cityB_lat) *
+//         Math.cos(cityA_lat) *
+//         Math.pow(Math.sin(diff_lon / 2), 2)
+
+//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+
+//     return Math.floor((R * c) / 1000) // kilometers
+//   }
+// }
+
+// // Itinerary Function
+
+// const itinerary = (start, toVisit) => {
+//   let unvisited = [...toVisit]
+//   let visited = [start]
+
+//   let count = 0
+
+//   let current = start
+
+//   while (visited.length <= toVisit.length) {
+//     let distancesFromCurrent = unvisited.map((city) => {
+//       return GPS.distance(cities[current], cities[city])
+//     })
+
+//     let min_index = distancesFromCurrent.indexOf(
+//       Math.min(...distancesFromCurrent)
+//     )
+
+//     count += Math.min(...distancesFromCurrent)
+
+//     current = unvisited[min_index]
+
+//     visited.push(...unvisited.splice(min_index, 1))
+//   }
+
+//   return [visited, count]
+// }
+
+// const cities = {
+//   London: `51° 30' 30" N 0° 7' 32" W`,
+//   'New York': `40° 42' 51" N 74° 0' 21" W`,
+//   Kitchener: `43° 27' 10" N 80° 29' 42" W`,
+//   'Los Angeles': `34° 3' 8" N 118° 14' 37" W`,
+//   Naples: `40° 51' 46" N 14° 16' 36" E`,
+//   Moscow: `55° 45' 7" N 37° 36' 56" E`,
+//   Beijing: `39° 54' 27" N 116° 23' 50" E`,
+//   Tokyo: `35° 41' 22" N 139° 41' 30" E`,
+//   Quito: `0° 13' 47" S 78° 31' 29" W`,
+//   'Buenos Aires': `34° 36' 30" S 58° 22' 19" W`,
+//   'Rio de Janeiro': `22° 54' 10" S 43° 12' 27" W`,
+//   Montevideo: `35° 54' 11" S 56° 11' 17" W`,
+//   Johannesburg: `26° 12' 8" S 28° 2' 37" E`,
+//   Jakarta: `6° 12' 52" S 106° 50' 42" E`,
+//   Sidney: `33° 52' 4" S 151° 12' 26" E`,
+//   Auckland: `36° 52' 0" S 174° 46' 0" E`,
+// }
+
+// console.log(
+//   itinerary('Naples', ['New York', 'Johannesburg', 'Beijing', 'Quito'])
+// )
+
+// ---------------------------------------------------------------
+
+// // Find Value in a Binary Tree - edabit
+
+// const valueInTree = (tree, val) => {
+//   if (tree != null) {
+//     if (tree[0] == val) {
+//       return true
+//     }
+//     if (valueInTree(tree[1], val) || valueInTree(tree[2], val)) {
+//       return true
+//     }
+//   }
+
+//   return false
+// }
+
+// lst1 = [3, [7, [1, null, null], [8, null, null]], [5, null, [4, null, null]]]
+// lst2_8 = [2, null, null]
+// lst2_6 = [24, null, null]
+// lst2_7 = [18, null, null]
+// lst2_4 = [4, lst2_8, null]
+// lst2_3 = [12, null, lst2_4]
+// lst2_2 = [10, null, lst2_3]
+// lst2_1 = [15, lst2_2, null]
+// lst2_5 = [6, lst2_6, lst2_7]
+// lst2 = [9, lst2_1, lst2_5]
+// lst3_1 = [4, null, null]
+// lst3_2 = [9, null, null]
+// lst3_3 = [21, null, null]
+// lst3_4 = [17, null, null]
+// lst3_5 = [25, null, null]
+// lst3_6 = [18, lst3_5, null]
+// lst3_7 = [20, lst3_3, lst3_4]
+// lst3_8 = [91, lst3_2, null]
+// lst3_9 = [75, null, lst3_1]
+// lst3_10 = [45, null, null]
+// lst3_11 = [71, null, null]
+// lst3_12 = [34, null, null]
+// lst3_13 = [11, null, null]
+// lst3_14 = [10, lst3_6, lst3_13]
+// lst3_15 = [3, lst3_7, lst3_12]
+// lst3_16 = [26, lst3_8, lst3_11]
+// lst3_17 = [1, lst3_9, lst3_10]
+// lst3_18 = [66, lst3_14, lst3_17]
+// lst3_19 = [52, lst3_16, lst3_15]
+// lst3 = [97, lst3_18, lst3_19]
+
+// console.log(valueInTree(lst1, 7))
+
+// ----------------------------------------------------
+
+// Character Recognition ⁠— What's the Time? edabit
+
+// const whatsTheTime = (bitmap) => {
+//   const bitToNum = {
+//     111101101101111: 0,
+//     '010110010010111': 1,
+//     111001111100111: 2,
+//     111001111001111: 3,
+//     101101111001001: 4,
+//     111100111001111: 5,
+//     100100111101111: 6,
+//     111001001001001: 7,
+//     111101111101111: 8,
+//     111101111001001: 9,
+//   }
+
+//   let nums = [...Array(4)].map((x) => {
+//     return []
+//   })
+
+//   for (let j = 0; j < 5; j++) {
+//     let bitLine = bitmap.slice(j * 17, j * 17 + 17)
+//     nums[0] += bitLine.slice(0, 3)
+//     nums[1] += bitLine.slice(4, 7)
+//     nums[2] += bitLine.slice(10, 13)
+//     nums[3] += bitLine.slice(14)
+//   }
+
+//   console.log(nums)
+//   let time = ''
+
+//   for (i in nums) {
+//     console.log(nums[i])
+//     time += String(bitToNum[nums[i]])
+
+//     if (i == 1) {
+//       time += ':'
+//     }
+//   }
+
+//   return time
+// }
+
+// console.log(
+//   whatsTheTime(
+//     '1110010000111011110101100100010100101001000011101111010010010001000111101110001110111'
+//   )
+// )
+
+// ---------------------------------------------------------------
+
+// Bitmap Image Conversion - edabit
+
+// const toBitString = (time) => {
+//   const bitToNum = {
+//     0: '111101101101111',
+//     1: '010110010010111',
+//     2: '111001111100111',
+//     3: '111001111001111',
+//     4: '101101111001001',
+//     5: '111100111001111',
+//     6: '100100111101111',
+//     7: '111001001001001',
+//     8: '111101111101111',
+//     9: '111101111001001',
+//     ':': '000010000010000',
+//   }
+//   let rows = [...Array(5)].map((x) => {
+//     return []
+//   })
+
+//   for (let i = 0; i < 5; i++) {
+//     for (let j = 0; j < time.length; j++) {
+//       rows[i] += String(bitToNum[time[j]].slice(i * 3, i * 3 + 3))
+//       if (j == 0 || j == 3) {
+//         rows[i] += String(0)
+//       }
+//     }
+//   }
+
+//   return rows.join('')
+// }
+
+// console.log(toBitString('05:44'))
+
+// ------------------------------------------------------------------
+
+// Decompose Address - edabit
+
+// const decomposeAddress = (address) => {
+//   const regex =
+//     /([0-9]+) ([A-Za-z]+ [A-Za-z]{2}) ([A-Za-z ]+), ([A-Z]{2}) ([0-9]+)/g
+
+//   const res = address.matchAll(regex)
+
+//   return [...res][0].slice(1, 6)
+// }
+// console.log(decomposeAddress('8919 Scarecrow Ct Idaho Falls, ID 80193'))
+
+// -------------------------------------------------------------
+
+// Jump Game - leetcode
+
+const canJump = (nums) => {
+  if (nums.length == 1) {
+    return true
   }
 
-  static radians(decimal) {
-    return (decimal * Math.PI) / 180
+  let count = 1
+
+  for (let i = nums.length - 2; i >= 0; i--) {
+    if (nums[i] >= count) {
+      count = 0
+    }
+
+    if (i != 0) {
+      count += 1
+    }
   }
 
-  static distance(cityA, cityB) {
-    //City latitude and longitude (Coordinates --> Decimals --> Radians)
-
-    const cityA_lat = this.radians(
-      this.decimal(
-        ...cityA
-          .replace(/[^A-Za-z0-9 ]/g, '')
-          .split(' ')
-          .slice(0, 4)
-          .map((char) => {
-            if (!isNaN(char)) {
-              return Number(char)
-            } else {
-              return char
-            }
-          })
-      )
-    )
-
-    const cityA_lon = this.radians(
-      this.decimal(
-        ...cityA
-          .replace(/[^A-Za-z0-9 ]/g, '')
-          .split(' ')
-          .slice(4)
-          .map((char) => {
-            if (!isNaN(char)) {
-              return Number(char)
-            } else {
-              return char
-            }
-          })
-      )
-    )
-
-    const cityB_lat = this.radians(
-      this.decimal(
-        ...cityB
-          .replace(/[^A-Za-z0-9 ]/g, '')
-          .split(' ')
-          .slice(0, 4)
-          .map((char) => {
-            if (!isNaN(char)) {
-              return Number(char)
-            } else {
-              return char
-            }
-          })
-      )
-    )
-    const cityB_lon = this.radians(
-      this.decimal(
-        ...cityB
-          .replace(/[^A-Za-z0-9 ]/g, '')
-          .split(' ')
-          .slice(4)
-          .map((char) => {
-            if (!isNaN(char)) {
-              return Number(char)
-            } else {
-              return char
-            }
-          })
-      )
-    )
-
-    const R = 6371e3 // Raidus of Earth (metres)
-    const diff_lat = cityB_lat - cityA_lat
-    const diff_lon = cityB_lon - cityA_lon
-
-    const a =
-      Math.pow(Math.sin(diff_lat / 2), 2) +
-      Math.cos(cityB_lat) *
-        Math.cos(cityA_lat) *
-        Math.pow(Math.sin(diff_lon / 2), 2)
-
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-
-    return Math.floor((R * c) / 1000) // kilometers
+  if (count == 0) {
+    return true
+  } else {
+    return false
   }
 }
 
-// Itinerary Function
-
-const itinerary = (start, toVisit) => {
-  let unvisited = [...toVisit]
-  let visited = [start]
-
-  let count = 0
-
-  let current = start
-
-  while (visited.length <= toVisit.length) {
-    let distancesFromCurrent = unvisited.map((city) => {
-      return GPS.distance(cities[current], cities[city])
-    })
-
-    let min_index = distancesFromCurrent.indexOf(
-      Math.min(...distancesFromCurrent)
-    )
-
-    count += Math.min(...distancesFromCurrent)
-
-    current = unvisited[min_index]
-
-    visited.push(...unvisited.splice(min_index, 1))
-  }
-
-  return [visited, count]
-}
-
-const cities = {
-  London: `51° 30' 30" N 0° 7' 32" W`,
-  'New York': `40° 42' 51" N 74° 0' 21" W`,
-  Kitchener: `43° 27' 10" N 80° 29' 42" W`,
-  'Los Angeles': `34° 3' 8" N 118° 14' 37" W`,
-  Naples: `40° 51' 46" N 14° 16' 36" E`,
-  Moscow: `55° 45' 7" N 37° 36' 56" E`,
-  Beijing: `39° 54' 27" N 116° 23' 50" E`,
-  Tokyo: `35° 41' 22" N 139° 41' 30" E`,
-  Quito: `0° 13' 47" S 78° 31' 29" W`,
-  'Buenos Aires': `34° 36' 30" S 58° 22' 19" W`,
-  'Rio de Janeiro': `22° 54' 10" S 43° 12' 27" W`,
-  Montevideo: `35° 54' 11" S 56° 11' 17" W`,
-  Johannesburg: `26° 12' 8" S 28° 2' 37" E`,
-  Jakarta: `6° 12' 52" S 106° 50' 42" E`,
-  Sidney: `33° 52' 4" S 151° 12' 26" E`,
-  Auckland: `36° 52' 0" S 174° 46' 0" E`,
-}
-
-console.log(
-  itinerary('Naples', ['New York', 'Johannesburg', 'Beijing', 'Quito'])
-)
+console.log(canJump([2, 3, 1, 1, 4]))
