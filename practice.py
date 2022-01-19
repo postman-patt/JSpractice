@@ -4641,21 +4641,142 @@
 
 # Jump Game - leetcode
 
-def canJump(nums):
+# def canJump(nums):
 
-    if len(nums) == 1:
-        return True
+#     if len(nums) == 1:
+#         return True
 
-    count = 1
+#     count = 1
 
-    for i in range(len(nums) - 2, -1, -1):
-        if nums[i] >= count:
-            count = 0
+#     for i in range(len(nums) - 2, -1, -1):
+#         if nums[i] >= count:
+#             count = 0
 
-        if i != 0:
-            count += 1
+#         if i != 0:
+#             count += 1
 
-    if count == 0:
-        return True
-    else:
-        return False
+#     if count == 0:
+#         return True
+#     else:
+#         return False
+
+# ---------------------------------------------------------------------
+
+# Combinations - leetcode
+
+# def combine(n, k):
+
+#     res = []
+
+#     def r(current=[], start=1):
+
+#         print(current, start)
+
+#         if len(current) == k:
+#             res.append(current)
+#             return
+
+#         for i in range(start, n+1):
+#             r(current + [i], i+1)
+
+#     r()
+
+#     return res
+
+
+# print(
+#     combine(1, 1)
+# )
+
+
+# -----------------------------------------------------------------------
+
+
+# 290. Word Pattern - leetcode
+
+# def wordPattern(pattern, s):
+
+#     hashTable = {}
+#     hashTable2 = {}
+
+#     string = s.split(' ')
+
+#     if len(string) != len(pattern):
+#         return False
+
+#     for i in range(len(pattern)):
+
+#         if string[i] in hashTable:
+#             if hashTable[string[i]] != pattern[i]:
+#                 return False
+
+#         elif pattern[i] in hashTable2:
+#             if hashTable2[pattern[i]] != string[i]:
+#                 return False
+#         else:
+#             hashTable[string[i]] = pattern[i]
+#             hashTable2[pattern[i]] = string[i]
+
+#     return True
+
+
+# print(
+#     wordPattern('aaaa', 'dog dog dog dog'))
+
+
+# -----------------------------------------------------------------
+
+# Set Matrix Zeroes - leetcode
+
+
+# def setZeroes(matrix):
+
+#     table = {'row': [], 'col': []}
+
+#     for i in range(len(matrix)):
+#         for j in range(len(matrix[i])):
+#             if matrix[i][j] == 0:
+#                 table['row'].append(i)
+#                 table['col'].append(j)
+
+#     for r in range(len(matrix)):
+#         for c in range(len(matrix[r])):
+#             if r in table['row'] or c in table['col']:
+#                 matrix[r][c] = 0
+
+#     return matrix
+
+
+# print(
+#     setZeroes([[1, 1, 1], [1, 0, 1], [1, 1, 1]])
+# )
+
+# ------------------------------------------------------------------
+
+# 118. Pascals Triangle - leetcode
+
+def generate(n):
+
+    res = [[1]]
+
+    def r(prev_row):
+
+        if len(prev_row) == n:
+            return
+
+        row = [0 for x in range(len(prev_row) + 1)]
+
+        for i, val in enumerate(prev_row):
+            row[i] += val
+            row[i + 1] += val
+
+        res.append(row)
+
+        r(row)
+
+    r([1])
+
+    return res
+
+
+print(generate(1))

@@ -1,4 +1,4 @@
-// sampleArray = ['coding', 'crackers', 'edabit', 'celebration']
+// sampleArray = ['codikng', 'crackers', 'edawbit', 'celekbration']
 
 // const longestWord = (sampleArray) => {
 //   const invalidLetters = ['k', 'm', 'v', 'w', 'x']
@@ -29,6 +29,25 @@
 //   }
 // }
 // longestWord(sampleArray)
+
+// -------------------------------------------------------------------------
+
+// Above code rewritten - 15-01-22
+
+// Longest Word in a 7 Segment Display - edabit
+
+// const longest7SegmentWord = (arr) => {
+//   return (
+//     arr
+//       .filter((item) => {
+//         return !/[kmvwx]/g.test(item)
+//       })
+//       .sort((a, b) => {
+//         return b.length - a.length
+//       })[0] || ''
+//   )
+// }
+// console.log(longest7SegmentWord(['velocity', 'mackerel', 'woven', 'kingsmen']))
 //---------------------------------------------------------------------------
 
 // const sumDigProd = (num1, num2) => {
@@ -5377,28 +5396,191 @@
 
 // Jump Game - leetcode
 
-const canJump = (nums) => {
-  if (nums.length == 1) {
-    return true
-  }
+// const canJump = (nums) => {
+//   if (nums.length == 1) {
+//     return true
+//   }
 
-  let count = 1
+//   let count = 1
 
-  for (let i = nums.length - 2; i >= 0; i--) {
-    if (nums[i] >= count) {
-      count = 0
+//   for (let i = nums.length - 2; i >= 0; i--) {
+//     if (nums[i] >= count) {
+//       count = 0
+//     }
+
+//     if (i != 0) {
+//       count += 1
+//     }
+//   }
+
+//   if (count == 0) {
+//     return true
+//   } else {
+//     return false
+//   }
+// }
+
+// console.log(canJump([2, 3, 1, 1, 4]))
+
+// --------------------------------------------------------------------
+
+// Frequency Distribution - edabit
+
+// const getFrequencies = (arr) => {
+//   let frequencies = {}
+
+//   for (i in arr) {
+//     if (String(arr[i]) in frequencies) {
+//       frequencies[String(arr[i])] += 1
+//     } else {
+//       frequencies[String(arr[i])] = 1
+//     }
+//   }
+
+//   return frequencies
+// }
+
+// console.log(
+//   getFrequencies(['A', 'B', 'A', 'A', 'A']),
+//   getFrequencies([true, false, true, false, false])
+// )
+
+// -------------------------------------------------------------------
+
+// 111. Minimum Depth of Binary Tree - leetcode
+
+// const minDepth = (root) => {
+//   if (root === null) {
+//     return 0
+//   }
+
+//   let node_levels = [root]
+
+//   let level = 1
+
+//   while (true) {
+//     let sub = []
+//     for (let i = 0; i < node_levels.length; i++) {
+//       if (node_levels[i].left != null) {
+//         sub.push(node_levels[i].left)
+//       }
+
+//       if (node_levels[i].right != null) {
+//         sub.push(node_levels[i].right)
+//       }
+
+//       if (node_levels[i].left === null && node_levels[i].right === null) {
+//         return level
+//       }
+//     }
+
+//     node_levels = sub
+//     sub = []
+//     level += 1
+//   }
+// }
+
+// ------------------------------------------------------------------
+
+// Nearest Chapter - edabit
+
+// const nearestChapter = (chapt, page) => {
+//   const keys = Object.keys(chapt)
+//   const vals = Object.values(chapt)
+
+//   let l = []
+//   let count = Math.abs(vals[0] - page)
+
+//   for (i in vals) {
+//     if (Math.abs(vals[i] - page) <= count) {
+//       count = Math.abs(vals[i] - page)
+//       l.unshift(keys[i])
+//     }
+//   }
+
+//   return l[0]
+// }
+
+// console.log(
+//   nearestChapter(
+//     {
+//       'Chapter 1': 1,
+//       'Chapter 2': 15,
+//       'Chapter 3': 37,
+//     },
+//     10
+//   )
+// )
+
+// ----------------------------------------------------------
+
+// Moving Partition - edabit
+
+// const movingPartition = (n) => {
+//   let res = []
+
+//   for (let i = 1; i < n.length; i++) {
+//     res.push([n.slice(0, i), n.slice(i)])
+//   }
+
+//   return res
+// }
+
+// console.log(movingPartition([-1, -1, -1, -1]))
+
+// ---------------------------------------------------------
+
+// Is this a Haiku - edabit
+
+// const haiku = (str) => {
+//   // Checks for all vowel, considers all consecutive vowels as one
+//   const r1 = /[aeiouyAEIOUY]+[aeiyouAEIOUY]?/g
+//   //Checks e, e's and es that do NOT have a preceding aeiouy
+//   const r2 = /(?<=[a-z]*[aeiouyAEIOUY]+[a-z]+)(e|e's|es)(?= |,|\b)/g
+
+//   const haiku = str.split('/')
+
+//   let counts = []
+
+//   for (i in haiku) {
+//     counts.push(
+//       haiku[i].match(r1).length -
+//         (haiku[i].match(r2) != null ? haiku[i].match(r2).length : 0)
+//     )
+//   }
+//   let syllables = [5, 7, 5]
+
+//   for (i in counts) {
+//     if (counts[i] != syllables[i]) {
+//       return false
+//     }
+//   }
+
+//   return true
+// }
+
+// haiku("New vids ev'ry day / Never skipped a single day / I'll see you in March")
+
+// -----------------------------------------------------------------------
+
+// 118. Pascals Triangle - leetcode
+
+const generate = (n) => {
+  let res = [[1]]
+
+  for (let i = 1; i < n; i++) {
+    let row = []
+
+    for (let x = 0; x <= i; x++) {
+      let n1 = x - 1 < 0 ? 0 : res[i - 1][x - 1]
+      let n2 = x > res[i - 1].length - 1 ? 0 : res[i - 1][x]
+      row.push(n1 + n2)
     }
 
-    if (i != 0) {
-      count += 1
-    }
+    res.push(row)
   }
 
-  if (count == 0) {
-    return true
-  } else {
-    return false
-  }
+  return res
 }
 
-console.log(canJump([2, 3, 1, 1, 4]))
+console.log(generate(5))
