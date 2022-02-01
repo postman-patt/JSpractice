@@ -4755,28 +4755,228 @@
 
 # 118. Pascals Triangle - leetcode
 
-def generate(n):
+# def generate(n):
 
-    res = [[1]]
+#     res = [[1]]
 
-    def r(prev_row):
+#     def r(prev_row):
 
-        if len(prev_row) == n:
+#         if len(prev_row) == n:
+#             return
+
+#         row = [0 for x in range(len(prev_row) + 1)]
+
+#         for i, val in enumerate(prev_row):
+#             row[i] += val
+#             row[i + 1] += val
+
+#         res.append(row)
+
+#         r(row)
+
+#     r([1])
+
+#     return res
+
+
+# print(generate(1))
+
+# ------------------------------------------------------------
+
+# Free Range - edabit
+
+# def numbersToRanges(nums):
+
+#     if len(nums) == 0:
+#         return []
+
+#     r = []
+
+#     res = []
+
+#     pointer = 0
+
+#     for i in range(len(nums)):
+#         if i != 0 and nums[i]-nums[i-1] != 1:
+#             r.append(nums[pointer:i])
+#             pointer = i
+
+#         if i == len(nums) - 1:
+#             r.append(nums[pointer:])
+
+#     for x in r:
+#         if len(x) > 1:
+#             res.append(str(x[0])+'-'+str(x[len(x)-1]))
+#         else:
+#             res.append(str(x[0]))
+#     return res
+
+
+# print(
+#     numbersToRanges([1, 2, 3, 4, 99, 100])
+# )
+
+
+# --------------------------------------------------------------------
+
+# 62. Unique Paths - leetcode
+
+# def uniquePaths(m, n):
+
+#     if m == 0 or n == 0:
+#         return 0
+
+#     bo = [[1 for x in range(n)] for l in range(m)]
+
+#     for i in range(len(bo)):
+#         for j in range(len(bo[i])):
+#             if i != 0 and j != 0:
+#                 up = bo[i-1][j] if i-1 >= 0 else 0
+#                 left = bo[i][j-1] if j-1 >= 0 else 0
+#                 num = up + left
+#                 bo[i][j] = num
+#     print(bo)
+#     return bo[len(bo)-1][len(bo[0]) - 1]
+
+
+# print(
+#     uniquePaths(4, 5)
+# )
+
+# 63 Unique Paths II - leetcode
+
+# def uniquePathsWithObstacles(obstacleGrid):
+
+#     if len(obstacleGrid) == 0 or len(obstacleGrid[0]) == 0:
+
+#         return 0
+
+#     bo = obstacleGrid.copy()
+
+#     for i in range(len(bo)):
+#         for j in range(len(bo[i])):
+
+#             if bo[i][j] == 1:
+#                 bo[i][j] = 'x'
+#                 continue
+
+#             if i == 0 and j == 0:
+#                 bo[i][j] = 1
+#             else:
+#                 up = bo[i-1][j] if i-1 >= 0 and bo[i-1][j] != 'x' else 0
+#                 left = bo[i][j-1] if j-1 >= 0 and bo[i][j-1] != 'x' else 0
+#                 num = up + left
+#                 bo[i][j] = num
+#     if bo[len(bo)-1][len(bo[0]) - 1] == 'x':
+#         return 0
+#     else:
+#         return bo[len(bo)-1][len(bo[0]) - 1]
+
+
+# print(
+#     uniquePathsWithObstacles([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
+# )
+
+# ----------------------------------------------------
+
+# Whats the Missing Letter - edabit
+
+# def missingLetter(str):
+
+#     alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+#     count = 0
+
+#     for i in str:
+#         if count == 0:
+#             count = alphabet.index(i)
+#         elif alphabet.index(i) - count != 1:
+#             return alphabet[alphabet.index(i) - 1]
+#         else:
+#             count = alphabet.index(i)
+
+#     return "No Missing Letter"
+
+
+# print(missingLetter("abde"))
+
+# -----------------------------------------------------
+
+# How Many Digits between 1 and N - edabit
+
+# def digits(n):
+
+#     count = 0
+
+#     for i in range(1, n):
+
+#         count += len(str(i))
+
+#     return count
+
+
+# print(
+#     digits(
+#         256
+#     )
+# )
+# ---------------------------------------------------
+
+# How Many Digits between 1 and N - edabit - FASTER
+
+# def digits(n):
+
+#     count = 0
+
+#     i = 1
+#     p = '10'
+#     k = 0
+
+#     num = str(n)
+
+#     while i <= len(num):
+
+#         if i != len(num):
+#             count += i * ((int(p)-1) - k)
+#         else:
+#             count += i * (n - k)
+
+#         k = int(p) - 1
+#         p += '0'
+#         i += 1
+
+#     return count - len(num)
+
+
+# print(
+#     digits(58473029386609125789)
+# )
+
+# -----------------------------------------------------------------
+
+# 38. Combination Sum - leetcode
+
+def combinationSum(candidates, target):
+
+    res = []
+
+    def backtrack(c, nums=[]):
+
+        if sum(nums) > target:
             return
 
-        row = [0 for x in range(len(prev_row) + 1)]
+        if sum(nums) == target:
+            res.append(nums)
+            return
 
-        for i, val in enumerate(prev_row):
-            row[i] += val
-            row[i + 1] += val
+        for count, i in enumerate(c):
+            backtrack(c[count:], nums+[i])
 
-        res.append(row)
-
-        r(row)
-
-    r([1])
+    backtrack(candidates)
 
     return res
 
 
-print(generate(1))
+print(
+    combinationSum([2, 7, 6, 3, 5, 1], 9)
+)

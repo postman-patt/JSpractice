@@ -5565,22 +5565,166 @@
 
 // 118. Pascals Triangle - leetcode
 
-const generate = (n) => {
-  let res = [[1]]
+// const generate = (n) => {
+//   let res = [[1]]
 
-  for (let i = 1; i < n; i++) {
-    let row = []
+//   for (let i = 1; i < n; i++) {
+//     let row = []
 
-    for (let x = 0; x <= i; x++) {
-      let n1 = x - 1 < 0 ? 0 : res[i - 1][x - 1]
-      let n2 = x > res[i - 1].length - 1 ? 0 : res[i - 1][x]
-      row.push(n1 + n2)
-    }
+//     for (let x = 0; x <= i; x++) {
+//       let n1 = x - 1 < 0 ? 0 : res[i - 1][x - 1]
+//       let n2 = x > res[i - 1].length - 1 ? 0 : res[i - 1][x]
+//       row.push(n1 + n2)
+//     }
 
-    res.push(row)
+//     res.push(row)
+//   }
+
+//   return res
+// }
+
+// console.log(generate(5))
+
+// --------------------------------------------------------------------
+
+// Conway's Game of Life - edabit
+
+// const gameofLife = (board) => {
+//   const res = []
+//   const adj = [
+//     [1, 0],
+//     [1, 1],
+//     [0, 1],
+//     [-1, 1],
+//     [-1, 0],
+//     [-1, -1],
+//     [0, -1],
+//     [1, -1],
+//   ]
+//   for (i in board) {
+//     let sub = ''
+//     for (j in board[i]) {
+//       let count = 0
+//       for (k in adj) {
+//         let x = Number(j) + adj[k][0]
+//         let y = Number(i) + adj[k][1]
+//         if (x >= 0 && x < board[i].length && y >= 0 && y < board.length) {
+//           if (board[y][x] == 1) {
+//             count += 1
+//           }
+//         }
+//       }
+//       if (board[i][j] == 1) {
+//         switch (true) {
+//           case count <= 1:
+//             sub += '░'
+//             break
+//           case count <= 3:
+//             sub += '█'
+//             break
+//           case count >= 4:
+//             sub += '░'
+//         }
+//       } else {
+//         if (count == 3) {
+//           sub += '█'
+//         } else {
+//           sub += '░'
+//         }
+//       }
+//     }
+//     res.push(sub)
+//   }0
+//   return res.join('\n')
+// }
+
+// console.log(
+//   gameofLife([
+//     [0, 1, 0],
+//     [1, 1, 1],
+//     [0, 1, 0],
+//   ])
+// )
+
+// ------------------------------------------------------
+
+// Promises VIII: Old Callback API - edabit
+
+// function saySomething(str) {
+//   throw 'what the heck'
+// }
+
+// let ERR = ''
+
+// const wait = () => new Promise((resolve, reject) => setTimeout(resolve, 1000))
+
+// wait()
+//   .then(() => saySomething('1 second has passed'))
+//   .catch((err) => {
+//     ERR = err
+//   })
+
+// ---------------------------------------------------
+
+// Promises VII: Chaining - edabit
+
+// function doSomething(isGoingToResolve = true) {
+//   return new Promise((resolve, reject) => {
+//     if (isGoingToResolve) {
+//       resolve('something')
+//     } else {
+//       reject('something else')
+//     }
+//   })
+//     .then((response) => {
+//       console.log('in my function', response)
+//       return response
+//     })
+//     .catch((error) => {
+//       console.log('in my function', error)
+//     })
+// }
+
+// doSomething().then((response) => {
+//   console.log('in my main call', response)
+// })
+
+// ---------------------------------------------
+
+// Recursion: Pronic Number - edabit
+
+// const isHeteromecic = (n, i = 0) => {
+//   let num = i * (i + 1)
+
+//   if (num > n) {
+//     return false
+//   }
+
+//   if (num == n) {
+//     return true
+//   }
+
+//   return isHeteromecic(n, i + 1)
+// }
+
+// console.log(isHeteromecic(0))
+
+// -----------------------------------------------------
+
+// Super Reducing String - edabit
+
+const superReducingString = (str) => {
+  const regex = /([a-z])\1/
+
+  if (regex.test(str)) {
+    return superReducingString(str.replace(regex, ''))
   }
 
-  return res
+  if (str == '') {
+    return 'Empty String'
+  } else {
+    return str
+  }
 }
 
-console.log(generate(5))
+console.log(superReducingString('abccdddd'))
