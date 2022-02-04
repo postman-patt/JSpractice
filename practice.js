@@ -5713,18 +5713,72 @@
 
 // Super Reducing String - edabit
 
-const superReducingString = (str) => {
-  const regex = /([a-z])\1/
+// const superReducingString = (str) => {
+//   const regex = /([a-z])\1/
 
-  if (regex.test(str)) {
-    return superReducingString(str.replace(regex, ''))
+//   if (regex.test(str)) {
+//     return superReducingString(str.replace(regex, ''))
+//   }
+
+//   if (str == '') {
+//     return 'Empty String'
+//   } else {
+//     return str
+//   }
+// }
+
+// console.log(superReducingString('abccdddd'))
+
+// --------------------------------------------------------
+
+// Look-and-Say Sequence - edabit
+
+// const lookAndSay = (start, n) => {
+//   let num = String(start)
+
+//   let res = [start]
+
+//   const regex = /([0-9])\1*/g
+
+//   for (let i = 0; i < n - 1; i++) {
+//     let nums = num.match(regex)
+
+//     let sub = ''
+
+//     for (let x = 0; x < nums.length; x++) {
+//       sub += String(nums[x].length) + nums[x][0]
+//     }
+
+//     res.push(Number(sub))
+
+//     num = sub
+//   }
+
+//   return res
+// }
+
+// console.log(lookAndSay(1, 7))
+
+// -----------------------------------------------------------
+
+// 119. Pascal's Triangle II - leetcode
+
+const generate = (rowIndex) => {
+  let res = [1]
+
+  for (let i = 1; i <= rowIndex; i++) {
+    let row = []
+
+    for (let x = 0; x <= i; x++) {
+      let n1 = x - 1 < 0 ? 0 : res[x - 1]
+      let n2 = x > res.length - 1 ? 0 : res[x]
+      row.push(n1 + n2)
+    }
+
+    res = row
   }
 
-  if (str == '') {
-    return 'Empty String'
-  } else {
-    return str
-  }
+  return res
 }
 
-console.log(superReducingString('abccdddd'))
+console.log(generate(3))

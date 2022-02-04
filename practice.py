@@ -4956,27 +4956,131 @@
 
 # 38. Combination Sum - leetcode
 
-def combinationSum(candidates, target):
+# def combinationSum(candidates, target):
 
+#     res = []
+
+#     def backtrack(c, nums=[]):
+
+#         if sum(nums) > target:
+#             return
+
+#         if sum(nums) == target:
+#             res.append(nums)
+#             return
+
+#         for count, i in enumerate(c):
+#             backtrack(c[count:], nums+[i])
+
+#     backtrack(candidates)
+
+#     return res
+
+
+# print(
+#     combinationSum([2, 7, 6, 3, 5, 1], 9)
+# )
+
+# ----------------------------------------------------
+
+
+# Substring Consonant-Vowel Groups - edabit
+
+# def get_vowel_substrings(txt):
+
+#     vowels = 'aeiou'
+
+#     res = []
+
+#     for count_i, i in enumerate(txt):
+#         if i in vowels:
+#             res.append(i)
+#             for count_x, x in enumerate(txt[count_i:]):
+#                 if x in vowels and count_x != 0:
+#                     res.append(txt[count_i:][: count_x + 1])
+
+#     return sorted(list(set(res)))
+
+
+# def get_consonant_substrings(txt):
+
+#     vowels = 'aeiou'
+
+#     res = []
+
+#     for count_i, i in enumerate(txt):
+#         if i not in vowels:
+#             res.append(i)
+#             for count_x, x in enumerate(txt[count_i:]):
+#                 if x not in vowels and count_x != 0:
+#                     res.append(txt[count_i:][: count_x + 1])
+
+#     return sorted(list(set(res)))
+
+
+# print(
+#     get_vowel_substrings("aviation"))
+# "a", "ati", "atio", "avi", "avia", "aviati", "aviatio", "i", "ia", "iati", "iatio", "io", "o"
+
+# -------------------------------------------------------------
+
+# Spiral Matrix - leetcode
+
+from turtle import left
+
+
+def spiralOrder(matrix):
+
+    m = matrix
+
+    row = 0
+    col = 0
+    direction = 'right'
     res = []
 
-    def backtrack(c, nums=[]):
+    for i in range(len(m) * len(m[0])):
 
-        if sum(nums) > target:
-            return
+        if direction == 'left':
+            res.append(m[col][row])
+            m[col][row] = 'x'
+            if row - 1 < 0 or m[col][row - 1] == 'x':
+                direction = 'up'
+                col -= 1
+            else:
+                row -= 1
+            continue
 
-        if sum(nums) == target:
-            res.append(nums)
-            return
+        if direction == 'down':
+            res.append(m[col][row])
+            m[col][row] = 'x'
+            if col + 1 > len(m) - 1 or m[col + 1][row] == 'x':
+                direction = 'left'
+                row -= 1
+            else:
+                col += 1
+            continue
 
-        for count, i in enumerate(c):
-            backtrack(c[count:], nums+[i])
+        if direction == 'right':
+            res.append(m[col][row])
+            m[col][row] = 'x'
+            if row + 1 > len(m[0]) - 1 or m[col][row + 1] == 'x':
+                direction = 'down'
+                col += 1
+            else:
+                row += 1
+            continue
 
-    backtrack(candidates)
+        if direction == 'up':
+            res.append(m[col][row])
+            m[col][row] = 'x'
+            if col < 0 or m[col - 1][row] == 'x':
+                direction = 'right'
+                row += 1
+            else:
+                col -= 1
+            continue
 
     return res
 
 
-print(
-    combinationSum([2, 7, 6, 3, 5, 1], 9)
-)
+print(spiralOrder([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]))
