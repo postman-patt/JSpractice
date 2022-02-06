@@ -5763,22 +5763,66 @@
 
 // 119. Pascal's Triangle II - leetcode
 
-const generate = (rowIndex) => {
-  let res = [1]
+// const generate = (rowIndex) => {
+//   let res = [1]
 
-  for (let i = 1; i <= rowIndex; i++) {
-    let row = []
+//   for (let i = 1; i <= rowIndex; i++) {
+//     let row = []
 
-    for (let x = 0; x <= i; x++) {
-      let n1 = x - 1 < 0 ? 0 : res[x - 1]
-      let n2 = x > res.length - 1 ? 0 : res[x]
-      row.push(n1 + n2)
+//     for (let x = 0; x <= i; x++) {
+//       let n1 = x - 1 < 0 ? 0 : res[x - 1]
+//       let n2 = x > res.length - 1 ? 0 : res[x]
+//       row.push(n1 + n2)
+//     }
+
+//     res = row
+//   }
+
+//   return res
+// }
+
+// console.log(generate(3))
+
+// --------------------------------------------------------
+
+// Dead End Number Sequence
+
+// Need to use BigInt() to deal with large values
+
+const deadEnds = (n) => {
+  let sequence = [n]
+
+  const sumNums = String(n)
+    .split('')
+    .reduce((a, b) => {
+      return Number(a) + Number(b)
+    })
+
+  while (true) {
+    if (
+      sequence[sequence.length - 1] == sequence[sequence.length - 3] ||
+      sequence[sequence.length - 1] == sequence[sequence.length - 2]
+    ) {
+      return [
+        Number(sequence.length) - 1,
+        Number(sequence[sequence.length - 2]),
+      ]
     }
+    let num = BigInt(sequence[sequence.length - 1])
 
-    res = row
+    const sumNums = BigInt(
+      String(num)
+        .split('')
+        .reduce((a, b) => {
+          return Number(a) + Number(b)
+        })
+    )
+    if (num % sumNums == 0) {
+      sequence.push(num / sumNums)
+    } else {
+      sequence.push(num * sumNums)
+    }
   }
-
-  return res
 }
 
-console.log(generate(3))
+console.log(deadEnds(1))

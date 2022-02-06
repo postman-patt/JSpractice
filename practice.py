@@ -5026,61 +5026,149 @@
 
 # Spiral Matrix - leetcode
 
-from turtle import left
+# def spiralOrder(matrix):
+
+#     m = matrix
+
+#     row = 0
+#     col = 0
+#     direction = 'right'
+#     res = []
+
+#     for i in range(len(m) * len(m[0])):
+
+#         if direction == 'left':
+#             res.append(m[col][row])
+#             m[col][row] = 'x'
+#             if row - 1 < 0 or m[col][row - 1] == 'x':
+#                 direction = 'up'
+#                 col -= 1
+#             else:
+#                 row -= 1
+#             continue
+
+#         if direction == 'down':
+#             res.append(m[col][row])
+#             m[col][row] = 'x'
+#             if col + 1 > len(m) - 1 or m[col + 1][row] == 'x':
+#                 direction = 'left'
+#                 row -= 1
+#             else:
+#                 col += 1
+#             continue
+
+#         if direction == 'right':
+#             res.append(m[col][row])
+#             m[col][row] = 'x'
+#             if row + 1 > len(m[0]) - 1 or m[col][row + 1] == 'x':
+#                 direction = 'down'
+#                 col += 1
+#             else:
+#                 row += 1
+#             continue
+
+#         if direction == 'up':
+#             res.append(m[col][row])
+#             m[col][row] = 'x'
+#             if col < 0 or m[col - 1][row] == 'x':
+#                 direction = 'right'
+#                 row += 1
+#             else:
+#                 col -= 1
+#             continue
+
+#     return res
 
 
-def spiralOrder(matrix):
+# print(spiralOrder([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]))
 
-    m = matrix
+# ----------------------------------------------------------------
 
-    row = 0
-    col = 0
-    direction = 'right'
-    res = []
+# # Climbing Stairs - leetcode
 
-    for i in range(len(m) * len(m[0])):
+# def climbStairs(n):
 
-        if direction == 'left':
-            res.append(m[col][row])
-            m[col][row] = 'x'
-            if row - 1 < 0 or m[col][row - 1] == 'x':
-                direction = 'up'
-                col -= 1
+#     stairs = [0, 1]
+
+#     for i in range(n):
+#         n1 = stairs[len(stairs) - 1]
+#         n2 = stairs[len(stairs) - 2]
+
+#         stairs.append(n1 + n2)
+
+#     print(stairs)
+
+#     return stairs[len(stairs) - 1]
+
+
+# print(climbStairs(5))
+
+# -----------------------------------------------------------------
+
+# 86. Partition List - leetcode
+
+def partition(head, x):
+
+    if head == None or head.next == None:
+        return head
+
+    root_node = head
+
+    previous_node = None
+    current_node = head
+
+    pivot_pos = None
+    pivot_pos_prev = None
+
+    while True:
+
+        if current_node == None:
+            return root_node
+
+        if pivot_pos == None:
+            if current_node.val == x or current_node.val > x:
+                pivot_pos = current_node
+                pivot_pos_prev = previous_node
+
+        if pivot_pos != None and current_node.val < x:
+
+            if pivot_pos_prev != None:
+                pivot_pos_prev.next = current_node
+                previous_node.next = current_node.next
+                pivot_pos_prev.next.next = pivot_pos
+                pivot_pos_prev = current_node
             else:
-                row -= 1
-            continue
+                previous_node.next = current_node.next
+                current_node.next = pivot_pos
+                pivot_pos_prev = current_node
+                root_node = current_node
 
-        if direction == 'down':
-            res.append(m[col][row])
-            m[col][row] = 'x'
-            if col + 1 > len(m) - 1 or m[col + 1][row] == 'x':
-                direction = 'left'
-                row -= 1
-            else:
-                col += 1
-            continue
-
-        if direction == 'right':
-            res.append(m[col][row])
-            m[col][row] = 'x'
-            if row + 1 > len(m[0]) - 1 or m[col][row + 1] == 'x':
-                direction = 'down'
-                col += 1
-            else:
-                row += 1
-            continue
-
-        if direction == 'up':
-            res.append(m[col][row])
-            m[col][row] = 'x'
-            if col < 0 or m[col - 1][row] == 'x':
-                direction = 'right'
-                row += 1
-            else:
-                col -= 1
-            continue
-
-    return res
+        previous_node = current_node
+        current_node = current_node.next
 
 
-print(spiralOrder([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]))
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+# n8 = ListNode(2)
+# n7 = ListNode(5, n8)
+# n6 = ListNode(2, n7)
+# n5 = ListNode(3, n6)
+# n4 = ListNode(4, n5)
+# n3 = ListNode(1, n4)
+
+
+n4 = ListNode(2)
+n3 = ListNode(1, n4)
+
+partition(n3, 2)
+
+node = n3
+
+while node != None:
+    print(node.val)
+
+    node = node.next
