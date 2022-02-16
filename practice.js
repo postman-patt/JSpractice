@@ -511,18 +511,18 @@
 // const sampleString = 'How the Avocado Became the Fruit of the Global Trade'
 
 // const getHashTags = (string) => {
-//   const array = string.split(' ').sort((a, b) => {
-//     return b.length - a.length
-//   })
-//   const result = []
-//   let i = 0
-//   while (i < 3) {
-//     if (array[i]) {
-//       result.push('#' + array[i])
-//     }
-//     i++
+// const array = string.split(' ').sort((a, b) => {
+//   return b.length - a.length
+// })
+// const result = []
+// let i = 0
+// while (i < 3) {
+//   if (array[i]) {
+//     result.push('#' + array[i])
 //   }
-//   return result
+//   i++
+// }
+// return result
 // }
 
 // console.log(getHashTags(sampleString))
@@ -2548,6 +2548,8 @@
 // console.log(b3)
 
 // -------------------------------------------------------------------
+
+// The Snake - Area Filling - edabit
 
 // const snake = (n) => {
 //   total = n * n
@@ -5789,40 +5791,167 @@
 
 // Need to use BigInt() to deal with large values
 
-const deadEnds = (n) => {
-  let sequence = [n]
+// const deadEnds = (n) => {
+//   let sequence = [n]
 
-  const sumNums = String(n)
-    .split('')
-    .reduce((a, b) => {
-      return Number(a) + Number(b)
-    })
+//   const sumNums = String(n)
+//     .split('')
+//     .reduce((a, b) => {
+//       return Number(a) + Number(b)
+//     })
 
-  while (true) {
-    if (
-      sequence[sequence.length - 1] == sequence[sequence.length - 3] ||
-      sequence[sequence.length - 1] == sequence[sequence.length - 2]
-    ) {
-      return [
-        Number(sequence.length) - 1,
-        Number(sequence[sequence.length - 2]),
-      ]
-    }
-    let num = BigInt(sequence[sequence.length - 1])
+//   while (true) {
+//     if (
+//       sequence[sequence.length - 1] == sequence[sequence.length - 3] ||
+//       sequence[sequence.length - 1] == sequence[sequence.length - 2]
+//     ) {
+//       return [
+//         Number(sequence.length) - 1,
+//         Number(sequence[sequence.length - 2]),
+//       ]
+//     }
+//     let num = BigInt(sequence[sequence.length - 1])
 
-    const sumNums = BigInt(
-      String(num)
-        .split('')
-        .reduce((a, b) => {
-          return Number(a) + Number(b)
-        })
-    )
-    if (num % sumNums == 0) {
-      sequence.push(num / sumNums)
-    } else {
-      sequence.push(num * sumNums)
-    }
-  }
+//     const sumNums = BigInt(
+//       String(num)
+//         .split('')
+//         .reduce((a, b) => {
+//           return Number(a) + Number(b)
+//         })
+//     )
+//     if (num % sumNums == 0) {
+//       sequence.push(num / sumNums)
+//     } else {
+//       sequence.push(num * sumNums)
+//     }
+//   }
+// }
+
+// console.log(deadEnds(1))
+
+// -----------------------------------------------------------------
+
+// less or Equal - edabit
+
+// const lessEqual = (arr, k) => {
+//   const nums = arr.sort((a, b) => {
+//     return a - b
+//   })
+
+//   if (k == 0 && nums[k] == 1) {
+//     return null
+//   }
+
+//   if (k == 0) {
+//     return 1
+//   } else {
+//     return nums[k - 1] != nums[k] ? nums[k - 1] : null
+//   }
+// }
+
+// console.log(
+//   lessEqual([3, 7, 6, 1, 10, 3, 20], 4),
+//   lessEqual([3, 7, 6, 1, 10, 3, 20], 2),
+//   lessEqual([3, 7, 5, 1, 10, 3, 20], 4)
+// )
+
+// ---------------------------------------------------------
+
+// Morse Alphabet - edabit
+
+// const morse = (str) => {
+//   const d = {
+//     A: '.-',
+//     B: '-...',
+//     C: '-.-.',
+//     D: '-..',
+//     E: '.',
+//     F: '..-.',
+//     G: '--.',
+//     H: '....',
+//     I: '..',
+//     J: '.---',
+//     K: '-.-',
+//     L: '.-..',
+//     M: '--',
+//     N: '-.',
+//     O: '---',
+//     P: '.--.',
+//     Q: '--.-',
+//     R: '.-.',
+//     S: '...',
+//     T: '-',
+//     U: '..-',
+//     V: '...-',
+//     W: '.--',
+//     X: '-..-',
+//     Y: '-.--',
+//     Z: '--..',
+//     ' ': '.....',
+//   }
+
+//   const regex = /[A-Za-z]/
+
+//   let chars
+
+//   if (regex.test(str)) {
+//     chars = str.split('')
+//     for (i in chars) {
+//       chars[i] = d[chars[i].toUpperCase()]
+//     }
+
+//     return chars.join(' ')
+//   } else {
+//     chars = str.split(' ')
+//     for (i in chars) {
+//       chars[i] = Object.keys(d).find((key) => d[key] === chars[i])
+//     }
+
+//     return chars.join('')
+//   }
+// }
+
+// console.log(morse('F Mueller'))
+
+// --------------------------------------------------------------
+
+// Digits Recovery - edabit
+
+d = {
+  ZERO: 0,
+  ONE: 1,
+  TWO: 2,
+  THREE: 3,
+  FOUR: 4,
+  FIVE: 5,
+  SIX: 6,
+  SEVEN: 7,
+  EIGHT: 8,
+  NINE: 9,
 }
 
-console.log(deadEnds(1))
+const digitsRecovery = (str) => {
+  let res = ''
+  dance: for (let i = 0; i < str.length; i++) {
+    let f = i + 5 < str.length ? i + 5 : str.length
+    for (let x = i + 1; x <= f; x++) {
+      let s = str.slice(i, x).split('').sort().join('')
+
+      console.log(s)
+
+      for (let j = 0; j < Object.keys(d).length; j++) {
+        let o = Object.keys(d)[j]
+
+        if (s == o.split('').sort().join('')) {
+          console.log(s)
+          res += String(d[o])
+          continue dance
+        }
+      }
+    }
+  }
+
+  return res == '' ? 'No digits found' : res
+}
+
+console.log(digitsRecovery('ZYX'))

@@ -5107,50 +5107,50 @@
 
 # 86. Partition List - leetcode
 
-def partition(head, x):
+# def partition(head, x):
 
-    if head == None or head.next == None:
-        return head
+#     if head == None or head.next == None:
+#         return head
 
-    root_node = head
+#     root_node = head
 
-    previous_node = None
-    current_node = head
+#     previous_node = None
+#     current_node = head
 
-    pivot_pos = None
-    pivot_pos_prev = None
+#     pivot_pos = None
+#     pivot_pos_prev = None
 
-    while True:
+#     while True:
 
-        if current_node == None:
-            return root_node
+#         if current_node == None:
+#             return root_node
 
-        if pivot_pos == None:
-            if current_node.val == x or current_node.val > x:
-                pivot_pos = current_node
-                pivot_pos_prev = previous_node
+#         if pivot_pos == None:
+#             if current_node.val == x or current_node.val > x:
+#                 pivot_pos = current_node
+#                 pivot_pos_prev = previous_node
 
-        if pivot_pos != None and current_node.val < x:
+#         if pivot_pos != None and current_node.val < x:
 
-            if pivot_pos_prev != None:
-                pivot_pos_prev.next = current_node
-                previous_node.next = current_node.next
-                pivot_pos_prev.next.next = pivot_pos
-                pivot_pos_prev = current_node
-            else:
-                previous_node.next = current_node.next
-                current_node.next = pivot_pos
-                pivot_pos_prev = current_node
-                root_node = current_node
+#             if pivot_pos_prev != None:
+#                 pivot_pos_prev.next = current_node
+#                 previous_node.next = current_node.next
+#                 pivot_pos_prev.next.next = pivot_pos
+#                 pivot_pos_prev = current_node
+#             else:
+#                 previous_node.next = current_node.next
+#                 current_node.next = pivot_pos
+#                 pivot_pos_prev = current_node
+#                 root_node = current_node
 
-        previous_node = current_node
-        current_node = current_node.next
+#         previous_node = current_node
+#         current_node = current_node.next
 
 
-class ListNode(object):
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 
 
 # n8 = ListNode(2)
@@ -5161,14 +5161,309 @@ class ListNode(object):
 # n3 = ListNode(1, n4)
 
 
-n4 = ListNode(2)
-n3 = ListNode(1, n4)
+# n4 = ListNode(2)
+# n3 = ListNode(1, n4)
 
-partition(n3, 2)
+# partition(n3, 2)
 
-node = n3
+# node = n3
 
-while node != None:
-    print(node.val)
+# while node != None:
+#     print(node.val)
 
-    node = node.next
+#     node = node.next
+
+# -----------------------------------------------------------------
+
+# 258. Add Digits - leetcode
+
+
+# def addDigits(num):
+
+#     if len(str(num)) == 1:
+#         return num
+
+#     return addDigits(sum([int(i) for i in list(str(num))]))
+
+# Add Digits - leetcode - Faster Solution (No Recursion)
+
+# def addDigits(num):
+
+#     n = num
+
+#     while True:
+
+#         if n < 10:
+#             return n
+
+#         n = sum([int(i) for i in str(n)])
+
+
+# print(
+#     addDigits(38)
+# )
+
+# ----------------------------------------------------------
+
+# HashTag Generator - edabit
+
+# def generate_hashtag(str):
+
+#     if str == '':
+#         return False
+
+#     res = '#'
+
+#     words = [x for x in str.split(' ') if x != '']
+
+#     for i in words:
+#         res += i[0].upper() + i[1:]
+
+#     if len(res) > 140:
+#         return False
+
+#     return res if res != '#' else False
+
+
+# print(
+#     generate_hashtag("    Hello     World   ")
+# )
+
+# ------------------------------------------------------------------
+
+# 122. Best time to Buy and Sell Stock II - leetcode
+
+# def maxProfit(prices):
+
+#     def maxPeriod(arr):
+
+#         maxProfit = 0
+#         minPrice = float("inf")
+
+#         for i in arr:
+#             if i < minPrice:
+#                 minPrice = i
+#             elif i - minPrice > maxProfit:
+#                 maxProfit = i - minPrice
+
+#         return maxProfit
+
+#     maxPrices = []
+
+#     count = 0
+
+#     index = 0
+
+#     for x in range(len(prices)):
+
+#         m = maxPeriod(prices[index: x + 1])
+
+#         if m > count:
+#             count = m
+
+#         if m <= count or x == len(prices) - 1:
+#             maxPrices.append(count)
+#             count = 0
+#             index = x
+
+#     return sum(maxPrices)
+
+
+# print(
+#     maxProfit([1, 2, 3, 4, 5]))
+
+
+# ----------------------------------------------------------------------------
+
+# 102. Binary Tree Level Order Traversal - leetcode
+
+
+# def levelOrder(root):
+#     if root == None:
+#         return []
+
+#     level = [root]
+
+#     res = []
+
+#     while True:
+
+#         s = []
+#         subres = []
+
+#         for i in level:
+#             if i != None:
+#                 subres.append(i.val)
+#                 s.extend([i.left, i.right])
+#         res.append(subres)
+#         if list(set(s))[0] == None and len(list(set(s))) == 1:
+#             return res
+
+#         level = s
+
+
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+# n5 = TreeNode(15)
+# n4 = TreeNode(7)
+# n3 = TreeNode(20, n5, n4)
+# n2 = TreeNode(9)
+# n1 = TreeNode(3, n2, n3)
+
+# print(
+#     levelOrder(n1)
+# )
+
+# -----------------------------------------------------------------
+
+
+# Triplet Sum - edabit
+
+# def tripletSum(nums, n):
+
+#     res = []
+
+#     sorted_nums = sorted(nums)
+
+#     for i in range(len(sorted_nums)):
+
+#         if i == len(sorted_nums) - 1 or sorted_nums[i] == sorted_nums[i-1]:
+#             continue
+
+#         left = i + 1
+#         right = len(sorted_nums) - 1
+
+#         while left < right:
+
+#             sumNums = sorted_nums[i] + sorted_nums[left] + sorted_nums[right]
+
+#             if sumNums < n:
+#                 left += 1
+#             elif sumNums > n:
+#                 right -= 1
+#             else:
+#                 while sorted_nums[left] == sorted_nums[left + 1] and left < right:
+#                     left += 1
+#                 res.append(
+#                     [sorted_nums[i], sorted_nums[left], sorted_nums[right]])
+#                 left += 1
+
+#     return len(res)
+
+# print(
+#     tripletSum([6, 2, 6, 0, 9, 2, 5, 8], n=15))
+
+# -------------------------------------------------------------------
+
+# 133. Clone Graph - leetcode
+
+# class Node(object):
+#     def __init__(self, val=0, neighbors=None):
+#         self.val = val
+#         self.neighbors = neighbors if neighbors is not None else []
+
+
+# def cloneGraph(node):
+
+#     if node == None:
+#         return None
+
+#     if len(node.neighbors) == 0:
+#         return Node(1)
+
+#     hashMap = {}
+
+#     def r(n):
+
+#         if n.val in hashMap:
+#             return
+#         else:
+#             hashMap[n.val] = Node(n.val, [x.val for x in n.neighbors])
+#             for i in n.neighbors:
+#                 r(i)
+
+#     r(node)
+
+#     for i in hashMap:
+#         for k in range(len(hashMap[i].neighbors)):
+#             hashMap[i].neighbors[k] = hashMap[hashMap[i].neighbors[k]]
+
+#     return hashMap[1]
+
+
+# n4 = Node(4, [])
+# n3 = Node(3, [n4])
+# n2 = Node(2, [n3])
+# n1 = Node(1, [n2, n4])
+
+# n4.neighbors += [n1, n3]
+# n3.neighbors += [n2]
+# n2.neighbors += [n1]
+
+# print(
+#     cloneGraph(n1)
+# )
+
+#  Solution is not slow but coded poorly.......
+
+# -------------------------------------------------------------------------
+
+# Identical Row and Column? - edabit
+
+# def hasIdentical(arr):
+
+#     if len(arr[0]) != len(arr):
+#         return False
+
+#     for i in range(len(arr[0])):
+
+#         for j in range(len(arr)):
+
+#             if arr[0][i] == arr[j][0]:
+
+#                 for k in range(len(arr)):
+
+#                     if arr[j][k] != arr[k][i]:
+#                         break
+
+#                     if arr[j][k] == arr[k][i] and k == len(arr)-1:
+#                         return True
+
+#     return False
+
+
+# print(
+#     hasIdentical([
+#         [4, 4, 4, 4],
+#         [2, 4, 9, 8],
+#         [5, 4, 7, 7],
+#         [6, 4, 1, 0]
+#     ]))
+
+
+# ----------------------------------------------------------------------
+
+# 120. Triangle - leetcode
+
+def minimumTotal(triangle):
+
+    if len(triangle) == 1:
+        return triangle[0][0]
+
+    for i in range(len(triangle) - 2, -1, -1):
+        for j in range(len(triangle[i])):
+            num1 = triangle[i][j] + triangle[i+1][j]
+            num2 = triangle[i][j] + triangle[i+1][j + 1]
+            triangle[i][j] = min(num1, num2)
+
+    return triangle[0][0]
+
+
+print(
+    minimumTotal([[-10]])
+)
