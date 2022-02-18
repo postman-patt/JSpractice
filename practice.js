@@ -5917,41 +5917,65 @@
 
 // Digits Recovery - edabit
 
-d = {
-  ZERO: 0,
-  ONE: 1,
-  TWO: 2,
-  THREE: 3,
-  FOUR: 4,
-  FIVE: 5,
-  SIX: 6,
-  SEVEN: 7,
-  EIGHT: 8,
-  NINE: 9,
+// d = {
+//   ZERO: 0,
+//   ONE: 1,
+//   TWO: 2,
+//   THREE: 3,
+//   FOUR: 4,
+//   FIVE: 5,
+//   SIX: 6,
+//   SEVEN: 7,
+//   EIGHT: 8,
+//   NINE: 9,
+// }
+
+// const digitsRecovery = (str) => {
+//   let res = ''
+//   dance: for (let i = 0; i < str.length; i++) {
+//     let f = i + 5 < str.length ? i + 5 : str.length
+//     for (let x = i + 1; x <= f; x++) {
+//       let s = str.slice(i, x).split('').sort().join('')
+
+//       console.log(s)
+
+//       for (let j = 0; j < Object.keys(d).length; j++) {
+//         let o = Object.keys(d)[j]
+
+//         if (s == o.split('').sort().join('')) {
+//           console.log(s)
+//           res += String(d[o])
+//           continue dance
+//         }
+//       }
+//     }
+//   }
+
+//   return res == '' ? 'No digits found' : res
+// }
+
+// console.log(digitsRecovery('ZYX'))
+
+// -------------------------------------------------------------------
+
+// Maximum Distance to the Nearest Occupied Slot - edabit
+
+const maxDistance = (slots) => {
+  const end = /0+$/.test(slots) ? slots.match(/0+$/)[0].length : 0
+  const start = /^0+/.test(slots) ? slots.match(/^0+/)[0].length : 0
+  const middle = /(?<=1)0+(?=1)/g.test(slots)
+    ? Math.ceil(
+        slots.match(/(?<=1)0+(?=1)/g).sort((a, b) => {
+          return b.length - a.length
+        })[0].length / 2
+      )
+    : 0
+
+  return Math.max(start, end, middle)
 }
 
-const digitsRecovery = (str) => {
-  let res = ''
-  dance: for (let i = 0; i < str.length; i++) {
-    let f = i + 5 < str.length ? i + 5 : str.length
-    for (let x = i + 1; x <= f; x++) {
-      let s = str.slice(i, x).split('').sort().join('')
-
-      console.log(s)
-
-      for (let j = 0; j < Object.keys(d).length; j++) {
-        let o = Object.keys(d)[j]
-
-        if (s == o.split('').sort().join('')) {
-          console.log(s)
-          res += String(d[o])
-          continue dance
-        }
-      }
-    }
-  }
-
-  return res == '' ? 'No digits found' : res
-}
-
-console.log(digitsRecovery('ZYX'))
+console.log(
+  maxDistance(
+    '1111010000100000000000000100000001000000000000000000000011000000000000000000000001110000010000000000'
+  )
+)
