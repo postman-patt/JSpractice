@@ -5692,3 +5692,35 @@
 # print(
 #     flatten(n1)
 # )
+ 
+#  -------------------------------------------------
+
+# 145. Binary Tree Postorder Traversal - leetcode
+
+def postorderTraversal(root):
+
+    res = []
+
+    def r(node, lst):
+
+        if node:
+            r(node.left, lst)
+            r(node.right, lst)
+            lst.append(node.val)
+
+    r(root, res)
+    return res
+
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+
+n3 = TreeNode(3)
+n2 = TreeNode(2, n3)
+n1 = TreeNode(1, None, n2)
+
+print(postorderTraversal(n1))
