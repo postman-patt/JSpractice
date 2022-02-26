@@ -5960,22 +5960,80 @@
 
 // Maximum Distance to the Nearest Occupied Slot - edabit
 
-const maxDistance = (slots) => {
-  const end = /0+$/.test(slots) ? slots.match(/0+$/)[0].length : 0
-  const start = /^0+/.test(slots) ? slots.match(/^0+/)[0].length : 0
-  const middle = /(?<=1)0+(?=1)/g.test(slots)
-    ? Math.ceil(
-        slots.match(/(?<=1)0+(?=1)/g).sort((a, b) => {
-          return b.length - a.length
-        })[0].length / 2
-      )
-    : 0
+// const maxDistance = (slots) => {
+//   const end = /0+$/.test(slots) ? slots.match(/0+$/)[0].length : 0
+//   const start = /^0+/.test(slots) ? slots.match(/^0+/)[0].length : 0
+//   const middle = /(?<=1)0+(?=1)/g.test(slots)
+//     ? Math.ceil(
+//         slots.match(/(?<=1)0+(?=1)/g).sort((a, b) => {
+//           return b.length - a.length
+//         })[0].length / 2
+//       )
+//     : 0
 
-  return Math.max(start, end, middle)
+//   return Math.max(start, end, middle)
+// }
+
+// console.log(
+//   maxDistance(
+//     '1111010000100000000000000100000001000000000000000000000011000000000000000000000001110000010000000000'
+//   )
+// )
+
+// -----------------------------------------------------------------------
+
+// 1288. Remove Covered Intervals - leetcode
+
+// const removeCoveredIntervals = (intervals) => {
+//   const intervals_sort = intervals.sort((a, b) => {
+//     return b[0] - a[0]
+//   })
+
+//   return intervals_sort.filter((i, index) => {
+//     console.log(i)
+//     for (let j = index; j < intervals_sort.length; j++) {
+//       if (i[1] <= intervals_sort[j][1] && index != j) {
+//         return false
+//       }
+//     }
+//     return true
+//   }).length
+// }
+
+// console.log(
+//   removeCoveredIntervals([
+//     [1, 4],
+//     [2, 3],
+//   ])
+// )
+
+// -----------------------------------------------------------
+
+// WordRank - edabit
+
+const wordRank = (word) => {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+  const words = word.split(' ')
+
+  let res = []
+
+  for (i in words) {
+    let count = 0
+
+    for (x in words[i]) {
+      if (alphabet.indexOf(words[i][x]) != -1) {
+        count += alphabet.indexOf(words[i][x]) + 1
+      }
+    }
+    res.push(count)
+  }
+  console.log(res)
+  return words[res.indexOf(Math.max(...res))].replace(/\W/g, '')
 }
 
 console.log(
-  maxDistance(
-    '1111010000100000000000000100000001000000000000000000000011000000000000000000000001110000010000000000'
+  wordRank(
+    'If the Easter Bunny and the Tooth Fairy had babies would they take your teeth and leave chocolate for you?'
   )
 )

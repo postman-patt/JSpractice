@@ -5475,28 +5475,220 @@
 
 # Monotonic Stack combined with a greedy approach
 
-def removeKdigits(num, k):
+# def removeKdigits(num, k):
 
-    stack = []
-    count = 0
+#     stack = []
+#     count = 0
 
-    for i in range(len(num)):
+#     for i in range(len(num)):
 
-        while len(stack) != 0 and (int(num[i]) < int(stack[len(stack) - 1])) and count < k:
-            stack.pop()
-            count += 1
+#         while len(stack) != 0 and (int(num[i]) < int(stack[len(stack) - 1])) and count < k:
+#             stack.pop()
+#             count += 1
 
-        stack.append(num[i])
+#         stack.append(num[i])
 
-    while count < k:
-        stack.pop()
-        count += 1
+#     while count < k:
+#         stack.pop()
+#         count += 1
 
-    if len(stack) == 0:
-        return '0'
-    else:
-        return str(int(''.join(stack)))
+#     if len(stack) == 0:
+#         return '0'
+#     else:
+#         return str(int(''.join(stack)))
 
 
-print(
-    removeKdigits('112', 1))
+# print(
+#     removeKdigits('112', 1))
+
+# ----------------------------------------------------------------
+
+# 100. Same Tree - leetcode
+
+# def isSameTree(p, q):
+
+#     if p == None and q != None:
+#         return False
+
+#     if q == None and p != None:
+#         return False
+
+#     if p and q:
+#         if p.val != q.val:
+#             return False
+
+#         if isSameTree(p.left, q.left) == False:
+#             return False
+
+#         if isSameTree(p.right, q.right) == False:
+#             return False
+
+#     return True
+
+
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+# n2 = TreeNode(2)
+# n1 = TreeNode(1, n2)
+
+# s2 = TreeNode(2)
+# s1 = TreeNode(1, None, s2)
+
+
+# print(
+#     isSameTree(s1, n1))
+
+# ----------------------------------------------------------------
+
+# 18. 4Sum - leetcode
+
+# def fourSum(nums, target):
+
+#     sorted_nums = sorted(nums)
+
+#     res = []
+
+#     for i in range(len(sorted_nums)):
+#         if i > 0 and sorted_nums[i] == sorted_nums[i-1]:
+#             continue
+
+#         for j in range(i + 1, len(sorted_nums)):
+
+#             if j > i + 1 and sorted_nums[j] == sorted_nums[j-1]:
+#                 continue
+
+#             left = j + 1
+#             right = len(sorted_nums) - 1
+
+#             while left < right:
+
+#                 sumNum = sum([sorted_nums[left], sorted_nums[right],
+#                              sorted_nums[i], sorted_nums[j]])
+
+#                 if sumNum > target:
+#                     right -= 1
+#                 elif sumNum < target:
+#                     left += 1
+#                 elif sumNum == target:
+#                     res.append(sorted([sorted_nums[left], sorted_nums[right],
+#                                        sorted_nums[i], sorted_nums[j]]))
+#                     left += 1
+#                     while sorted_nums[left] == sorted_nums[left - 1] and left < right:
+#                         left += 1
+#                 else:
+#                     left += 1
+
+#     return res
+
+
+# print(
+#     fourSum(
+#         [2, 2, 2, 2, 2, 2], 8)
+# )
+
+# # [[-3,-2,2,3],[-3,-1,1,3],[-3,0,0,3],[-3,0,1,2],[-2,-1,0,3],[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+
+# -------------------------------------------------------------------
+
+
+# 45. Jump Game - leetcode
+
+
+# def jump(nums):
+
+#     res = [0] + [float('inf') for num in range(len(nums)-1)]
+
+#     for index, val in enumerate(nums):
+
+#         for i in range(1, val+1):
+
+#             if index + i < len(res):
+#                 res[index+i] = min(res[index+i], res[index] + 1)
+
+#     return res[len(res)-1]
+
+
+# print(
+#     jump(
+#         [2, 3, 1, 1, 4]))
+
+
+# ----------------------------------------------------------------------
+
+
+# 88. Merge Sorted Array - leetcode
+
+# def merge(nums1, m, nums2, n):
+
+#     i = 0
+
+#     while len(nums2) > 0:
+
+#         print(i, nums1, nums2, nums1[i], nums2[0])
+#         if nums2[0] <= nums1[i]:
+#             nums1.insert(i, nums2.pop(0))
+#             nums1.pop()
+
+#         if i == len(nums1) - len(nums2):
+#             nums1.insert(i, nums2.pop(0))
+#             nums1.pop()
+#         i += 1
+
+#     return nums1
+
+
+# print(
+#     merge(
+#         [-1, 0, 0, 3, 3, 3, 0, 0, 0], 6, [1, 2, 2], 3)
+# )
+
+# --------------------------------------------------
+
+# 114. Flatten Binary Tree to Linked List - leetcode
+
+# def flatten(root):
+
+#     if root == None:
+#         return None
+
+#     res = []
+
+#     def r(node, lst):
+
+#         if node:
+#             lst.append(node)
+#             r(node.left, lst)
+#             r(node.right, lst)
+
+#     r(root, res)
+#     for i in range(len(res)-1):
+#         res[i].right = res[i+1]
+#         res[i].left = None
+
+#     return res[0]
+
+# Definition for a binary tree node.
+
+
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+# n6 = TreeNode(6)
+# n5 = TreeNode(5, None, n6)
+# n3 = TreeNode(3)
+# n4 = TreeNode(4)
+# n2 = TreeNode(2, n3, n4)
+# n1 = TreeNode(1, n2, n5)
+
+# print(
+#     flatten(n1)
+# )
