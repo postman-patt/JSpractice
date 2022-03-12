@@ -6011,29 +6011,47 @@
 
 // WordRank - edabit
 
-const wordRank = (word) => {
-  const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+// const wordRank = (word) => {
+//   const alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
-  const words = word.split(' ')
+//   const words = word.split(' ')
 
-  let res = []
+//   let res = []
 
-  for (i in words) {
-    let count = 0
+//   for (i in words) {
+//     let count = 0
 
-    for (x in words[i]) {
-      if (alphabet.indexOf(words[i][x]) != -1) {
-        count += alphabet.indexOf(words[i][x]) + 1
-      }
-    }
-    res.push(count)
+//     for (x in words[i]) {
+//       if (alphabet.indexOf(words[i][x]) != -1) {
+//         count += alphabet.indexOf(words[i][x]) + 1
+//       }
+//     }
+//     res.push(count)
+//   }
+//   console.log(res)
+//   return words[res.indexOf(Math.max(...res))].replace(/\W/g, '')
+// }
+
+// console.log(
+//   wordRank(
+//     'If the Easter Bunny and the Tooth Fairy had babies would they take your teeth and leave chocolate for you?'
+//   )
+// )
+
+// ----------------------------------------------------------------------
+
+// Comeplte the word edabit - edabit
+
+const canComplete = (initial, word) => {
+  let regex = ""
+
+  for (i in initial) {
+    regex += `${initial[i]}.*?`
   }
-  console.log(res)
-  return words[res.indexOf(Math.max(...res))].replace(/\W/g, '')
+
+  const r = new RegExp(regex)
+
+  return r.test(word)
 }
 
-console.log(
-  wordRank(
-    'If the Easter Bunny and the Tooth Fairy had babies would they take your teeth and leave chocolate for you?'
-  )
-)
+console.log(canComplete("butl", "beautiful"))

@@ -5697,30 +5697,228 @@
 
 # 145. Binary Tree Postorder Traversal - leetcode
 
-def postorderTraversal(root):
+# def postorderTraversal(root):
 
-    res = []
+#     res = []
 
-    def r(node, lst):
+#     def r(node, lst):
 
-        if node:
-            r(node.left, lst)
-            r(node.right, lst)
-            lst.append(node.val)
+#         if node:
+#             r(node.left, lst)
+#             r(node.right, lst)
+#             lst.append(node.val)
 
-    r(root, res)
-    return res
+#     r(root, res)
+#     return res
 
-class TreeNode(object):
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 
 
 
-n3 = TreeNode(3)
-n2 = TreeNode(2, n3)
-n1 = TreeNode(1, None, n2)
+# n3 = TreeNode(3)
+# n2 = TreeNode(2, n3)
+# n1 = TreeNode(1, None, n2)
 
-print(postorderTraversal(n1))
+# print(postorderTraversal(n1))
+
+# ---------------------------------------------------------------
+
+# 110. Balanced Binary Tree - leetcode
+
+# def isBalanced(root):
+#     if root == None:
+#         return True
+
+#     def r(node, count = 0):
+
+#         if node:
+#             left = r(node.left, count + 1) if r(node.left, count + 1) else False
+#             right = r(node.right, count + 1) if r(node.right, count + 1) else False
+
+
+#             if left == False or right == False:
+#                 return False
+
+#             if abs(left - right) > 1:
+#                 return False
+
+#             return max(left, right)
+
+#         return count
+
+#     if r(root):
+#         return True
+#     else:
+#         return False
+
+
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+# n5 = TreeNode(15)
+# n4 = TreeNode(7)
+# n3 = TreeNode(20, n4, n5)
+# n2 = TreeNode(9)
+# n1 = TreeNode(3, n2, n3)
+
+# print(isBalanced(n1))
+
+
+# ----------------------------------------------------------------
+
+# 392. Is Subsequence - leetcode
+
+# def isSubsequence(s, t):
+        
+#         if len(s) == 0:
+#             return True
+        
+#         if len(t) == 0:
+#             return False
+
+#         pointer_s = 0
+
+#         for i in t:
+
+#             if i == s[pointer_s]:
+#                 pointer_s += 1
+
+#             if pointer_s > len(s) -1:
+#                 return True
+
+#         return False
+
+# print(
+# isSubsequence('axc', 'ahbgdc'))
+
+# ------------------------------------------------------------------------------
+
+# 106. Construct Binary Tree from Inorder and Postorder Traversal - leetcode
+
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+# def buildTree(inorder, postorder):
+
+#     if len(inorder) == 0:
+#         return None
+
+#     if len(inorder) == 1:
+#         return TreeNode(inorder[0])
+
+#     for i in range(len(postorder) -1, -1, -1):
+#         if postorder[i] in inorder:
+
+#             index = inorder.index(postorder[i])
+#             right = buildTree(inorder[index+1:], postorder[:i]) if index + 1 < len(inorder) else None
+#             left = buildTree(inorder[:index], postorder[:i])
+
+#             return TreeNode(postorder[i], left, right)
+    
+
+# n1 = buildTree([9,3,15,20,7], [9,15,7,20,3])
+
+# def isValidBST(root):
+
+#     inorder = []
+
+#     def inorder_traversial(r, inorder):
+#         if r:
+#             inorder_traversial(r.left, inorder)
+#             inorder.append(r.val)
+#             inorder_traversial(r.right, inorder)
+
+#     inorder_traversial(root, inorder)
+
+#     return inorder
+
+# print(
+# isValidBST(n1))
+
+# ---------------------------------------------------------------------------------
+
+# # 21. Merge Two Sorted List - leetcode
+
+# def mergeTwoLists(list1, list2):
+        
+#         if list1 == None and list2 == None:
+#             return None
+        
+#         if list1 == None:
+#             return list2
+
+#         if list2 == None:
+#             return list1
+        
+
+#         node = list1 if list1.val <= list2.val else list2
+#         head = node
+
+#         l1 = list1.next if node == list1 else list1
+#         l2 = list2.next if node == list2 else list2
+
+#         while l1 != None or l2 != None:
+
+#                 if l2 == None:
+#                     node.next = l1
+#                     return head
+
+#                 if l1 == None:
+#                     node.next = l2
+#                     return head
+
+#                 if l2 == None or l1.val <= l2.val:
+#                     node.next = l1
+#                     node = l1
+#                     l1 = l1.next
+
+#                 if l1 == None or l2.val <= l1.val:
+#                     node.next = l2
+#                     node = l2
+#                     l2 = l2.next
+
+
+#         return head
+
+# ----------------------------------------------------------------
+
+# Definition for a Node.
+class Node:
+    def __init__(self, x, next=None, random=None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+
+def copyRandomList(head):
+    
+        hashMap = {}
+
+        def r(node):
+
+            if node == None:
+                return None
+
+            n = Node(node.val)
+
+            hashMap[node] = n
+
+            n.next = r(node.next)
+
+            if node.random:
+                n.random = hashMap[node.random]
+            else:
+                n.random = None
+
+            return n
+
+        return r(head)
