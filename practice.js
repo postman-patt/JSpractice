@@ -1,5 +1,7 @@
 // sampleArray = ['codikng', 'crackers', 'edawbit', 'celekbration']
 
+const { set } = require('express/lib/application')
+
 // const longestWord = (sampleArray) => {
 //   const invalidLetters = ['k', 'm', 'v', 'w', 'x']
 
@@ -6013,6 +6015,7 @@
 
 // const wordRank = (word) => {
 //   const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+<<<<<<< HEAD
 
 //   const words = word.split(' ')
 
@@ -6055,3 +6058,157 @@ const canComplete = (initial, word) => {
 }
 
 console.log(canComplete("butl", "beautiful"))
+=======
+
+//   const words = word.split(' ')
+
+//   let res = []
+
+//   for (i in words) {
+//     let count = 0
+
+//     for (x in words[i]) {
+//       if (alphabet.indexOf(words[i][x]) != -1) {
+//         count += alphabet.indexOf(words[i][x]) + 1
+//       }
+//     }
+//     res.push(count)
+//   }
+//   console.log(res)
+//   return words[res.indexOf(Math.max(...res))].replace(/\W/g, '')
+// }
+
+// console.log(
+//   wordRank(
+//     'If the Easter Bunny and the Tooth Fairy had babies would they take your teeth and leave chocolate for you?'
+//   )
+// )
+
+// ------------------------------------------------------------------
+
+// 662. Maximum Width of Binary Tree - leetcode
+
+// const widthOfBinaryTree = (root) => {
+//   let nodes = [root]
+//   let counts = []
+
+//   while (true) {
+//     let next_nodes = []
+//     for (i in nodes) {
+//       if (nodes[i] != null) {
+//         next_nodes.push(nodes[i].left)
+//         next_nodes.push(nodes[i].right)
+//       }
+//     }
+
+//     console.log(next_nodes)
+
+//     let left = 0
+
+//     while (next_nodes[left] == null && next_nodes.length != 0) {
+//       next_nodes.shift()
+//       left += 1
+//     }
+
+//     if (next_nodes.length == 0) {
+//       return counts.sort((a, b) => {
+//         return b - a
+//       })[0]
+//     }
+
+//     let right = next_nodes.length - 1
+//     while (next_nodes[right] == null && next_nodes.length != 0) {
+//       next_nodes.pop()
+//       right -= 1
+//     }
+
+//     counts.push(next_nodes.length)
+
+//     nodes = next_nodes
+//   }
+// }
+
+// // Definition for a binary tree node.
+// function TreeNode(val, left, right) {
+//   this.val = val === undefined ? 0 : val
+//   this.left = left === undefined ? null : left
+//   this.right = right === undefined ? null : right
+// }
+
+// n6 = TreeNode(9)
+// n5 = TreeNode(3)
+// n4 = TreeNode(5)
+// n3 = TreeNode(2, n6)
+// n2 = TreeNode(3, n4, n5)
+// n1 = TreeNode(1, n2, n3)
+
+// widthOfBinaryTree(n1)
+
+// --------------------------------------------------------
+
+// 228. Summary Ranges - leetcode
+
+// const summaryRanges = (nums) => {
+//   let res = []
+//   let pointer = 0
+
+//   for (let i = 0; i < nums.length; i++) {
+//     if (i > 0 && nums[i] - nums[i - 1] != 1) {
+//       if (i - 1 != pointer) {
+//         res.push(`${nums[pointer]}->${nums[i - 1]}`)
+//       } else {
+//         res.push(`${nums[i - 1]}`)
+//       }
+//       pointer = i
+//     }
+
+//     if (i == nums.length - 1) {
+//       if (i != pointer) {
+//         res.push(`${nums[pointer]}->${nums[i]}`)
+//       } else {
+//         res.push(`${nums[i]}`)
+//       }
+//     }
+//   }
+
+//   return res
+// }
+
+// console.log(summaryRanges([0, 1, 2, 4, 5, 7]))
+
+// ---------------------------------------------------
+
+// 97. Interleaving String - leetcode
+
+const isInterleave = (s1, s2, s3) => {
+  if (s1.length + s2.length != s3.length) {
+    return false
+  }
+
+  if (s3.length == 0 && s1.length == 0 && s2.length == 0) {
+    return true
+  }
+
+  if (s3[0] == s1[0] && s3.length != 0) {
+    if (isInterleave(s1.slice(1), s2, s3.slice(1))) {
+      return true
+    }
+  }
+
+  if (s3[0] == s2[0] && s3.length != 0) {
+    if (isInterleave(s1, s2.slice(1), s3.slice(1))) {
+      return true
+    }
+  }
+
+  return false
+}
+
+console.log(
+  isInterleave(
+    'bbbbbabbbbabaababaaaabbababbaaabbabbaaabaaaaababbbababbbbbabbbbababbabaabababbbaabababababbbaaababaa',
+    'babaaaabbababbbabbbbaabaabbaabbbbaabaaabaababaaaabaaabbaaabaaaabaabaabbbbbbbbbbbabaaabbababbabbabaab',
+    'babbbabbbaaabbababbbbababaabbabaabaaabbbbabbbaaabbbaaaaabbbbaabbaaabababbaaaaaabababbababaababbababbbababbbbaaaabaabbabbaaaaabbabbaaaabbbaabaaabaababaababbaaabbbbbabbbbaabbabaabbbbabaaabbababbabbabbab'
+  )
+)
+>>>>>>> 4a176cf (MAIN-PC update 13-02-2022)

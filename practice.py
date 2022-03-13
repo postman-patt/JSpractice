@@ -5692,12 +5692,13 @@
 # print(
 #     flatten(n1)
 # )
- 
+
 #  -------------------------------------------------
 
 # 145. Binary Tree Postorder Traversal - leetcode
 
 # def postorderTraversal(root):
+<<<<<<< HEAD
 
 #     res = []
 
@@ -5922,3 +5923,66 @@ def copyRandomList(head):
             return n
 
         return r(head)
+=======
+
+#     res = []
+
+#     def r(node, lst):
+
+#         if node:
+#             r(node.left, lst)
+#             r(node.right, lst)
+#             lst.append(node.val)
+
+#     r(root, res)
+#     return res
+
+
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+# n3 = TreeNode(3)
+# n2 = TreeNode(2, n3)
+# n1 = TreeNode(1, None, n2)
+
+# print(postorderTraversal(n1))
+
+# ----------------------------------------------------------
+
+# 138. Copy List with Random Pointer - leetcode
+
+# Definition for a Node.
+class Node:
+    def __init__(self, x, next=None, random=None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+
+
+def copyRandomList(head):
+
+    hashMap = {}
+
+    def r(node):
+
+        if node == None:
+            return None
+
+        n = Node(node.val)
+
+        hashMap[node.val] = n
+
+        n.next = r(node.next)
+
+        n.random = hashMap[node.val]
+
+        return n
+    
+    return r(head)
+
+
+>>>>>>> 4a176cf (MAIN-PC update 13-02-2022)
