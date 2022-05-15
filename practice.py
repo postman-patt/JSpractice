@@ -5711,6 +5711,230 @@
 #     r(root, res)
 #     return res
 
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+# n3 = TreeNode(3)
+# n2 = TreeNode(2, n3)
+# n1 = TreeNode(1, None, n2)
+
+# print(postorderTraversal(n1))
+
+# ---------------------------------------------------------------
+
+# 110. Balanced Binary Tree - leetcode
+
+# def isBalanced(root):
+#     if root == None:
+#         return True
+
+#     def r(node, count = 0):
+
+#         if node:
+#             left = r(node.left, count + 1) if r(node.left, count + 1) else False
+#             right = r(node.right, count + 1) if r(node.right, count + 1) else False
+
+
+#             if left == False or right == False:
+#                 return False
+
+#             if abs(left - right) > 1:
+#                 return False
+
+#             return max(left, right)
+
+#         return count
+
+#     if r(root):
+#         return True
+#     else:
+#         return False
+
+
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+# n5 = TreeNode(15)
+# n4 = TreeNode(7)
+# n3 = TreeNode(20, n4, n5)
+# n2 = TreeNode(9)
+# n1 = TreeNode(3, n2, n3)
+
+# print(isBalanced(n1))
+
+
+# ----------------------------------------------------------------
+
+# 392. Is Subsequence - leetcode
+
+# def isSubsequence(s, t):
+
+#         if len(s) == 0:
+#             return True
+
+#         if len(t) == 0:
+#             return False
+
+#         pointer_s = 0
+
+#         for i in t:
+
+#             if i == s[pointer_s]:
+#                 pointer_s += 1
+
+#             if pointer_s > len(s) -1:
+#                 return True
+
+#         return False
+
+# print(
+# isSubsequence('axc', 'ahbgdc'))
+
+# ------------------------------------------------------------------------------
+
+# 106. Construct Binary Tree from Inorder and Postorder Traversal - leetcode
+
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+# def buildTree(inorder, postorder):
+
+#     if len(inorder) == 0:
+#         return None
+
+#     if len(inorder) == 1:
+#         return TreeNode(inorder[0])
+
+#     for i in range(len(postorder) -1, -1, -1):
+#         if postorder[i] in inorder:
+
+#             index = inorder.index(postorder[i])
+#             right = buildTree(inorder[index+1:], postorder[:i]) if index + 1 < len(inorder) else None
+#             left = buildTree(inorder[:index], postorder[:i])
+
+#             return TreeNode(postorder[i], left, right)
+
+
+# n1 = buildTree([9,3,15,20,7], [9,15,7,20,3])
+
+# def isValidBST(root):
+
+#     inorder = []
+
+#     def inorder_traversial(r, inorder):
+#         if r:
+#             inorder_traversial(r.left, inorder)
+#             inorder.append(r.val)
+#             inorder_traversial(r.right, inorder)
+
+#     inorder_traversial(root, inorder)
+
+#     return inorder
+
+# print(
+# isValidBST(n1))
+
+# ---------------------------------------------------------------------------------
+
+# # 21. Merge Two Sorted List - leetcode
+
+# def mergeTwoLists(list1, list2):
+
+#         if list1 == None and list2 == None:
+#             return None
+
+#         if list1 == None:
+#             return list2
+
+#         if list2 == None:
+#             return list1
+
+
+#         node = list1 if list1.val <= list2.val else list2
+#         head = node
+
+#         l1 = list1.next if node == list1 else list1
+#         l2 = list2.next if node == list2 else list2
+
+#         while l1 != None or l2 != None:
+
+#                 if l2 == None:
+#                     node.next = l1
+#                     return head
+
+#                 if l1 == None:
+#                     node.next = l2
+#                     return head
+
+#                 if l2 == None or l1.val <= l2.val:
+#                     node.next = l1
+#                     node = l1
+#                     l1 = l1.next
+
+#                 if l1 == None or l2.val <= l1.val:
+#                     node.next = l2
+#                     node = l2
+#                     l2 = l2.next
+
+
+#         return head
+
+# ----------------------------------------------------------------
+
+# # Definition for a Node.
+# class Node:
+#     def __init__(self, x, next=None, random=None):
+#         self.val = int(x)
+#         self.next = next
+#         self.random = random
+
+# def copyRandomList(head):
+
+#         hashMap = {}
+
+#         def r(node):
+
+#             if node == None:
+#                 return None
+
+#             n = Node(node.val)
+
+#             hashMap[node] = n
+
+#             n.next = r(node.next)
+
+#             if node.random:
+#                 n.random = hashMap[node.random]
+#             else:
+#                 n.random = None
+
+#             return n
+
+#         return r(head)
+
+
+#     res = []
+
+#     def r(node, lst):
+
+#         if node:
+#             r(node.left, lst)
+#             r(node.right, lst)
+#             lst.append(node.val)
+
+#     r(root, res)
+#     return res
+
 
 # class TreeNode(object):
 #     def __init__(self, val=0, left=None, right=None):
@@ -5729,7 +5953,8 @@
 
 # 138. Copy List with Random Pointer - leetcode
 
-# Definition for a Node.
+# # Definition for a Node.
+
 # class Node:
 #     def __init__(self, x, next=None, random=None):
 #         self.val = int(x)
@@ -5746,6 +5971,7 @@
 #         if node == None:
 #             return None
 
+
 #         n = Node(node.val)
 
 #         hashMap[node.val] = n
@@ -5757,5 +5983,234 @@
 #         return n
     
 #     return r(head)
+
+
+#         n = Node(node.val)
+
+#         hashMap[node.val] = n
+
+#         n.next = r(node.next)
+
+#         n.random = hashMap[node.val]
+
+#         return n
+
+#     return r(head)
+
+# -------------------------------------------------------------------
+
+# 1029. Two City Scheduling - leetcode
+
+# def twoCitySchedCost(costs):
+
+#     total = 0
+#     count_A = []
+#     count_B = []
+
+#     for i in costs:
+#         lowest = min(i)
+
+#         if lowest == i[0]:
+#             total += i[0]
+#             count_A.append(i)
+#         else:
+#             total += i[1]
+#             count_B.append(i)
+
+#     sort_A = sorted(count_A, key=lambda cost: cost[1]-cost[0])
+#     sort_B = sorted(count_B, key=lambda cost: cost[0]-cost[1])
+
+#     while len(sort_A) != len(sort_B):
+
+#         if len(sort_A) > len(sort_B):
+#             total -= sort_A[0][0]
+#             total += sort_A[0][1]
+#             sort_B.append(sort_A.pop(0))
+#         else:
+#             total -= sort_B[0][1]
+#             total += sort_B[0][0]
+#             sort_A.append(sort_B.pop(0))
+
+#     return total
+
+
+# print(
+#     twoCitySchedCost(
+
+
+# [[518,518],[71,971],[121,862],[967,607],[138,754],[513,337],[499,873],[337,387],[647,917],[76,417]])
+# )
+
+# ------------------------------------
+
+# 160. Intersection of Two Linked List - leetcode
+
+# def getIntersectionNode(headA, headB):
+
+#     nodeA = headA
+#     nodeB = headB
+
+#     hashMap = {}
+
+#     while True:
+
+#         if nodeA == None and nodeB == None:
+#             return None
+
+#         if nodeA:
+#             if nodeA in hashMap:
+#                 return nodeA
+#             else:
+#                 hashMap[nodeA] = True
+#                 nodeA = nodeA.next
+
+#         if nodeB:
+#             if nodeB in hashMap:
+#                 return nodeB
+#             else:
+#                 hashMap[nodeB] = True
+#                 nodeB = nodeB.next
+
+# ----------------------------------------------------------
+
+# 31. Next Permutation - leetcode
+
+# def nextPermutation(nums):
+
+#     if len(nums) <= 1:
+#         return nums
+
+#     for i in range(len(nums)-1, -1, -1):
+
+#         if i != len(nums) - 1 and nums[i] < nums[i+1]:
+#             s = sorted(nums[i+1:])
+#             nums[i+1:] = s
+#             j = i + 1
+#             while j < len(nums):
+#                 if nums[j] > nums[i]:
+#                     nums[j], nums[i] = nums[i], nums[j]
+#                     break
+#                 j += 1
+#             return nums
+
+#     return nums.sort()
+
+
+# print(
+#     nextPermutation([1, 3, 2]))
+
+# --------------------------------------------------------
+
+# # 289. Game of Life
+
+# def gameOfLife(board):
+
+#     res = []
+
+#     t = [[0, 1], [1, 0], [0, -1], [-1, 0], [-1, 1], [1, 1], [1, -1], [-1, -1]]
+
+#     for i in range(len(board)):
+#         r = []
+#         for j in range(len(board[i])):
+
+#             count = 0
+#             for row, col in [[x[0]+i, x[1]+j] for x in t]:
+#                 if row > -1 and row < len(board) and col > -1 and col < len(board[0]):
+#                     if board[row][col] == 1:
+#                         count += 1
+
+#             if board[i][j] == 1:
+#                 if count < 2:
+#                     r.append(0)
+#                 elif count == 2 or count == 3:
+#                     r.append(1)
+#                 else:
+#                     r.append(0)
+
+#             if board[i][j] == 0:
+#                 if count == 3:
+#                     r.append(1)
+#                 else:
+#                     r.append(0)
+
+#     res.append(r)
+
+#     for x in range(len(board)):
+#         for k in range(len(board[0])):
+#             board[x][k] = res[x][k]
+
+
+#     return res
+
+
+# print(
+#     gameOfLife([[0, 1, 0], [0, 0, 1], [1, 1, 1], [0, 0, 0]])
+# )
+
+
+# -----------------------------------------------------------------
+
+# 66. Plus One - leetcode
+
+# def plusOne(digits):
+
+#     num = ''
+
+#     for i in digits:
+#         num += str(i)
+
+#     return [x for x in str(int(num) + 1)]
+
+
+# print(
+#     plusOne([1, 2, 3])
+# )
+
+
+# -------------------------------------------------------------------
+
+# 1202. Smallest String With Swaps
+
+# def smallestStringwithSwaps(s, pairs):
+
+#     hash = {}
+
+#     for i in pairs:
+#         n1 = i[0]
+#         n2 = i[1]
+
+#         if n1 == n2:
+#             continue
+
+#         if n1 not in hash and n2 not in hash:
+#             hash[n1] = hash[n2] = [n1, n2]
+#         elif n1 in hash and n2 not in hash:
+#             hash[n1].append(n2)
+#             hash[n2] = hash[n1]
+#         elif n2 in hash and n1 not in hash:
+#             hash[n2].append(n1)
+#             hash[n1] = hash[n2]
+#         elif hash[n1] != hash[n2]:
+#             hash[n1] = hash[n1] + hash[n2]
+#             for x in hash[n1]:
+#                 hash[x] = hash[n1]
+#         hash[n1].sort(key=lambda num: s[num])
+
+#     print(hash)
+#     res = ''
+
+#     for i in range(len(s)):
+#         if i in hash:
+#             res += s[hash[i].pop(0)]
+#         else:
+#             res += s[i]
+
+#     return res
+
+
+# print(
+#     smallestStringwithSwaps(
+#         "cegfxvulsxakw", [[6, 6], [5, 7], [11, 4], [0, 0], [6, 2], [6, 7], [0, 7], [4, 0], [3, 1], [2, 9], [4, 7], [8, 6], [9, 0]])
+# )
 
 
