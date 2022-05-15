@@ -6015,7 +6015,6 @@ const { set } = require('express/lib/application')
 
 // const wordRank = (word) => {
 //   const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-<<<<<<< HEAD
 
 //   const words = word.split(' ')
 
@@ -6045,20 +6044,19 @@ const { set } = require('express/lib/application')
 
 // Comeplte the word edabit - edabit
 
-const canComplete = (initial, word) => {
-  let regex = ""
+// const canComplete = (initial, word) => {
+//   let regex = ""
 
-  for (i in initial) {
-    regex += `${initial[i]}.*?`
-  }
+//   for (i in initial) {
+//     regex += `${initial[i]}.*?`
+//   }
 
-  const r = new RegExp(regex)
+//   const r = new RegExp(regex)
 
-  return r.test(word)
-}
+//   return r.test(word)
+// }
 
-console.log(canComplete("butl", "beautiful"))
-=======
+// console.log(canComplete("butl", "beautiful"))
 
 //   const words = word.split(' ')
 
@@ -6178,37 +6176,184 @@ console.log(canComplete("butl", "beautiful"))
 
 // ---------------------------------------------------
 
-// 97. Interleaving String - leetcode
+// // 97. Interleaving String - leetcode
 
-const isInterleave = (s1, s2, s3) => {
-  if (s1.length + s2.length != s3.length) {
-    return false
-  }
+// const isInterleave = (s1, s2, s3) => {
+//   if (s1.length + s2.length != s3.length) {
+//     return false
+//   }
 
-  if (s3.length == 0 && s1.length == 0 && s2.length == 0) {
-    return true
-  }
+//   if (s3.length == 0 && s1.length == 0 && s2.length == 0) {
+//     return true
+//   }
 
-  if (s3[0] == s1[0] && s3.length != 0) {
-    if (isInterleave(s1.slice(1), s2, s3.slice(1))) {
-      return true
-    }
-  }
+//   if (s3[0] == s1[0] && s3.length != 0) {
+//     if (isInterleave(s1.slice(1), s2, s3.slice(1))) {
+//       return true
+//     }
+//   }
 
-  if (s3[0] == s2[0] && s3.length != 0) {
-    if (isInterleave(s1, s2.slice(1), s3.slice(1))) {
-      return true
-    }
-  }
+//   if (s3[0] == s2[0] && s3.length != 0) {
+//     if (isInterleave(s1, s2.slice(1), s3.slice(1))) {
+//       return true
+//     }
+//   }
 
-  return false
-}
+//   return false
+// }
 
-console.log(
-  isInterleave(
-    'bbbbbabbbbabaababaaaabbababbaaabbabbaaabaaaaababbbababbbbbabbbbababbabaabababbbaabababababbbaaababaa',
-    'babaaaabbababbbabbbbaabaabbaabbbbaabaaabaababaaaabaaabbaaabaaaabaabaabbbbbbbbbbbabaaabbababbabbabaab',
-    'babbbabbbaaabbababbbbababaabbabaabaaabbbbabbbaaabbbaaaaabbbbaabbaaabababbaaaaaabababbababaababbababbbababbbbaaaabaabbabbaaaaabbabbaaaabbbaabaaabaababaababbaaabbbbbabbbbaabbabaabbbbabaaabbababbabbabbab'
-  )
-)
->>>>>>> 4a176cf (MAIN-PC update 13-02-2022)
+// console.log(
+//   isInterleave(
+//     'bbbbbabbbbabaababaaaabbababbaaabbabbaaabaaaaababbbababbbbbabbbbababbabaabababbbaabababababbbaaababaa',
+//     'babaaaabbababbbabbbbaabaabbaabbbbaabaaabaababaaaabaaabbaaabaaaabaabaabbbbbbbbbbbabaaabbababbabbabaab',
+//     'babbbabbbaaabbababbbbababaabbabaabaaabbbbabbbaaabbbaaaaabbbbaabbaaabababbaaaaaabababbababaababbababbbababbbbaaaabaabbabbaaaaabbabbaaaabbbaabaaabaababaababbaaabbbbbabbbbaabbabaabbbbabaaabbababbabbabbab'
+//   )
+// )
+
+// ----------------------------------------------------------------
+
+// 1249. Minimum Remove to Make Valid Parenthese - leetcode
+
+// const minRemoveToMakeValid = (s) => {
+//   let stack = []
+//   let stack2 = []
+
+//   for (i in s) {
+//     if (s[i] == '(') {
+//       stack.push(+i)
+//     }
+
+//     if (s[i] == ')') {
+//       if (stack.length > 0) {
+//         stack.pop()
+//       } else {
+//         stack2.push(+i)
+//       }
+//     }
+//   }
+
+//   return s
+//     .split('')
+//     .filter((char, index) => {
+//       if (stack.includes(index) || stack2.includes(index)) {
+//         return false
+//       } else {
+//         return true
+//       }
+//     })
+//     .join('')
+// }
+
+// console.log(minRemoveToMakeValid('a)b(c)d'))
+
+// ------------------------------------------------------------------
+
+// 856. Score of Parentheses - leetcode
+
+// const scoreOfParentheses = (s) => {
+//   let stack = []
+//   let count = 0
+
+//   for (i in s) {
+//     if (s[i] == '(') {
+//       stack.push(s[i])
+//     }
+
+//     if (s[i] == ')') {
+//       stack.pop()
+//       if (stack.length > 0) {
+//         count += 2 * stack.length
+//       } else {
+//         count += 1
+//       }
+//     }
+//   }
+// }
+
+// ----------------------------------------------------------------
+
+// // Early Birds - edabit
+
+// const isEarlybird = (range, n) => {
+//   let s = ''
+
+//   for (let i = 0; i <= range; i++) {
+//     s += String(i)
+//   }
+//   let num = String(n)
+//   let pointer = 0
+//   let res = []
+//   while (s.slice(pointer).indexOf(num) != -1) {
+//     let sub = []
+//     let index = s.slice(pointer).indexOf(num)
+//     for (let i = index; i < index + num.length; i++) {
+//       sub.push(i + pointer)
+//     }
+//     res.push(sub)
+//     pointer += index + 1
+//   }
+
+//   if (res.length > 1) {
+//     return [...res, 'Early Bird!']
+//   } else {
+//     return res
+//   }
+// }
+
+// console.log(isEarlybird(20, 12))
+
+// ------------------------------------------------------
+
+// 704. Binary Search - leetcode
+
+// const search = (nums, target) => {
+//   let start = 0
+//   let end = nums.length - 1
+
+//   while (start <= end) {
+//     let mid = Math.ceil((end + start) / 2)
+
+//     if (nums[mid] == target) {
+//       return mid
+//     }
+
+//     if (nums[mid] < target) {
+//       start = mid + 1
+//     }
+
+//     if (nums[mid] > target) {
+//       end = mid - 1
+//     }
+//   }
+
+//   return -1
+// }
+
+// console.log(search([-1, 0, 3, 5, 9, 12, 18, 24], 24))
+
+// ---------------------------------------------------------
+
+// 703. Kth Largest Element in a Stream
+
+// var KthLargest = function (k, nums) {
+//   this.nums = nums.sort((a, b) => {
+//     return b - a
+//   })
+//   this.k = k
+// }
+
+// KthLargest.prototype.add = function (val) {
+//   this.nums = this.nums.concat(val).sort((a, b) => {
+//     return b - a
+//   })
+
+//   return this.nums[this.k - 1]
+// }
+
+// var obj = new KthLargest(3, [4, 5, 8, 2])
+// var param_1 = obj.add(3)
+// var param_2 = obj.add(5)
+// var param_3 = obj.add(10)
+
+// ----------------------------------------------------------
+
