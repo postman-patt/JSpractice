@@ -110,6 +110,7 @@
 # No-idea - HackerRank
 
 from collections import defaultdict
+from turtle import xcor
 
 
 # def solution(nums, setA, setB):
@@ -525,11 +526,74 @@ from collections import defaultdict
 
 # ---------------------------------------------------
 
-# String Similarity - HackerRank
+# Queens Attack - HackerRank
 
-def solution(s):
+# def queensAttack(n, k, r_q, c_q, obstacles):
 
-    suffix = []
+#     v_top = n - r_q
+#     v_bot = r_q -1
+#     h_right = n - c_q
+#     h_left = c_q -1
+#     vh_right_bot = min(r_q -1, n -c_q)
+#     vh_right_top = min(n-c_q, n-r_q)
+#     vh_left_bot = min(c_q, r_q) -1
+#     vh_left_top = min(c_q -1, n-r_q)
+    
 
-    for i in range(len(s)):
-        suffix.append(s[i:])
+#     for i in obstacles:
+#         row = abs(i[0] - r_q)
+#         col = abs(i[1] - c_q)
+
+#         if row == col:
+#             # top right
+#             if i[0] > r_q and i[1] > c_q and (i[0] - r_q) < vh_right_top:
+#                 vh_right_top = i[0] -r_q -1
+
+#             # bot right
+#             if i[0] < r_q and i[1] > c_q and (r_q - i[0]) < vh_right_bot:
+#                 vh_right_bot = r_q - i[0]-1
+
+#             # top left
+#             if i[0] > r_q and i[1] < c_q and (i[0] - r_q) < vh_left_top:
+#                 vh_left_top = i[0] - r_q -1
+
+#             # bot left
+#             if i[0] < r_q and i[1] < c_q and (r_q - i[0]) < vh_left_bot:
+#                 vh_left_bot = r_q - i[0] -1
+
+
+#         if row == 0:
+
+#             # right
+#             if i[1] > c_q and (i[1] - c_q -1) < h_right:
+#                 h_right = i[1] - c_q -1
+
+#             # left
+#             if i[1] < c_q and (c_q - i[1] -1) < h_left:
+#                 h_left = c_q - i[1] -1
+ 
+#         if col == 0:
+
+#             # top
+#             if i[0] > r_q and (i[0] - r_q -1) < v_top:
+#                 v_top = i[0] - r_q -1
+
+#             # bot
+#             if i[0] < r_q and (r_q - i[0] -1) < v_bot:
+#                 v_bot = r_q - i[0] -1
+
+#     return sum([v_top, v_bot, vh_left_bot, vh_right_bot, vh_left_top, vh_right_top, h_left, h_right])
+
+
+# print(
+# queensAttack(4, 0, 4, 4, [])
+# )
+
+# ----------------------------------------------------------------------------
+
+
+
+
+
+    
+    

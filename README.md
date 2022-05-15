@@ -1,4 +1,4 @@
-# JSpractice
+# Algorithms and Data Structures
 
 Edabit and Leetcode Practice Sheet - JavaScript and Python
 
