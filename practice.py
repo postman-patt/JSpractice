@@ -5922,6 +5922,7 @@
 
 #         return r(head)
 
+
 #     res = []
 
 #     def r(node, lst):
@@ -5953,6 +5954,7 @@
 # 138. Copy List with Random Pointer - leetcode
 
 # # Definition for a Node.
+
 # class Node:
 #     def __init__(self, x, next=None, random=None):
 #         self.val = int(x)
@@ -5968,6 +5970,20 @@
 
 #         if node == None:
 #             return None
+
+
+#         n = Node(node.val)
+
+#         hashMap[node.val] = n
+
+#         n.next = r(node.next)
+
+#         n.random = hashMap[node.val]
+
+#         return n
+    
+#     return r(head)
+
 
 #         n = Node(node.val)
 
@@ -6020,6 +6036,8 @@
 
 # print(
 #     twoCitySchedCost(
+
+
 # [[518,518],[71,971],[121,862],[967,607],[138,754],[513,337],[499,873],[337,387],[647,917],[76,417]])
 # )
 
@@ -6194,6 +6212,5 @@
 #     smallestStringwithSwaps(
 #         "cegfxvulsxakw", [[6, 6], [5, 7], [11, 4], [0, 0], [6, 2], [6, 7], [0, 7], [4, 0], [3, 1], [2, 9], [4, 7], [8, 6], [9, 0]])
 # )
-
 
 
