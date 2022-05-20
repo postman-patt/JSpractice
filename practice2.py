@@ -109,10 +109,6 @@
 
 # No-idea - HackerRank
 
-from collections import defaultdict
-from turtle import xcor
-
-
 # def solution(nums, setA, setB):
 
 #     hashA = {}
@@ -593,7 +589,139 @@ from turtle import xcor
 
 
 
+# the-quickest-way-up - HackerRank
+
+# def quickestWayUp(ladders, snakes):
+
+#     from collections import deque
+
+#     paths = {}
+
+#     for i in ladders + snakes:
+#         paths[i[0]] = i[1]
+
+#     # Initial position and with 0 rolls
+#     queue = deque([(1, 0)])
+#     visited = set()
 
 
+#     while len(queue)> 0:
+
+#         pos, roll = queue.popleft()
+
+
+#         if pos == 100:
+#             return roll
+
+#         visited.add((pos, roll))
+
+#         for n in range(1, 7):
+#             next = pos + n
+
+#             if (next, roll) in visited or next > 100: continue
+
+#             queue.append((next in paths and paths[next] or next, roll + 1))
+
+#     return -1
     
+# print(
+# quickestWayUp([[32, 62], [42, 68], [12, 98]], [[95, 13], [97, 25], [93, 37], [79, 27], [75, 19], [49, 47], [67, 17]]))
+
+# --------------------------------------------------------------------
+
+# Longest Increasing Subsequence - HackerRank
+
+# 15, 27, 14, 38, 26, 55, 46, 65, 85
+
+# 15
+# 15, 27
+# 14
+# 14 38
+# 14, 26
+# 14, 26, 55
+# 14, 26, 46
+# 14, 26, 46, 65, 85
+
+# 15, 27, 50, 18, 19, 26, 89
+
+# 15
+# 15, 27
+# 15, 27, 50
+# 15, 18
+# 15, 18, 19
+# 15, 18, 19, 26, 89
+
+# def longestIncreasingSubsequence(arr):
+
+#     count = [[arr[0]]]
+
+#     for i in range(1, len(arr)):
+
+#         count.sort(key=lambda item: len(item), reverse= True)
+        
+#         for x in range(len(count)):
+#             if count[x][len(count[x]) -1] <= arr[i]:
+#                 count.append(count[x] + [arr[i]])
+#                 break
+
+#             if x == len(count) -1:
+#                 count.append([arr[i]])
+        
     
+#     return len(max(count, key = lambda item : len(item)))
+
+
+# print(
+# longestIncreasingSubsequence([21, 22, 23, 24, 25, 1, 2, 3, 4, 100, 27, 28, 29, 30])
+# )
+
+# --------------------------------------------------------------------
+
+#  329. Longest increasing path in a matrix - leetcode
+
+def longestIncreasingPath(matrix):
+
+    transformations = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+    paths = {}
+
+    def bfs(node):
+
+        x, y = node[0], node[1]
+
+        if (x, y) in paths:
+            return paths[(x, y)]
+
+        nodes_to_traverse = []
+
+        for i in transformations:
+            row, col = (x + i[0], y + i[1])
+
+            if row >= 0 and row < len(matrix) and col >= 0 and col < len(matrix[0]) and matrix[row][col] > matrix[x][y]:
+                nodes_to_traverse.append((row, col))
+
+        if len(nodes_to_traverse) == 0:
+            paths[(x, y)] = [matrix[x][y]]
+            return [matrix[x][y]]
+
+        for j in nodes_to_traverse:
+
+            p = [matrix[x][y]] + bfs(j)
+
+            if (x, y) in paths:
+                if len(paths[(x, y)]) < len(p):
+                    paths[(x, y)] = p
+            else:
+                paths[(x, y)] = p
+        return paths[(x, y)]
+
+    for r in range(len(matrix)):
+        for c in range(len(matrix[0])):
+            bfs((r, c))
+
+    return len(max([k for k in paths.values()], key=len))
+
+
+print(
+longestIncreasingPath([[1]])
+)
