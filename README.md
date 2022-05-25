@@ -4,17 +4,19 @@ Edabit, Leetcode and HackerRank Practice Sheet - JavaScript and Python
 
 A collection of completed coding challenges from Edabit, Leetcode, and HackerRank. Challenges contain my own interpretation of various algorithms and data structures such as:
 
-•	Stacks
-•	Heaps
-•	Hash Maps
-•	Linked Lists
-•	Binary Search Algorithms
-•	Tree Traversals (Pre-order,  inorder etc.)
-•	DFS and BFS
-•	Dynamic Programming
-•	Various Pathfinding Algorithms (A* and Dijkstras)
-•	Backtracking
-•	Etc.
+<ul>
+  <li>Stacks</li>
+<li>Heaps</li>
+<li>Hash Maps</li>
+<li>Linked Lists</li>
+<li>Binary Search Algorithms</li>
+<li>Tree Traversals (Pre-order,  inorder etc.)</li>
+<li>DFS and BFS</li>
+<li>Dynamic Programming</li>
+<li>Various Pathfinding Algorithms (A* and Dijkstras)</li>
+<li>Backtracking</li>
+<li>Etc.</li>
+  </ul>
 
 *Completed challenges are present in the practice.py and practice.js files. Each challenge is separated by a hyphen as well as the title of the challenge and the source (Leetcode, HackerRank etc.)
 
