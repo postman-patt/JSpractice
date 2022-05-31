@@ -2,6 +2,10 @@
 
 Edabit, Leetcode and HackerRank Practice Sheet - JavaScript and Python
 
+[HackerRank Profile](https://www.hackerrank.com/vuong_patrick)
+
+[Leetcode Profile](https://leetcode.com/postman-pat/)
+
 A collection of completed coding challenges from Edabit, Leetcode, and HackerRank. Challenges contain my own interpretation of various algorithms and data structures such as:
 
 <ul>
