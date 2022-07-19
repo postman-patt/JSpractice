@@ -1462,48 +1462,92 @@
 # Counting Sort
 
 
-def activityNotifications(expenditure, d):
-    def median(frequency):
+# def activityNotifications(expenditure, d):
+#     def median(frequency):
 
-        count = 0
-        d_median = int(d / 2)
-        if d % 2 != 0:
-            for idx, val in enumerate(frequency):
-                count += val
-                if count > d_median:
-                    return idx * 2
-        else:
-            nums = []
-            for idx, val in enumerate(frequency):
-                count += val
-                if count == d_median and len(nums) == 0:
-                    nums.append(idx)
+#         count = 0
+#         d_median = int(d / 2)
+#         if d % 2 != 0:
+#             for idx, val in enumerate(frequency):
+#                 count += val
+#                 if count > d_median:
+#                     return idx * 2
+#         else:
+#             nums = []
+#             for idx, val in enumerate(frequency):
+#                 count += val
+#                 if count == d_median and len(nums) == 0:
+#                     nums.append(idx)
 
-                if count > d_median:
-                    if len(nums) > 0:
-                        nums.append(idx)
-                        return sum(nums)
-                    else:
-                        return idx * 2
+#                 if count > d_median:
+#                     if len(nums) > 0:
+#                         nums.append(idx)
+#                         return sum(nums)
+#                     else:
+#                         return idx * 2
 
-    count = 0
+#     count = 0
 
-    f = [0 for i in range(201)]
+#     f = [0 for i in range(201)]
 
-    for i in range(d):
-        f[expenditure[i]] += 1
+#     for i in range(d):
+#         f[expenditure[i]] += 1
 
-    for j in range(d, len(expenditure)):
+#     for j in range(d, len(expenditure)):
 
-        print(expenditure[j], median(f))
+#         print(expenditure[j], median(f))
 
-        if expenditure[j] >= median(f):
-            count += 1
+#         if expenditure[j] >= median(f):
+#             count += 1
 
-        f[expenditure[j]] += 1
-        f[expenditure[j - d]] -= 1
+#         f[expenditure[j]] += 1
+#         f[expenditure[j - d]] -= 1
 
-    return count
+#     return count
 
 
-print(activityNotifications([2, 3, 4, 2, 3, 6, 8, 4, 5], 5))
+# print(activityNotifications([2, 3, 4, 2, 3, 6, 8, 4, 5], 5))
+
+# --------------------------------------------------------
+
+# 473. Matchsticks to Square - leetcode
+
+
+from re import S
+
+
+def makeSquare(nums):
+    s = sum(nums)
+    target = s / 4
+
+    if s % 4 != 0:
+        return False
+
+    print(target)
+
+    def backtrack(numsLeft, sides=0, count=0):
+
+        if count == target:
+            print(numsLeft, sides, count)
+            if backtrack(numsLeft, sides + 1):
+                return True
+            else:
+                return False
+
+        if count > target:
+            return False
+
+        for idx, val in enumerate(numsLeft):
+            if backtrack(numsLeft[:idx] + numsLeft[idx + 1 :], sides, count + val):
+                return True
+
+        if sides == 4:
+            return True
+
+    if backtrack(nums):
+        return True
+    else:
+        return False
+
+
+print(makeSquare([2, 1, 1, 2, 1, 1, 5, 3, 3, 2, 3, 2, 2, 4]))
